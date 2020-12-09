@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, Button, TouchableOpacity, Image } from 'react-native';
+import { StyleSheet, Text, View, Button, Image } from 'react-native';
 import Animated from 'react-native-reanimated';
 import * as ImagePicker from 'expo-image-picker';
 import Constants from 'expo-constants';
 import BottomSheet from 'reanimated-bottom-sheet';
 import ManualAdd from './timepassForm';
+import {TouchableOpacity} from 'react-native-gesture-handler';
  
 export default function ScanBill() {
 
