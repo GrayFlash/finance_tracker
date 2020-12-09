@@ -24,7 +24,6 @@ export default function CameraButton() {
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,
       allowsEditing: true,
-      aspect: [1, 1],
       quality: 1,
     });
 
@@ -32,12 +31,6 @@ export default function CameraButton() {
 
     if (!result.cancelled) {
       setImage(result);
-    }
-
-    image.width = "100%";
-    const screenWidth = Math.round(Dimensions.get('window').width);
-    if(screenWidth > image.width) {
-        image.width = result.width;
     }
   };
 
@@ -65,7 +58,6 @@ export default function CameraButton() {
 
 const styles = StyleSheet.create({
     container: {
-        marginTop: 90,
         flex: 1, 
         alignItems: 'center', 
         justifyContent: 'center',
