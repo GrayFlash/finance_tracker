@@ -1,26 +1,20 @@
 import { 
     StyleSheet, 
     Text, 
-    View
+    View,
 } from 'react-native';
-import React, {useRef, useEffect, useState} from "react";
-import { Dimensions, Button,TouchableOpacity } from 'react-native';
-import {
-    LineChart,
-    BarChart,
-    PieChart,
-    ProgressChart,
-    ContributionGraph
-} from 'expo-chart-kit';
-import { VictoryBar,VictoryPie, VictoryChart, VictoryTheme } from "victory-native";
+import React from "react";
+import { Dimensions, TouchableOpacity } from 'react-native';
+import { VictoryPie} from "victory-native";
 
 
 const sampleData=[
   { x: "Cats", y: 40, z: "18%" },
   { x: "Dogs", y: 45, z: "23%" },
   { x: "Birds", y: 35, z: "59%" },
-  { x: "Cow", y: 50, z: "25%" },
-  { x: "Fish", y: 30, z: "30%" }
+  { x: "Cows", y: 50, z: "25%" },
+  { x: "Gaurav", y: 30, z: "30%" },
+  { x: "Thakker", y: 30, z: "30%" }
 ];
 export default function ChartPage() {
     const screenWidth = Dimensions.get('window').width
@@ -30,7 +24,7 @@ export default function ChartPage() {
           return (
             <View>
               <VictoryPie
-                colorScale={['#FFD573', '#008159', '#42B0FF', '#FF615F', "#8e44ad" ]}
+                colorScale={['#FFD573', '#008159', '#42B0FF', '#FF615F', "#8e44ad", "pink" ]}
                 radius={({ datum }) => (viewMode == datum.x) ? screenWidth * 0.4 : screenWidth * 0.4 - 10}
                 innerRadius={70}
                 labelRadius={({ innerRadius }) => (screenWidth * 0.4 + innerRadius) / 2.5}
@@ -40,28 +34,66 @@ export default function ChartPage() {
               }}
               />
 
-            
-            <View style={{marginTop: 50}}>
-            <Text>Click here</Text>
+          
+            <View style={{marginTop: 0}}>
+            <View style={{marginTop: 0}}>
               <TouchableOpacity 
                 style={styles.button}
                 onPress={() => setViewMode("Cats")}
               >
                 <Text style={styles.text}>Cats</Text>
               </TouchableOpacity>
-              <TouchableOpacity
+             </View>
+
+             <View style={{marginTop: 10}}>
+              <TouchableOpacity 
                 style={styles.button}
                 onPress={() => setViewMode("Dogs")}
               >
                 <Text style={styles.text}>Dogs</Text>
               </TouchableOpacity>
+             </View>
+
+             <View style={{marginTop: 10}}>
+              <TouchableOpacity 
+                style={styles.button}
+                onPress={() => setViewMode("Birds")}
+              >
+                <Text style={styles.text}>Birds</Text>
+              </TouchableOpacity>
+             </View>
+
+             <View style={{marginTop: 10}}>
+              <TouchableOpacity 
+                style={styles.button}
+                onPress={() => setViewMode("Cows")}
+              >
+                <Text style={styles.text}>Cows</Text>
+              </TouchableOpacity>
+             </View>
+
+             <View style={{marginTop: 10}}>
+              <TouchableOpacity 
+                style={styles.button}
+                onPress={() => setViewMode("Gaurav")}
+              >
+                <Text style={styles.text}>Gaurav</Text>
+              </TouchableOpacity>
+             </View>
+
+             <View style={{marginTop: 10}}>
+              <TouchableOpacity 
+                style={styles.button}
+                onPress={() => setViewMode("Thakker")}
+              >
+                <Text style={styles.text}>Thakker</Text>
+              </TouchableOpacity>
+             </View>
+             
             </View>
           </View>
           );
 }
-// 50 + datum.y * 2
-// (selectedCategory && selectedCategory.name == datum.name) ? SIZES.width * 0.4 : SIZES.width * 0.4 - 10
-
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -71,12 +103,17 @@ const styles = StyleSheet.create({
       },
     button: {
       backgroundColor: "pink",
-      padding: 10,
-      margin: 10,
+      padding: 8,
+      marginLeft: 22,
+      marginRight: 20,
+      borderRadius: 20,
+      justifyContent: "center",
+      alignItems: "center",
+
     },
     text:{
       justifyContent: "center",
-        alignItems: "center",
+      alignItems: "center",
     },
 })
 
