@@ -38,13 +38,6 @@ export default function ChartPage() {
               </View>
               </View>
 
-
-              
-
-
-
-
-
               <TouchableOpacity
                 style={{
                     flexDirection: 'row',
@@ -85,7 +78,7 @@ export default function ChartPage() {
                     height: 40,
                     marginTop: 5,
                     paddingHorizontal: 12,
-                    marginHorizontal: 10,
+                    marginHorizontal: 18,
                     borderRadius: 10,
                     backgroundColor: (viewMode == "Dogs") ? "#BEC1D2" : "white",
                 }}
@@ -118,7 +111,7 @@ export default function ChartPage() {
                     height: 40,
                     marginTop: 5,
                     paddingHorizontal: 12,
-                    marginHorizontal: 10,
+                    marginHorizontal: 18,
                     borderRadius: 10,
                     backgroundColor: (viewMode == "Birds") ? "#BEC1D2" : "white",
                 }}
