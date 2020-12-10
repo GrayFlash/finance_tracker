@@ -8,14 +8,41 @@ const WelcomeForm = () => {
 
     const [Name, setName] = useState("");
     const [Salary, setSalary ] = useState("");
-    const [FixedExpense, setFixedExpense ] = useState(false);
     const [modal, setmodal] = useState(false);
-    const [checked, setChecked] = React.useState('first');
+    const [checked, setChecked] = useState('yes');
+    const submitData = ()=>{
+
+        // Update the link below everytime you run the app unless you employ Heroku
+        
+        console.log(Name);
+        console.log(Salary);
+        console.log(checked);
+        fetch("https://ade16d0eb120.ngrok.io/send-data",{
+            method:"post",
+            headers:{
+                'Content-Type':'application/json'
+            },
+            body:JSON.stringify({
+                    name: Name,
+                    salary: Salary,
+                    fixedExpenses: checked
+                })
+            })
+            .then(res=>res.json())
+            .then(data=>{
+                Alert.alert(`Details of ${data.name} have been saved succesfully`)
+            })
+            .catch(err=>{
+                Alert.alert("Some Error")
+                console.log(err)
+            })
+        }
+
 
     return (
         <View style = {styles.root}>
             <View style={styles.text}>
-                <Text>
+                <Text style={styles.head}>
                     Welcome Form
                 </Text>
                 
@@ -25,7 +52,7 @@ const WelcomeForm = () => {
             </View>
             <TextInput
                 label='Name'
-                //theme = {theme}
+                theme = {theme}
                 mode = 'outlined'
                 value= {Name}
                 onChangeText={text => {setName(text)}}
@@ -33,7 +60,7 @@ const WelcomeForm = () => {
 
             <TextInput
                 label='Salary'
-                //theme = {theme}
+                theme = {theme}
                 mode = 'outlined'
                 value= {Salary}
                 onChangeText={text => {setSalary(text)}}
@@ -46,20 +73,25 @@ const WelcomeForm = () => {
                     Yes
                 </Text>
                 <RadioButton
-                    value="first"
-                    status={ checked === 'first' ? 'checked' : 'unchecked' }
-                    onPress={() => setChecked('first')}
+                    value="yes"
+                    status={ checked === 'yes' ? 'checked' : 'unchecked' }
+                    onPress={() => setChecked('yes')}
                 />
                 <Text>
                     No
                 </Text>
                 <RadioButton
-                    value="second"
-                    status={ checked === 'second' ? 'checked' : 'unchecked' }
-                    onPress={() => setChecked('second')}
+                    value="no"
+                    status={ checked === 'no' ? 'checked' : 'unchecked' }
+                    onPress={() => setChecked('no')}
                 />
             </View>
-            
+            <Button theme={theme} 
+            icon="content-save" 
+            mode="contained" 
+            onPress={()=> submitData() }>
+                Save
+            </Button>
         </View>
     );
 }
@@ -77,7 +109,11 @@ const styles = StyleSheet.create({
     text:{
         padding : 10,
         alignItems: 'center',
-        fontSize: 50
+    },
+    head:{
+        fontSize: 25,
+        paddingBottom: 10,
+        paddingTop: 10
     }
 })
 export default WelcomeForm;

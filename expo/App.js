@@ -7,8 +7,8 @@ import WelcomeForm from './screens/welcome_form';
 export default function App() {
   return (
     <View>
-      {/* <WelcomeForm/> */}
-      <Home />
+      <WelcomeForm/>
+      {/* <Home /> */}
     </View>
   );
 }
