@@ -85,7 +85,7 @@ export default function ScanBill() {
         <View style={{flex: 1}} >
             <BottomSheet
                 ref={sheetRef}
-                snapPoints={[300, 0]}
+                snapPoints={[250, 0]}
                 renderContent={renderInner}
                 renderHeader={renderHeader}
                 initialSnap={1}
@@ -123,32 +123,28 @@ export default function ScanBill() {
 const styles = StyleSheet.create({
     cameraButton : {
         backgroundColor: "#BEC1D2", 
-        padding: 24, 
-        borderRadius:10,
+        marginTop: 10,
+        padding: 12, 
+        marginHorizontal: 8,
+        borderRadius:8,
     },
     panel: {
-        padding: 20,
-        backgroundColor: '#FFFFFF',
-        /*borderTopLeftRadius: 20,
-        borderTopRightRadius: 20,
-        shadowColor: '#333333',
-        shadowOffset: {width: -1, height: -3},
-        shadowRadius: 5,
-        shadowOpacity: 0.4,*/
+        padding: 30,
+        backgroundColor: '#F5F7F9',
+        borderTopLeftRadius: 8,
+        borderTopRightRadius: 8,
+        borderBottomLeftRadius: 8,
+        borderBottomRightRadius: 8,
     },
     header: {
-        padding: 10,
-        backgroundColor: '#FFFFFF',
+        backgroundColor: 'white',
         borderColor: "#D3D3D3",
-        borderTopWidth: 2,
         shadowColor: 'black',
-        shadowOffset: {width: -1, height: -3},
+        shadowOffset: {width: -10, height: -3},
         shadowRadius: 5,
         shadowOpacity: 0.4,
-        //elevation: 5,
-        paddingTop: 20,
-        borderTopLeftRadius: 20,
-        borderTopRightRadius: 20,
+        borderTopLeftRadius: 8,
+        borderTopRightRadius: 8,
     },
     panelHeader: {
         alignItems: 'center',
@@ -157,22 +153,22 @@ const styles = StyleSheet.create({
         width: 40,
         height: 8,
         borderRadius: 4,
-        backgroundColor: '#00000040',
+        backgroundColor: 'transparent',
     },
     panelTitle: {
-        fontSize: 25,
+        fontSize: 20,
         height: 35,
         marginBottom: 5,
     },
     panelButton: {
-        padding: 13,
-        borderRadius: 10,
-        backgroundColor: '#FF6347',
+        padding: 8,
+        borderRadius: 6,
+        backgroundColor: '#BEC1D2',
         alignItems: 'center',
-        marginVertical: 7,
+        marginVertical: 6,
     },
     panelButtonTitle: {
-        fontSize: 17,
+        fontSize: 14,
         fontWeight: 'bold',
         color: 'white',
     },
