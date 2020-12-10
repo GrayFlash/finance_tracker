@@ -21,7 +21,7 @@ export default function AddSection() {
 
             <ScanBill />
             
-            {/*<ManualAdd />*/}
+            {/* <ManualAdd /> */}
 
         </ScrollView>
     );

@@ -7,8 +7,8 @@ import Home from './screens/Home';
 export default function App() {
   return (
     <View>
-      <WelcomeForm/>
-      {/* <Home /> */}
+      {/* <WelcomeForm/> */}
+      <Home />
     </View>
   );
 }
