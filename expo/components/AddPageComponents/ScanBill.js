@@ -24,26 +24,39 @@ export default function ScanBill() {
 
     const pickImage = async () => {
 
-        console.log("Camera Button is Pressed!!");
+        console.log("Chooose from Gallery is Pressed!!");
 
-        let result = await ImagePicker.launchImageLibraryAsync({
-        mediaTypes: ImagePicker.MediaTypeOptions.All,
-        allowsEditing: true,
-        quality: 1,
-        });
-
-        console.log(result);
-
-        if (!result.cancelled) {
-        setImage(result);
+        const {status} = await ImagePicker.getCameraPermissionsAsync();
+        console.log(status)
+        if (status === 'granted') {
+            let result = await ImagePicker.launchImageLibraryAsync({
+                mediaTypes: ImagePicker.MediaTypeOptions.All,
+                allowsEditing: true,
+                quality: 1,
+            });
+        
+            console.log(result);
+    
+            if (!result.cancelled) {
+                setImage(result);
+            }
+        } else {
+            Alert.alert('Access denied')
         }
 
         sheetRef.current.snapTo(1)
     };
 
-    const clickImage = () => {
+    const clickImage = async () => {
         console.log("Take photo is pressed");
-        setImage(null);
+
+        let result = await ImagePicker.launchCameraAsync({
+            mediaTypes: ImagePicker.MediaTypeOptions.Images,
+            allowsEditing: true,
+            quality: 1
+        })
+
+        setImage(result);
         sheetRef.current.snapTo(1);
     }
     
