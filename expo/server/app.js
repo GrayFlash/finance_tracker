@@ -2,10 +2,13 @@ const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
+
 require('./user')
+require('./fixedExpense')
 
+app.use(bodyParser.json())
 const user = mongoose.model("user")
-
+const fixedExpense = mongoose.model("fixedExpense")
 const mongoUri = "";
 
 
@@ -24,12 +27,13 @@ mongoose.connection.on("error", (err)=>{
 
 
 app.post('/send-data',(req,res)=>{
-    console.log(res)
+    //console.log(res)
     const User = new user({
         name: req.body.name,
         salary: req.body.salary,
         fixedExpenses: req.body.fixedExpenses
     })
+    console.log(User)
     User.save()
     .then(data=>{
         console.log(data)
@@ -39,7 +43,20 @@ app.post('/send-data',(req,res)=>{
     })
 })
 
+app.post('/addExpense', (req, res)=>{
+    const fixedExpenses = new fixedExpense({
+        expense: req.body.expense,
+        amount: req.body.amount
+    })
+    fixedExpenses.save()
+    .then(data=>{
+        console.log(data)
+        res.send(data)
+    }).catch(err=>{
+        console.log(err)
+    })
+})
 
 app.listen(3000,()=>{
-    console.log("Server Running")
+    console.log("Server Running at port 3000")
 })
