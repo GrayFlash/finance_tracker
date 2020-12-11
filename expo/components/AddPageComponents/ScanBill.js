@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, Button, Image } from 'react-native';
+import { StyleSheet, Text, View, Button, Image, Alert } from 'react-native';
 import Animated from 'react-native-reanimated';
 import * as ImagePicker from 'expo-image-picker';
 import Constants from 'expo-constants';
@@ -51,7 +51,7 @@ export default function ScanBill() {
     const clickImage = async () => {
         console.log("Take photo is pressed");
 
-        const {status} = await ImagePicker.getCameraPermissionsAsync();
+        const {status} = await ImagePicker.requestCameraPermissionsAsync();
         console.log(status)
 
         if (status === 'granted') {
