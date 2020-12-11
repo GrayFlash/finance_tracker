@@ -9,7 +9,6 @@ import {
     Button
 } from 'react-native';
 import ScanBill from './AddPageComponents/ScanBill';
-import ScanBill_testing from './AddPageComponents/testing';
 
 export default function AddSection() {
     return (

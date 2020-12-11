@@ -26,8 +26,9 @@ export default function ScanBill() {
 
         console.log("Chooose from Gallery is Pressed!!");
 
-        const {status} = await ImagePicker.getCameraPermissionsAsync();
-        console.log(status)
+        const { status } = await ImagePicker.requestCameraRollPermissionsAsync();
+        console.log(status);
+        
         if (status === 'granted') {
             let result = await ImagePicker.launchImageLibraryAsync({
                 mediaTypes: ImagePicker.MediaTypeOptions.All,
@@ -50,13 +51,25 @@ export default function ScanBill() {
     const clickImage = async () => {
         console.log("Take photo is pressed");
 
-        let result = await ImagePicker.launchCameraAsync({
-            mediaTypes: ImagePicker.MediaTypeOptions.Images,
-            allowsEditing: true,
-            quality: 1
-        })
+        const {status} = await ImagePicker.getCameraPermissionsAsync();
+        console.log(status)
 
-        setImage(result);
+        if (status === 'granted') {
+            let result = await ImagePicker.launchCameraAsync({
+                mediaTypes: ImagePicker.MediaTypeOptions.Images,
+                allowsEditing: true,
+                quality: 1
+            })
+        
+            console.log(result);
+    
+            if (!result.cancelled) {
+                setImage(result);
+            }
+        } else {
+            Alert.alert('Access denied')
+        }
+
         sheetRef.current.snapTo(1);
     }
     
