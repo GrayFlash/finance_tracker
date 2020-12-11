@@ -1,24 +1,35 @@
 // import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import Home from './screens/Home';
 import Profile from './screens/Profile';
 // import WelcomeForm from './screens/welcome_form';
 
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
 const Stack = createStackNavigator();
 
 const stackDesignHead = {
-          title: "Home", 
-          headerTintColor:"black",
-          headerStyle:{ 
-          backgroundColor:"white"
-      }
+	title: "Home", 
+	headerTintColor:"black",
+	headerStyle:{ 
+		backgroundColor:"white"
+	}
 }
 
-function App() {
+const stackDesignHeadForHome = {
+		title: "Home", 
+		headerTintColor:"black",
+        headerStyle:{ 
+        	backgroundColor:"white"
+		},
+		headerRight: () => (
+            <ProfileButton />
+        ),
+}
+
+function App(props) {
   return (
     <View style={styles.container}>
       {/* <WelcomeForm/> */}
@@ -27,7 +38,7 @@ function App() {
         <Stack.Screen
           name="Home"
           component={Home}
-          options={stackDesignHead}
+          options={stackDesignHeadForHome}
         />
         <Stack.Screen
           name="Profile"
@@ -45,6 +56,18 @@ export default()=>{
       <App/>
     </NavigationContainer>
   )
+}
+
+function ProfileButton() {
+	const navigation = useNavigation();
+	return (
+		<TouchableOpacity 
+			style={{marginRight: 10, padding: 10, backgroundColor: "pink", borderRadius: 500}}
+			onPress={()=> navigation.navigate("Profile")}
+		>
+			<Text style={{textAlign: "center"}}>Profile</Text>
+		</TouchableOpacity>
+	);	
 }
 
 const styles = StyleSheet.create({

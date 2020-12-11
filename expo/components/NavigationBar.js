@@ -17,7 +17,7 @@ export default function NavigationBar({ NavbarButtonHandler, viewMode }) {
     }
 
     return (
-        <View style={{ flex: 1, justifyContent: 'center', padding: 24, marginTop: 60,}}>
+        <View style={{ flex: 1, justifyContent: 'center', padding: 24, marginTop: 20,}}>
             <View style={{ flexDirection: 'row', height: 55, backgroundColor: "#F5F5F5", borderRadius: 12 }}>
                 {/* Claim */}
                 <TouchableOpacity
