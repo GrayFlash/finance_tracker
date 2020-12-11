@@ -8,21 +8,15 @@ import {
     TouchableOpacity, 
     Button
 } from 'react-native';
-import CameraButton from './AddPageComponents/CameraButton';
 import ScanBill from './AddPageComponents/ScanBill';
-import ManualAdd from './AddPageComponents/timepassForm';
-
+import ScanBill_testing from './AddPageComponents/testing';
 
 export default function AddSection() {
     return (
         <ScrollView style={styles.mainAddSection} contentContainerStyle={{ flexGrow: 1 }}>   
             
-            {/*<CameraButton />*/} 
-
             <ScanBill />
             
-            {/* <ManualAdd /> */}
-
         </ScrollView>
     );
 } 
