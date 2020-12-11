@@ -15,10 +15,10 @@ export default function Header({ props, viewMode, NavbarButtonHandler }) {
 
                 {/* BUTTON FOR STACK NAVIGATION */}
                 <TouchableOpacity 
-                style={{margin: 120, padding: 5, backgroundColor: "pink", marginTop: 150}}
-                onPress={()=> props.navigation.navigate("Profile")}
+                    style={{margin: 120, padding: 10, backgroundColor: "pink", marginTop: 160, borderRadius: 500}}
+                    onPress={()=> props.navigation.navigate("Profile")}
                 >
-                        <Text>Profile</Text>
+                    <Text style={{textAlign: "center"}}>Profile</Text>
                 </TouchableOpacity>
 
             </View>
@@ -34,8 +34,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row', 
         paddingHorizontal: 24, 
         alignItems: 'center', 
-        marginTop: 60,
         marginRight: 24,
+        paddingTop: 10
     },
     MainHeadingText : {
         fontSize: 22, 

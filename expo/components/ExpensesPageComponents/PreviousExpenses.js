@@ -75,7 +75,7 @@ export default function PreviousExpenses({ selectedCategory }) {
 
     return (
         <View>
-            <View style={{ height: 80, backgroundColor: 'white', padding: 24 }}>
+            <View style={{ height: 80, backgroundColor: '#F2F2F2', padding: 24 }}>
                 <Text style={{ fontSize: 16, lineHeight: 22, color: "#194868" }}>PREVIOUS EXPENSES</Text>
                 <Text style={{fontSize: 14, lineHeight: 22, color: '#898C95' }}>This Week</Text>
             </View>

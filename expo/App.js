@@ -11,11 +11,11 @@ import { createStackNavigator } from '@react-navigation/stack';
 const Stack = createStackNavigator();
 
 const stackDesignHead = {
-  title: "HomeScreen", 
-          headerTintColor:"white", 
+          title: "Home", 
+          headerTintColor:"black",
           headerStyle:{ 
-            backgroundColor:"gray"
-            }
+          backgroundColor:"white"
+      }
 }
 
 function App() {
@@ -25,14 +25,14 @@ function App() {
       {/* <Home /> */}
       <Stack.Navigator>
         <Stack.Screen
-        name="Home"
-        component={Home}
-        options={stackDesignHead}
+          name="Home"
+          component={Home}
+          options={stackDesignHead}
         />
         <Stack.Screen
-        name="Profile"
-        component={Profile}
-        options={{...stackDesignHead, title:"Profile"}}
+          name="Profile"
+          component={Profile}
+          options={{...stackDesignHead, title:"Profile"}}
         />
       </Stack.Navigator>
     </View>

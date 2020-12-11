@@ -163,7 +163,7 @@ const styles = StyleSheet.create({
         borderBottomRightRadius: 8,
     },
     header: {
-        backgroundColor: 'white',
+        backgroundColor: '#F5F7F9',
         borderColor: "#D3D3D3",
         shadowColor: 'black',
         shadowOffset: {width: -10, height: -3},
@@ -177,7 +177,7 @@ const styles = StyleSheet.create({
     },
     panelHandle: {
         width: 40,
-        height: 8,
+        height: 0,
         borderRadius: 4,
         backgroundColor: 'transparent',
     },
