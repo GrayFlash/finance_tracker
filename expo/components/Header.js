@@ -2,7 +2,8 @@ import React from 'react';
 import { 
     StyleSheet, 
     Text, 
-    View
+    View,
+    TouchableOpacity
 } from 'react-native';
 import NavigationBar from '../components/NavigationBar';
 
@@ -11,6 +12,12 @@ export default function Header({ viewMode, NavbarButtonHandler }) {
         <View>
             <View style={styles.MainHeadingView}>
                 <Text style={styles.MainHeadingText}>My Expenses</Text>
+
+                {/* BUTTON FOR STACK NAVIGATION */}
+                <TouchableOpacity style={{margin: 120, padding: 5, backgroundColor: "pink", marginTop: 150}}>
+                        <Text>Profile</Text>
+                </TouchableOpacity>
+
             </View>
 
             {<NavigationBar viewMode={viewMode} NavbarButtonHandler={NavbarButtonHandler}/>}
