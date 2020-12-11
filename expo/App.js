@@ -5,21 +5,51 @@ import Home from './screens/Home';
 import Profile from './screens/Profile';
 // import WelcomeForm from './screens/welcome_form';
 
-export default function App() {
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+
+const Stack = createStackNavigator();
+
+const stackDesignHead = {
+  title: "HomeScreen", 
+          headerTintColor:"white", 
+          headerStyle:{ 
+            backgroundColor:"gray"
+            }
+}
+
+function App() {
   return (
-    <View>
+    <View style={styles.container}>
       {/* <WelcomeForm/> */}
       {/* <Home /> */}
-      <Profile />
+      <Stack.Navigator>
+        <Stack.Screen
+        name="Home"
+        component={Home}
+        options={stackDesignHead}
+        />
+        <Stack.Screen
+        name="Profile"
+        component={Profile}
+        options={{...stackDesignHead, title:"Profile"}}
+        />
+      </Stack.Navigator>
     </View>
   );
+}
+
+export default()=>{
+  return(
+    <NavigationContainer>
+      <App/>
+    </NavigationContainer>
+  )
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
 });

@@ -7,7 +7,7 @@ import Header from '../components/Header';
 import ChartPage from '../components/PieChart';
 import {confirmStatus, pendingStatus, categoriesData} from '../data/dummyData';
 
-export default function Home() {
+export default function Home (props) {
 
     const categoryListHeightAnimationValue = useRef(new Animated.Value(172.5)).current;
     const [selectedCategory, setSelectedCategory] = React.useState(null);
@@ -32,7 +32,7 @@ export default function Home() {
     return (
         <View>
 
-            {<Header viewMode={viewMode} NavbarButtonHandler={NavbarButtonHandler} />}
+            {<Header props={props} viewMode={viewMode} NavbarButtonHandler={NavbarButtonHandler} />}
 
             {
                 viewMode == "expenses" &&

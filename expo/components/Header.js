@@ -7,14 +7,17 @@ import {
 } from 'react-native';
 import NavigationBar from '../components/NavigationBar';
 
-export default function Header({ viewMode, NavbarButtonHandler }) {
+export default function Header({ props, viewMode, NavbarButtonHandler }) {
     return (
         <View>
             <View style={styles.MainHeadingView}>
                 <Text style={styles.MainHeadingText}>My Expenses</Text>
 
                 {/* BUTTON FOR STACK NAVIGATION */}
-                <TouchableOpacity style={{margin: 120, padding: 5, backgroundColor: "pink", marginTop: 150}}>
+                <TouchableOpacity 
+                style={{margin: 120, padding: 5, backgroundColor: "pink", marginTop: 150}}
+                onPress={()=> props.navigation.navigate("Profile")}
+                >
                         <Text>Profile</Text>
                 </TouchableOpacity>
 
