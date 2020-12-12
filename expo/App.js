@@ -1,10 +1,10 @@
 // import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
 import Home from './screens/Home';
 import Profile from './screens/Profile';
 // import WelcomeForm from './screens/welcome_form';
-import Camera from './screens/camera';
+// import Camera from './screens/camera';
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
@@ -34,8 +34,8 @@ function App(props) {
     <View style={styles.container}>
       {/* <WelcomeForm/> */}
       {/* <Home /> */}
-      <Camera/>
-      {/* <Stack.Navigator>
+      {/* <Camera/> */}
+       <Stack.Navigator>
         <Stack.Screen
           name="Home"
           component={Home}
@@ -46,7 +46,7 @@ function App(props) {
           component={Profile}
           options={{...stackDesignHead, title:"Profile"}}
         />
-      </Stack.Navigator> */}
+      </Stack.Navigator> 
     </View>
   );
 }
@@ -63,10 +63,16 @@ function ProfileButton() {
 	const navigation = useNavigation();
 	return (
 		<TouchableOpacity 
-			style={{marginRight: 10, padding: 10, backgroundColor: "pink", borderRadius: 500}}
+			style={{marginRight: 10, padding: 0, backgroundColor: "#F5F5F5", borderRadius: 500}}
 			onPress={()=> navigation.navigate("Profile")}
 		>
-			<Text style={{textAlign: "center"}}>Profile</Text>
+      <Image 
+          style={{
+          width: 28,
+          height: 28,
+          borderRadius: 5,
+          tintColor: "black"
+        }} source={require('./assets/icons/user.png')} />
 		</TouchableOpacity>
 	);	
 }

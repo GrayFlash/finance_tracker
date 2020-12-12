@@ -15,36 +15,36 @@ export default function Home() {
 
     function renderExpense() {
         return (
-            <View>
+            <View style={{marginTop: 20}}>
             
             <TouchableOpacity
                 style={{
                     flexDirection: 'row',
-                    height: 40,
-                    marginTop: 5,
+                    height: 60,
+                    marginTop: 0,
                     paddingHorizontal: 12,
                     marginHorizontal: 18,
                     borderRadius: 10,
-                    backgroundColor: (viewMode == "Cats") ? "#BEC1D2" : "white",
+                    backgroundColor: "white",
                 }}
                
               >
                 {/* Name/Category */}
                 <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
                     
-                    <Image 
+                    {/* <Image 
                         style={{
                         width: 20,
                         height: 20,
                         borderRadius: 5
-                    }} source={require('../assets/icons/pages.png')} />
+                    }} source={require('../assets/icons/pages.png')} /> */}
 
-                    <Text style={{ marginLeft: 8, color: (viewMode == "Cats") ? "white" : "#194868"}}>Monthly Income</Text>
+                    <Text style={{ marginLeft: 8, color: "#194868"}}>Monthly Income</Text>
                 </View>
 
                 {/* Expenses */}
                 <View style={{ justifyContent: 'center' }}>
-                    <Text style={{ color: (viewMode == "Cats") ? "white" : "#194868" }}>94000 USD</Text>
+                    <Text style={{ color: "#194868" }}>94000 USD</Text>
                 </View>
             </TouchableOpacity>
 
@@ -52,86 +52,86 @@ export default function Home() {
             <TouchableOpacity
                 style={{
                     flexDirection: 'row',
-                    height: 40,
-                    marginTop: 5,
+                    height: 60,
+                    marginTop: 14,
                     paddingHorizontal: 12,
                     marginHorizontal: 18,
                     borderRadius: 10,
-                    backgroundColor: (viewMode == "Cats") ? "#BEC1D2" : "white",
+                    backgroundColor: "white",
                 }}
                
               >
                 {/* Name/Category */}
                 <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
                     
-                    <Image 
+                    {/* <Image 
                         style={{
                         width: 20,
                         height: 20,
                         borderRadius: 5
-                    }} source={require('../assets/icons/pages.png')} />
+                    }} source={require('../assets/icons/pages.png')} /> */}
 
-                    <Text style={{ marginLeft: 8, color: (viewMode == "Cats") ? "white" : "#194868"}}>Expenses</Text>
+                    <Text style={{ marginLeft: 8, color: "#194868"}}>Expenses</Text>
                 </View>
 
                 {/* Expenses */}
                 <View style={{ justifyContent: 'center' }}>
-                    <Text style={{ color: (viewMode == "Cats") ? "white" : "#194868" }}>840 USD</Text>
+                    <Text style={{ color: "#194868" }}>840 USD</Text>
                 </View>
             </TouchableOpacity>
 
             <TouchableOpacity
                 style={{
                     flexDirection: 'row',
-                    height: 40,
-                    marginTop: 5,
+                    height: 60,
+                    marginTop: 14,
                     paddingHorizontal: 12,
                     marginHorizontal: 18,
                     borderRadius: 10,
-                    backgroundColor: (viewMode == "Cats") ? "#BEC1D2" : "white",
+                    backgroundColor: "white",
                 }}
                 
               >
                 {/* Name/Category */}
                 <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
                     
-                    <Image 
+                    {/* <Image 
                         style={{
                         width: 20,
                         height: 20,
                         borderRadius: 5
-                    }} source={require('../assets/icons/pages.png')} />
+                    }} source={require('../assets/icons/pages.png')} /> */}
 
-                    <Text style={{ marginLeft: 8, color: (viewMode == "Cats") ? "white" : "#194868"}}>Target to save</Text>
+                    <Text style={{ marginLeft: 8, color: "#194868"}}>Target to save</Text>
                 </View>
 
                 {/* Expenses */}
                 <View style={{ justifyContent: 'center' }}>
-                    <Text style={{ color: (viewMode == "Cats") ? "white" : "#194868" }}>450 USD</Text>
+                    <Text style={{ color: "#194868" }}>450 USD</Text>
                 </View>
             </TouchableOpacity>
 
             <TouchableOpacity
                 style={{
                     flexDirection: 'row',
-                    height: 40,
-                    marginTop: 5,
+                    height: 60,
+                    marginTop: 14,
                     paddingHorizontal: 12,
                     marginHorizontal: 18,
                     borderRadius: 10,
-                    backgroundColor: (viewMode == "Cats") ? "#BEC1D2" : "white",
+                    backgroundColor: "white",
                 }}
                 
               >
                 {/* Name/Category */}
                 <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
                     
-                    <Image 
+                    {/* <Image 
                         style={{
                         width: 20,
                         height: 20,
                         borderRadius: 5
-                    }} source={require('../assets/icons/pages.png')} />
+                    }} source={require('../assets/icons/pages.png')} /> */}
 
                     <Text style={{ marginLeft: 8, color: (viewMode == "Cats") ? "white" : "#194868"}}>This month's target </Text>
                 </View>
@@ -146,26 +146,27 @@ export default function Home() {
             <TouchableOpacity
                 style={{
                     flexDirection: 'row',
-                    height: 40,
-                    marginTop: 5,
+                    height: 60,
+                    marginTop: 14,
                     paddingHorizontal: 12,
                     marginHorizontal: 18,
                     borderRadius: 10,
-                    backgroundColor: (viewMode == "Cats") ? "#BEC1D2" : "white",
+                    backgroundColor: "white",
                 }}
+                onPress={() => setViewMode("edit")}
                 
               >
                 {/* Name/Category */}
                 <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
                     
-                    <Image 
+                    {/* <Image 
                         style={{
                         width: 20,
                         height: 20,
                         borderRadius: 5
-                    }} source={require('../assets/icons/pages.png')} />
+                    }} source={require('../assets/icons/pages.png')} /> */}
 
-                    <Text style={{ marginLeft: 8, color: (viewMode == "Cats") ? "white" : "#194868"}}>Edit Values </Text>
+                    <Text style={{ marginLeft: 8, color: "#194868"}}>Edit Values </Text>
                 </View>
 
                 {/* Expenses */}
@@ -182,7 +183,7 @@ export default function Home() {
     function renderEdit() {
         return (
             <View>
-                <View style={styles.container} >
+            <View style={styles.container} >
             <Text style={styles.Text}>My Name</Text>
             <TextInput 
                 style={styles.inputField}
@@ -206,11 +207,25 @@ export default function Home() {
                 style={styles.inputField}
             /> */}
             <TouchableOpacity 
-                style={{paddingTop: 10,marginTop: 10}}
+                style={{marginTop: 5}}
                 onPress={() => Alert.alert("Submit karne k baad ka code is on gaurav")}
             >
                 <View style={styles.button}>
                     <Text style={{color: "white", textAlign: "center"}}>Save Changes</Text>
+                </View>
+            </TouchableOpacity>
+
+            <TouchableOpacity 
+                style={{marginTop: 5}}
+                onPress={() => setViewMode("expense")}
+            >
+                <View style={{
+                        backgroundColor: "white",
+                        padding: 12,
+                        borderRadius: 6,
+                        marginTop: 20
+                    }}>
+                    <Text style={{color: "black", textAlign: "center"}}>Cancel</Text>
                 </View>
             </TouchableOpacity>
         </View>
@@ -229,14 +244,14 @@ export default function Home() {
                     Bruce Wayne
                 </Text>
             </View>
-            <View style={{ flexDirection: 'row', height: 80, backgroundColor: "white", borderRadius: 12 }}>
+            <View style={{ flexDirection: 'row', height: 80, backgroundColor: "#F5F7F9" }}>
 
             <TouchableOpacity
                     style={{ 
                         flex: 1,
-                        backgroundColor: viewMode == "expense" ? "#BEC1D2" : null, 
                         margin: 5,
-                        borderRadius: 10,
+                        borderBottomColor: viewMode == "expense" ? "#BEC1D2" : "#F5F7F9",
+                        borderBottomWidth: 2,
                     }}
                     onPress={() => setViewMode("expense")}
                 >
@@ -249,7 +264,7 @@ export default function Home() {
                         }}
                     >
                         
-                        <Image style={{width: 50, height:50}} source={require('../assets/icons/salary.png')} />
+                        <Image style={{width: 40, height:40}} source={require('../assets/icons/salary.png')} />
                     </View>
                 </TouchableOpacity>
 
@@ -258,9 +273,9 @@ export default function Home() {
                 <TouchableOpacity
                     style={{ 
                         flex: 1,
-                        backgroundColor: viewMode == "edit" ? "#BEC1D2" : null, 
                         margin: 5,
-                        borderRadius: 10,
+                        borderBottomColor: viewMode == "edit" ? "#BEC1D2" : "#F5F7F9",
+                        borderBottomWidth: 2,
                     }}
                     onPress={() => setViewMode("edit")}
                 >
@@ -273,7 +288,7 @@ export default function Home() {
                         }}
                     >
                         
-                        <Image style={{width: 50, height:50}} source={require('../assets/icons/pages.png')} />
+                        <Image style={{width: 40, height:40}} source={require('../assets/icons/pages.png')} />
                     </View>
                 </TouchableOpacity>
                 </View>
@@ -296,11 +311,11 @@ export default function Home() {
 const styles = StyleSheet.create({
     container: {
         margin: 10,
-        paddingTop: 30,
+        paddingTop: 5,
     }, 
     header : {
        padding : 50,
-       backgroundColor: 'pink',
+       backgroundColor: '#d1d0cd',
        alignItems: 'center', 
        justifyContent: 'center',
     },
@@ -322,6 +337,7 @@ const styles = StyleSheet.create({
         backgroundColor: "black",
         padding: 12,
         borderRadius: 6,
+        marginTop: 20
     }
 });
 
