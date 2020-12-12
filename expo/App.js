@@ -7,6 +7,7 @@ import Profile from './screens/Profile';
 // import Camera from './screens/camera';
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import { person } from "./data/dummyPerson";
 
 const Stack = createStackNavigator();
 
@@ -30,6 +31,9 @@ const stackDesignHeadForHome = {
 }
 
 function App(props) {
+
+  let personData = person;
+
   return (
     <View style={styles.container}>
       {/* <WelcomeForm/> */}
@@ -44,6 +48,7 @@ function App(props) {
         <Stack.Screen
           name="Profile"
           component={Profile}
+          props={person}
           options={{...stackDesignHead, title:"Profile"}}
         />
       </Stack.Navigator> 

@@ -1,11 +1,11 @@
 
-export let Person = {
+export let person = {
     id: 0,
     name: "Walter White",
-    income: 10000,
+    income: 20000,
     totalExpenses: 9000,
-    targetToSave: 9999,
-    thisMonthStatus: -120,
+    targetToSave: 4000,
+    thisMonthStatus: -1200,
     savings: 231199,
     categoriesData: [
         {

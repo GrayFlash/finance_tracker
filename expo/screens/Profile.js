@@ -1,5 +1,6 @@
 import React from 'react';
 import { View , Text, StyleSheet, Image, TouchableOpacity, TextInput, Alert } from 'react-native';
+import { person } from '../data/dummyPerson';
 
 export default function Home() {
 
@@ -44,7 +45,7 @@ export default function Home() {
 
                 {/* Expenses */}
                 <View style={{ justifyContent: 'center' }}>
-                    <Text style={{ color: "#194868" }}>94000 USD</Text>
+                    <Text style={{ color: "#194868" }}>{person.income} USD</Text>
                 </View>
             </TouchableOpacity>
 
@@ -76,7 +77,7 @@ export default function Home() {
 
                 {/* Expenses */}
                 <View style={{ justifyContent: 'center' }}>
-                    <Text style={{ color: "#194868" }}>840 USD</Text>
+                    <Text style={{ color: "#194868" }}>{person.totalExpenses} USD</Text>
                 </View>
             </TouchableOpacity>
 
@@ -107,7 +108,7 @@ export default function Home() {
 
                 {/* Expenses */}
                 <View style={{ justifyContent: 'center' }}>
-                    <Text style={{ color: "#194868" }}>450 USD</Text>
+                    <Text style={{ color: "#194868" }}>{person.targetToSave} USD</Text>
                 </View>
             </TouchableOpacity>
 
@@ -138,7 +139,7 @@ export default function Home() {
 
                 {/* Expenses */}
                 <View style={{ justifyContent: 'center' }}>
-                    <Text style={{ color: "red" }}>Over Spent</Text>
+                    <Text style={{ color: "red" }}>Over Spent  ({person.thisMonthStatus})</Text>
                 </View>
             </TouchableOpacity>
 
@@ -241,7 +242,7 @@ export default function Home() {
                     style={{width: 100, height: 100, borderRadius: 1000}}
                 />
                 <Text style={{paddingTop: 10, fontSize: 16, lineHeight: 22}}>
-                    Bruce Wayne
+                    {person.name}
                 </Text>
             </View>
             <View style={{ flexDirection: 'row', height: 80, backgroundColor: "#F5F7F9" }}>
