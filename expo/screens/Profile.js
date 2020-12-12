@@ -1,5 +1,5 @@
 import React from 'react';
-import { View , Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { View , Text, StyleSheet, Image, TouchableOpacity, TextInput, Alert } from 'react-native';
 
 export default function Home() {
 
@@ -39,12 +39,12 @@ export default function Home() {
                         borderRadius: 5
                     }} source={require('../assets/icons/pages.png')} />
 
-                    <Text style={{ marginLeft: 8, color: (viewMode == "Cats") ? "white" : "#194868"}}>Cats</Text>
+                    <Text style={{ marginLeft: 8, color: (viewMode == "Cats") ? "white" : "#194868"}}>Monthly Income</Text>
                 </View>
 
                 {/* Expenses */}
                 <View style={{ justifyContent: 'center' }}>
-                    <Text style={{ color: (viewMode == "Cats") ? "white" : "#194868" }}>94.00 USD - 18%</Text>
+                    <Text style={{ color: (viewMode == "Cats") ? "white" : "#194868" }}>94000 USD</Text>
                 </View>
             </TouchableOpacity>
 
@@ -71,12 +71,12 @@ export default function Home() {
                         borderRadius: 5
                     }} source={require('../assets/icons/pages.png')} />
 
-                    <Text style={{ marginLeft: 8, color: (viewMode == "Cats") ? "white" : "#194868"}}>Cats</Text>
+                    <Text style={{ marginLeft: 8, color: (viewMode == "Cats") ? "white" : "#194868"}}>Expenses</Text>
                 </View>
 
                 {/* Expenses */}
                 <View style={{ justifyContent: 'center' }}>
-                    <Text style={{ color: (viewMode == "Cats") ? "white" : "#194868" }}>94.00 USD - 18%</Text>
+                    <Text style={{ color: (viewMode == "Cats") ? "white" : "#194868" }}>840 USD</Text>
                 </View>
             </TouchableOpacity>
 
@@ -102,12 +102,12 @@ export default function Home() {
                         borderRadius: 5
                     }} source={require('../assets/icons/pages.png')} />
 
-                    <Text style={{ marginLeft: 8, color: (viewMode == "Cats") ? "white" : "#194868"}}>Cats</Text>
+                    <Text style={{ marginLeft: 8, color: (viewMode == "Cats") ? "white" : "#194868"}}>Target to save</Text>
                 </View>
 
                 {/* Expenses */}
                 <View style={{ justifyContent: 'center' }}>
-                    <Text style={{ color: (viewMode == "Cats") ? "white" : "#194868" }}>94.00 USD - 18%</Text>
+                    <Text style={{ color: (viewMode == "Cats") ? "white" : "#194868" }}>450 USD</Text>
                 </View>
             </TouchableOpacity>
 
@@ -133,12 +133,44 @@ export default function Home() {
                         borderRadius: 5
                     }} source={require('../assets/icons/pages.png')} />
 
-                    <Text style={{ marginLeft: 8, color: (viewMode == "Cats") ? "white" : "#194868"}}>Cats</Text>
+                    <Text style={{ marginLeft: 8, color: (viewMode == "Cats") ? "white" : "#194868"}}>This month's target </Text>
                 </View>
 
                 {/* Expenses */}
                 <View style={{ justifyContent: 'center' }}>
-                    <Text style={{ color: (viewMode == "Cats") ? "white" : "#194868" }}>94.00 USD - 18%</Text>
+                    <Text style={{ color: "red" }}>Over Spent</Text>
+                </View>
+            </TouchableOpacity>
+
+
+            <TouchableOpacity
+                style={{
+                    flexDirection: 'row',
+                    height: 40,
+                    marginTop: 5,
+                    paddingHorizontal: 12,
+                    marginHorizontal: 18,
+                    borderRadius: 10,
+                    backgroundColor: (viewMode == "Cats") ? "#BEC1D2" : "white",
+                }}
+                
+              >
+                {/* Name/Category */}
+                <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
+                    
+                    <Image 
+                        style={{
+                        width: 20,
+                        height: 20,
+                        borderRadius: 5
+                    }} source={require('../assets/icons/pages.png')} />
+
+                    <Text style={{ marginLeft: 8, color: (viewMode == "Cats") ? "white" : "#194868"}}>Edit Values </Text>
+                </View>
+
+                {/* Expenses */}
+                <View style={{ justifyContent: 'center' }}>
+                    <Image style={{width: 20, height:20}}source={require('../assets/icons/right-arrow.png')} />
                 </View>
             </TouchableOpacity>
         </View>
@@ -149,7 +181,40 @@ export default function Home() {
 
     function renderEdit() {
         return (
-            <Text>Edit Function</Text>
+            <View>
+                <View style={styles.container} >
+            <Text style={styles.Text}>My Name</Text>
+            <TextInput 
+                style={styles.inputField}
+                
+            />
+
+            <Text style={styles.Text}>Monthly Income</Text>
+            <TextInput 
+                style={styles.inputField}
+               
+            />
+
+            <Text style={styles.Text}>Target to save</Text>
+            <TextInput 
+                style={styles.inputField}
+                
+            />
+
+            {/* <Text style={styles.Text}>Extra expense this month</Text>
+            <TextInput 
+                style={styles.inputField}
+            /> */}
+            <TouchableOpacity 
+                style={{paddingTop: 10,marginTop: 10}}
+                onPress={() => Alert.alert("Submit karne k baad ka code is on gaurav")}
+            >
+                <View style={styles.button}>
+                    <Text style={{color: "white", textAlign: "center"}}>Save Changes</Text>
+                </View>
+            </TouchableOpacity>
+        </View>
+            </View>
         )
     }
 
@@ -164,19 +229,7 @@ export default function Home() {
                     Bruce Wayne
                 </Text>
             </View>
-            {/* <View style={{ flexDirection: 'row', height: 50, backgroundColor: "#F5F5F5", borderRadius: 12 ,alignItems: 'center', justifyContent: 'center', paddingTop: 40}}>
-
-            <TouchableOpacity style={{backgroundColor: 'pink', paddingHorizontal: 10, marginHorizontal: 10}}>
-                <Image style={{width: 50, height:50}} source={require('../assets/icons/salary.png')} />
-            </TouchableOpacity>
-            <TouchableOpacity style={{backgroundColor: 'pink', paddingHorizontal: 10, marginHorizontal: 10}}>
-                <Image style={{width: 50, height:50}} source={require('../assets/icons/expense.png')} />
-            </TouchableOpacity>
-            <TouchableOpacity style={{backgroundColor: 'pink', paddingHorizontal: 10,marginHorizontal: 10 }}>
-                <Image style={{width: 50, height:50}} source={require('../assets/icons/pages.png')} />
-            </TouchableOpacity>
-            </View> */}
-            <View style={{ flexDirection: 'row', height: 80, backgroundColor: "#F5F5F5", borderRadius: 12 }}>
+            <View style={{ flexDirection: 'row', height: 80, backgroundColor: "white", borderRadius: 12 }}>
 
             <TouchableOpacity
                     style={{ 
@@ -195,7 +248,7 @@ export default function Home() {
                             justifyContent: 'center'
                         }}
                     >
-                        {/* <Text style={{ marginLeft: 0, fontSize: 16, lineHeight: 22, color: "black" }}>My info</Text> */}
+                        
                         <Image style={{width: 50, height:50}} source={require('../assets/icons/salary.png')} />
                     </View>
                 </TouchableOpacity>
@@ -219,7 +272,7 @@ export default function Home() {
                             justifyContent: 'center'
                         }}
                     >
-                        {/* <Text style={{ marginLeft: 0, fontSize: 16, lineHeight: 22, color: "black" }}>Edit info</Text> */}
+                        
                         <Image style={{width: 50, height:50}} source={require('../assets/icons/pages.png')} />
                     </View>
                 </TouchableOpacity>
@@ -241,12 +294,35 @@ export default function Home() {
 }
 
 const styles = StyleSheet.create({
-   header : {
+    container: {
+        margin: 10,
+        paddingTop: 30,
+    }, 
+    header : {
        padding : 50,
        backgroundColor: 'pink',
        alignItems: 'center', 
        justifyContent: 'center',
-   }
+    },
+        inputField : {
+        backgroundColor: "white",
+        borderWidth: 1,
+        borderColor: "#D1D1D1",
+        borderRadius: 5,
+        padding: 10,
+    },
+
+    Text : {
+        fontSize: 14,
+        color: "black",
+        paddingTop: 8,
+    },
+
+    button : {
+        backgroundColor: "black",
+        padding: 12,
+        borderRadius: 6,
+    }
 });
 
 
