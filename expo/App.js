@@ -32,8 +32,6 @@ const stackDesignHeadForHome = {
 
 function App(props) {
 
-  let personData = person;
-
   return (
     <View style={styles.container}>
       {/* <WelcomeForm/> */}
@@ -48,7 +46,6 @@ function App(props) {
         <Stack.Screen
           name="Profile"
           component={Profile}
-          props={person}
           options={{...stackDesignHead, title:"Profile"}}
         />
       </Stack.Navigator> 
@@ -65,11 +62,12 @@ export default()=>{
 }
 
 function ProfileButton() {
-	const navigation = useNavigation();
+  const navigation = useNavigation();
+  let personData = person;
 	return (
 		<TouchableOpacity 
 			style={{marginRight: 10, padding: 0, backgroundColor: "#F5F5F5", borderRadius: 500}}
-			onPress={()=> navigation.navigate("Profile")}
+			onPress={()=> navigation.navigate("Profile", {personData})}
 		>
       <Image 
           style={{
