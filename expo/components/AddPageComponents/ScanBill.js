@@ -6,7 +6,8 @@ import Constants from 'expo-constants';
 import BottomSheet from 'reanimated-bottom-sheet';
 import ManualAdd from './timepassForm';
 import {TouchableOpacity} from 'react-native-gesture-handler';
- 
+
+
 export default function ScanBill() {
 
     const [image, setImage] = useState(null);
@@ -22,6 +23,60 @@ export default function ScanBill() {
         })();
     }, []);
 
+    const textFromImage = async(src) => {
+        let body = JSON.stringify({
+          requests: [
+            {
+              features: [
+              { type: "TEXT_DETECTION" },
+                { type: "DOCUMENT_TEXT_DETECTION"}
+                
+              ],
+              image: {
+                source: {
+                  imageUri: src
+                }
+              }
+            }
+          ]
+        });
+        let response = await fetch(
+          cloudVision,
+          {
+            headers: {
+              Accept: "application/json",
+              "Content-Type": "application/json"
+            },
+            method: "POST",
+            body: body
+          }
+        );
+        let res = await response.json();
+          var texts = [];
+          var y=0;
+          console.log("Starting with text")
+          console.log(res.responses[0].fullTextAnnotation.text)
+      }
+
+    
+    const handleUpload = (image) =>{
+        const data = new FormData()
+        data.append('file', image)
+        data.append('upload_preset', 'OCR_InOut')
+        data.append("cloud_name", "graystack")
+        console.log(image)
+        fetch("https://api.cloudinary.com/v1_1/graystack/image/upload",{
+          method:"post",
+          body:data
+        }).then(res=>res.json())
+        .then(data=>{
+          console.log(data.secure_url)
+          textFromImage(data.secure_url)
+          //return(data.secure_url)
+        })
+      }
+
+    
     const pickImage = async () => {
 
         console.log("Chooose from Gallery is Pressed!!");
@@ -40,6 +95,13 @@ export default function ScanBill() {
     
             if (!result.cancelled) {
                 setImage(result);
+                let name = result.uri.split(".")
+                let newfile = {
+                  uri:result.uri,
+                  type:`test/${name[3]}`,
+                  name:`test.${name[3]}`
+                }
+                handleUpload(newfile);
             }
         } else {
             Alert.alert('Access denied')
@@ -65,6 +127,13 @@ export default function ScanBill() {
     
             if (!result.cancelled) {
                 setImage(result);
+                let name = result.uri.split(".")
+                let newfile = {
+                  uri:result.uri,
+                  type:`test/${name[3]}`,
+                  name:`test.${name[3]}`
+                }
+                handleUpload(newfile);
             }
         } else {
             Alert.alert('Access denied')

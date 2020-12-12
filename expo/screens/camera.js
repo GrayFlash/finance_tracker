@@ -18,6 +18,8 @@ const defaultPickerOptions = {
 // const Vision = require('@google-cloud/vision');
 // const vision = Vision();
 
+const cv2 = "AIzaSyBci0GHNpxTGTxclHPRRp8QxO-YyluIHag";
+
 const cloudVision  = 'https://vision.googleapis.com/v1/images:annotate?key=' + cv2;
 
 export default function Camera () {
