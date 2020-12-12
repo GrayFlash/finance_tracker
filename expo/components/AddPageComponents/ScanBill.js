@@ -124,7 +124,7 @@ export default function ScanBill() {
             }}>
                 <TouchableOpacity onPress={() => {sheetRef.current.snapTo(0); console.log("Bottom sheet is called")}} >
                     <View style={styles.cameraButton}>
-                        <Text style={{color: "black", textAlign: "center"}}>
+                        <Text style={{color: "white", textAlign: "center", fontWeight: 'bold', fontSize: 16}}>
                             Scan your Bill
                         </Text>
                     </View>
@@ -148,15 +148,15 @@ export default function ScanBill() {
 
 const styles = StyleSheet.create({
     cameraButton : {
-        backgroundColor: "#BEC1D2", 
+        backgroundColor: "#666666",
         marginTop: 10,
-        padding: 12, 
-        marginHorizontal: 8,
+        padding: 14, 
+        marginHorizontal: 12,
         borderRadius:8,
     },
     panel: {
         padding: 30,
-        backgroundColor: '#F5F7F9',
+        backgroundColor: 'white',
         borderTopLeftRadius: 8,
         borderTopRightRadius: 8,
         borderBottomLeftRadius: 8,
@@ -182,14 +182,14 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
     },
     panelTitle: {
-        fontSize: 20,
+        fontSize: 22,
         height: 35,
         marginBottom: 5,
     },
     panelButton: {
         padding: 8,
         borderRadius: 6,
-        backgroundColor: '#BEC1D2',
+        backgroundColor: '#666666',
         alignItems: 'center',
         marginVertical: 6,
     },

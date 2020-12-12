@@ -19,7 +19,7 @@ export default function PreviousExpenses({ selectedCategory }) {
                 marginLeft: index == 0 ? 24 : 0,
                 marginVertical: 0,
                 borderRadius: 8,
-                backgroundColor: "#F5F5F5",
+                backgroundColor: "white",
             }}>
 
             <View style={{ flexDirection: 'row', padding: 16, alignItems: 'center' }}>

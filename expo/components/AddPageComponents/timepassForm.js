@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet , Alert } from 'react-native'
+import React, { useState, useEffect} from 'react';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet , Alert, Picker } from 'react-native'
 
 export default function ManualAdd() {
+    const [selectedValue, setSelectedValue] = useState("Education");
     return (
         <View style={styles.container} >
             <Text style={styles.Text}>Product Name</Text>
@@ -11,10 +12,29 @@ export default function ManualAdd() {
             />
 
             <Text style={styles.Text}>Category</Text>
-            <TextInput 
+            {/* <TextInput 
                 style={styles.inputField}
-                //placeholder="Product Name" 
-            />
+            /> */}
+            <View style={{
+                backgroundColor: "white",
+                marginTop: 8,
+                borderRadius: 5,
+                borderWidth: 1,
+                borderColor: "#D1D1D1",
+            }}>
+                <Picker
+                    selectedValue={selectedValue}
+                    style={{ height: 50, width: 350 }}
+                    onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}>
+                    
+                    <Picker.Item label="Education" value="Education" />
+                    <Picker.Item label="Nutrition" value="Nutrition" />
+                    <Picker.Item label="Child" value="Child" />
+                    <Picker.Item label="Beauty" value="Beauty" />
+                    <Picker.Item label="Sports" value="Sports" />
+                    <Picker.Item label="Clothing" value="Clothing" />
+                </Picker>
+            </View>
 
             <Text style={styles.Text}>Amount</Text>
             <TextInput 
@@ -60,12 +80,13 @@ const styles = StyleSheet.create({
 
     Text : {
         fontSize: 14,
+        fontWeight: "bold",
         color: "black",
         paddingTop: 8,
     },
 
     button : {
-        backgroundColor: "black",
+        backgroundColor: "#222222",
         padding: 12,
         borderRadius: 6,
     }

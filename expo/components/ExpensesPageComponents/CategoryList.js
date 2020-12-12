@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
         paddingVertical: 12,
         paddingHorizontal: 24,
         borderRadius: 10,
-        backgroundColor: "#F5F5F5",
+        backgroundColor: "white",
     },
     itemText: {
         marginLeft: 8, 
