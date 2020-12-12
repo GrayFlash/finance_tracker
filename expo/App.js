@@ -34,8 +34,8 @@ function App(props) {
     <View style={styles.container}>
       {/* <WelcomeForm/> */}
       {/* <Home /> */}
-      {/* <Camera/> */}
-      <Stack.Navigator>
+      <Camera/>
+      {/* <Stack.Navigator>
         <Stack.Screen
           name="Home"
           component={Home}
@@ -46,7 +46,7 @@ function App(props) {
           component={Profile}
           options={{...stackDesignHead, title:"Profile"}}
         />
-      </Stack.Navigator>
+      </Stack.Navigator> */}
     </View>
   );
 }
