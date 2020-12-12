@@ -5,7 +5,7 @@ import AddSection from '../components/AddPage';
 import Expenses from '../components/Expenses';
 import Header from '../components/Header';
 import ChartPage from '../components/PieChart';
-import {confirmStatus, pendingStatus, categoriesData} from '../data/dummyData';
+import {categoriesData} from '../data/dummyPerson';
 
 export default function Home (props) {
 
@@ -40,8 +40,8 @@ export default function Home (props) {
                             categories={categories}
                             selectedCategory={selectedCategory}
                             setSelectedCategory={categoryButtonHandler} 
-                            setViewMode={viewModeHandler} /> 
-                
+                            setViewMode={viewModeHandler} 
+                /> 
             }
             {
                 viewMode == "chart" &&

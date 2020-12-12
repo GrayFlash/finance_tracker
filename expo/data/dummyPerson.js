@@ -1,5 +1,3 @@
-    export const confirmStatus = "C"
-    export const pendingStatus = "P"
 
     export let categoriesData = [
         {
@@ -13,28 +11,24 @@
                     title: "Tuition Fee",
                     description: "Allen",
                     total: 100.00,
-                    status: pendingStatus
                 },
                 {
                     id: 2,
                     title: "Arduino",
                     description: "Easy Electronics",
                     total: 30.00,
-                    status: pendingStatus
                 },
                 {
                     id: 3,
                     title: "Javascript Books",
                     description: "Udemy",
                     total: 20.00,
-                    status: confirmStatus
                 },
                 {
                     id: 4,
                     title: "PHP Books",
                     description: "Coursera",
                     total: 20.00,
-                    status: confirmStatus
                 }
             ],
         },
@@ -49,7 +43,6 @@
                     title: "Vitamins",
                     description: "Medicine",
                     total: 25.00,
-                    status: pendingStatus,
                 },
 
                 {
@@ -57,7 +50,6 @@
                     title: "Protein powder",
                     description: "Protein",
                     total: 50.00,
-                    status: confirmStatus,
                 },
 
             ],
@@ -73,28 +65,24 @@
                     title: "Toys",
                     description: "China maal",
                     total: 25.00,
-                    status: confirmStatus,
                 },
                 {
                     id: 8,
                     title: "Baby Car Seat",
                     description: "Faltu cheez",
                     total: 100.00,
-                    status: pendingStatus,
                 },
                 {
                     id: 9,
                     title: "Pampers",
                     description: "Mummy poko pants",
                     total: 100.00,
-                    status: pendingStatus,
                 },
                 {
                     id: 10,
                     title: "Baby T-Shirt",
                     description: "T-Shirt",
                     total: 20.00,
-                    status: pendingStatus,
                 },
             ],
         },
@@ -109,28 +97,24 @@
                     title: "Skin Care product",
                     description: "Lakme",
                     total: 10.00,
-                    status: pendingStatus,
                 },
                 {
                     id: 12,
                     title: "Lotion",
                     description: "Lotion",
                     total: 50.00,
-                    status: confirmStatus,
                 },
                 {
                     id: 13,
                     title: "Face Mask",
                     description: "fSociety",
                     total: 50.00,
-                    status: pendingStatus,
                 },
                 {
                     id: 14,
                     title: "Sunscreen cream",
                     description: "Sunscreen cream",
                     total: 50.00,
-                    status: pendingStatus,
                 },
             ],
         },
@@ -145,14 +129,12 @@
                     title: "Gym Membership",
                     description: "Useless",
                     total: 45.00,
-                    status: pendingStatus,
                 },
                 {
                     id: 16,
                     title: "Gloves",
                     description: "Black gloves",
                     total: 15.00,
-                    status: confirmStatus,
                 },
             ],
         },
@@ -167,14 +149,12 @@
                     title: "T-Shirt",
                     description: "HacktoberFest wali T-Shirt",
                     total: 20.00,
-                    status: pendingStatus,
                 },
                 {
                     id: 18,
                     title: "Jeans",
                     description: "D Mart",
                     total: 50.00,
-                    status: confirmStatus,
                 },
             ],
         }

@@ -10,8 +10,7 @@ import {
  } from 'react-native';
 
 export default function PreviousExpenses({ selectedCategory }) {
-    let allExpenses = selectedCategory ? selectedCategory.expenses : [ ]
-    let incomingExpenses = allExpenses.filter(a => a.status == "P")
+    let allExpenses = selectedCategory ? selectedCategory.expenses : [ ];
 
     const renderItem = ({ item, index }) => (
         <View style={{
@@ -81,9 +80,9 @@ export default function PreviousExpenses({ selectedCategory }) {
             </View>
 
             {
-                incomingExpenses.length > 0 &&
+                allExpenses.length > 0 &&
                 <FlatList
-                    data={incomingExpenses}
+                    data={allExpenses}
                     renderItem={renderItem}
                     keyExtractor={item => `${item.id}`}
                     horizontal
@@ -92,7 +91,7 @@ export default function PreviousExpenses({ selectedCategory }) {
             }
 
             {
-                incomingExpenses.length == 0 &&
+                allExpenses.length == 0 &&
                 <View style={{ alignItems: 'center', justifyContent: 'center', height: 300 }}>
                     <Text style={{ color: "#194868", fontSize: 12, lineHeight: 22 }}>Click on any above categories in categories section</Text>
                 </View>
