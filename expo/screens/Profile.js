@@ -2,7 +2,7 @@ import React from 'react';
 import { View , Text, StyleSheet, Image, TouchableOpacity, TextInput, Alert } from 'react-native';
 import { person } from '../data/dummyPerson';
 
-export default function Home() {
+export default function Profile() {
 
     const LineDivider = () => {
         return (

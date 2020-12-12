@@ -3,7 +3,7 @@ import React, { useRef } from 'react';
 import { View, Animated } from 'react-native';
 import AddSection from '../components/AddPage';
 import Expenses from '../components/Expenses';
-import Header from '../components/Header';
+import NavigationBar from '../components/NavigationBar';
 import ChartPage from '../components/PieChart';
 import {categoriesData} from '../data/dummyPerson';
 
@@ -32,7 +32,7 @@ export default function Home (props) {
     return (
         <View>
 
-            {<Header props={props} viewMode={viewMode} NavbarButtonHandler={NavbarButtonHandler} />}
+            {<NavigationBar viewMode={viewMode} NavbarButtonHandler={NavbarButtonHandler}/>}
 
             {
                 viewMode == "expenses" &&
