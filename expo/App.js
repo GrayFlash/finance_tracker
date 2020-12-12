@@ -4,7 +4,7 @@ import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import Home from './screens/Home';
 import Profile from './screens/Profile';
 // import WelcomeForm from './screens/welcome_form';
-
+import Camera from './screens/camera';
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
@@ -34,6 +34,7 @@ function App(props) {
     <View style={styles.container}>
       {/* <WelcomeForm/> */}
       {/* <Home /> */}
+      {/* <Camera/> */}
       <Stack.Navigator>
         <Stack.Screen
           name="Home"

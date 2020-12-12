@@ -18,6 +18,8 @@ const defaultPickerOptions = {
 // const Vision = require('@google-cloud/vision');
 // const vision = Vision();
 require('react-native-fs');
+const cloudVisionKey = "AIzaSyDIviFUBChk1fvMniYXTXv5B0Xr9P2skXE";
+const cv2 = "AIzaSyBR7OI7zisf4dLImjmpXCqisAAbCJ4GpF8";
 
 const cloudVision  = 'https://vision.googleapis.com/v1/images:annotate?key=' + cv2;
 
@@ -35,7 +37,7 @@ export default function Camera () {
         requests: [
           {
             features: [
-            //   { type: "TEXT_DETECTION" },
+            { type: "TEXT_DETECTION" },
               { type: "DOCUMENT_TEXT_DETECTION"}
               
             ],
@@ -58,7 +60,8 @@ export default function Camera () {
           body: body
         }
       );
-      let res = await response.json();
+      let respo = await response.json();
+      var res = JSON.parse(respo);
       //console.log(res);
         var texts = [];
         var y=0;
