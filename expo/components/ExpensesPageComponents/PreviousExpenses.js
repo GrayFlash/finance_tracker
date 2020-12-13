@@ -4,6 +4,7 @@ import {
     View,
     Image,
     FlatList,
+    TouchableOpacity
  } from 'react-native';
 
 export default function PreviousExpenses({ selectedCategory, allExpenses }) {
@@ -60,7 +61,7 @@ export default function PreviousExpenses({ selectedCategory, allExpenses }) {
             </View>
 
             {/* Price */}
-            <View
+            {/* <TouchableOpacity
                 style={{
                     height: 45,
                     alignItems: 'center',
@@ -72,7 +73,35 @@ export default function PreviousExpenses({ selectedCategory, allExpenses }) {
                 }}
             >
                 <Text style={{ color: "white", fontSize: 15, lineHeight: 22 }}>{item.total.toFixed(2)} $</Text>
-            </View>
+                <View>
+                    <Image style={{width: 20, height:20, tintColor:"white"}}source={require('../../assets/icons/right-arrow.png')} />
+                </View>
+            </TouchableOpacity> */}
+
+            <TouchableOpacity
+                style={{
+                    flexDirection: 'row',
+                    height: 45,
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    marginTop: 24,
+                    borderBottomStartRadius: 8,
+                    borderBottomEndRadius: 8,
+                    backgroundColor: selectedCategory.color,
+                }}
+                // onPress={() => setViewMode("edit")}
+                
+              >
+                {/* Name/Category */}
+                <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center', marginLeft: 10 }}>
+                    <Text style={{ marginLeft: 8, color: "white"}}>{item.total.toFixed(2)} $</Text>
+                </View>
+
+                {/* Expenses */}
+                <View style={{ justifyContent: 'center', marginRight: 10 }}>
+                    <Image style={{width: 18, height:18, tintColor:"white"}}source={require('../../assets/icons/right-arrow.png')} />
+                </View>
+            </TouchableOpacity>
         </View>
     )
 
