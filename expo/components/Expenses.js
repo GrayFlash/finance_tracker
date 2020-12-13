@@ -7,7 +7,6 @@ export default function Expenses({ clhav, selectedCategory, setSelectedCategory,
 
     return (
         <View>
-            {/*<CategoryHeader setViewMode={setViewMode} />*/}
             <View style={styles.mainCategoryHeading}>
                 <View>
                     <Text style={styles.titleText}>CATEGORIES</Text>
