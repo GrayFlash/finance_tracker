@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react';
 import { KeyboardAvoidingView, View , Text, StyleSheet, Image, TouchableOpacity, TextInput, Alert, FlatList } from 'react-native';
-import { person } from '../data/dummyPerson';
 
 export default function Profile() {
 
@@ -76,170 +75,47 @@ export default function Profile() {
     const [viewMode, setViewMode] = React.useState("expense");
 
     function renderExpense() {
+
+        const property = [ "Monthly Income", "Expenses", "Target to save", "This month's status", "Edit Values" ];
+        const vals = [ `${income} USD`, `${totalExpenses} USD`, `${targetToSave} USD`, `Over Spent  (${thisMonthStatus})`];
         return (
-            <View style={{marginTop: 20}}>
-            
-            <TouchableOpacity
-                style={{
-                    flexDirection: 'row',
-                    height: 60,
-                    marginTop: 0,
-                    paddingHorizontal: 12,
-                    marginHorizontal: 18,
-                    borderRadius: 10,
-                    backgroundColor: "white",
-                }}
-               
-              >
-                {/* Name/Category */}
-                <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-                    
-                    {/* <Image 
-                        style={{
-                        width: 20,
-                        height: 20,
-                        borderRadius: 5
-                    }} source={require('../assets/icons/pages.png')} /> */}
+            <View style={{ marginTop: 6 }} >
+                {property.map((p) => {
+                    return (
+                        <TouchableOpacity
+                            key={property.indexOf(p)}
+                            style={{
+                                flexDirection: 'row',
+                                height: 60,
+                                paddingHorizontal: 12,
+                                marginTop: 14,
+                                marginHorizontal: 18,
+                                borderRadius: 10,
+                                backgroundColor: "white",
+                            }}
+                            onPress={() => {
+                                if(p==="Edit Values") setViewMode("edit"); 
+                                console.log(p+" is pressed!");
+                            }}
+                        >
+                            {/* Name/Category */}
+                            <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
+                                <Text style={{ marginLeft: 8, color: "#194868"}}>{p}</Text>
+                            </View>
 
-                    <Text style={{ marginLeft: 8, color: "#194868"}}>Monthly Income</Text>
-                </View>
-
-                {/* Expenses */}
-                <View style={{ justifyContent: 'center' }}>
-                    <Text style={{ color: "#194868" }}>{income} USD</Text>
-                </View>
-            </TouchableOpacity>
-
-            
-            <TouchableOpacity
-                style={{
-                    flexDirection: 'row',
-                    height: 60,
-                    marginTop: 14,
-                    paddingHorizontal: 12,
-                    marginHorizontal: 18,
-                    borderRadius: 10,
-                    backgroundColor: "white",
-                }}
-               
-              >
-                {/* Name/Category */}
-                <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-                    
-                    {/* <Image 
-                        style={{
-                        width: 20,
-                        height: 20,
-                        borderRadius: 5
-                    }} source={require('../assets/icons/pages.png')} /> */}
-
-                    <Text style={{ marginLeft: 8, color: "#194868"}}>Expenses</Text>
-                </View>
-
-                {/* Expenses */}
-                <View style={{ justifyContent: 'center' }}>
-                    <Text style={{ color: "#194868" }}>{totalExpenses} USD</Text>
-                </View>
-            </TouchableOpacity>
-
-            <TouchableOpacity
-                style={{
-                    flexDirection: 'row',
-                    height: 60,
-                    marginTop: 14,
-                    paddingHorizontal: 12,
-                    marginHorizontal: 18,
-                    borderRadius: 10,
-                    backgroundColor: "white",
-                }}
-                
-              >
-                {/* Name/Category */}
-                <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-                    
-                    {/* <Image 
-                        style={{
-                        width: 20,
-                        height: 20,
-                        borderRadius: 5
-                    }} source={require('../assets/icons/pages.png')} /> */}
-
-                    <Text style={{ marginLeft: 8, color: "#194868"}}>Target to save</Text>
-                </View>
-
-                {/* Expenses */}
-                <View style={{ justifyContent: 'center' }}>
-                    <Text style={{ color: "#194868" }}>{targetToSave} USD</Text>
-                </View>
-            </TouchableOpacity>
-
-            <TouchableOpacity
-                style={{
-                    flexDirection: 'row',
-                    height: 60,
-                    marginTop: 14,
-                    paddingHorizontal: 12,
-                    marginHorizontal: 18,
-                    borderRadius: 10,
-                    backgroundColor: "white",
-                }}
-                
-              >
-                {/* Name/Category */}
-                <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-                    
-                    {/* <Image 
-                        style={{
-                        width: 20,
-                        height: 20,
-                        borderRadius: 5
-                    }} source={require('../assets/icons/pages.png')} /> */}
-
-                    <Text style={{ marginLeft: 8, color: (viewMode == "Cats") ? "white" : "#194868"}}>This month's target </Text>
-                </View>
-
-                {/* Expenses */}
-                <View style={{ justifyContent: 'center' }}>
-                    <Text style={{ color: "red" }}>Over Spent  ({thisMonthStatus})</Text>
-                </View>
-            </TouchableOpacity>
-
-
-            <TouchableOpacity
-                style={{
-                    flexDirection: 'row',
-                    height: 60,
-                    marginTop: 14,
-                    paddingHorizontal: 12,
-                    marginHorizontal: 18,
-                    borderRadius: 10,
-                    backgroundColor: "white",
-                }}
-                onPress={() => setViewMode("edit")}
-                
-              >
-                {/* Name/Category */}
-                <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-                    
-                    {/* <Image 
-                        style={{
-                        width: 20,
-                        height: 20,
-                        borderRadius: 5
-                    }} source={require('../assets/icons/pages.png')} /> */}
-
-                    <Text style={{ marginLeft: 8, color: "#194868"}}>Edit Values </Text>
-                </View>
-
-                {/* Expenses */}
-                <View style={{ justifyContent: 'center' }}>
-                    <Image style={{width: 20, height:20}}source={require('../assets/icons/right-arrow.png')} />
-                </View>
-            </TouchableOpacity>
-        </View>
-
-
-        )
+                            {/* Expenses */}
+                            <View style={{ justifyContent: 'center' }}>
+                                {(p==="Edit Values") ? (
+                                    <Image style={{width: 20, height:20}}source={require('../assets/icons/right-arrow.png')} />
+                                ) : (
+                                    <Text style={ (p==="This month's status") ? ((thisMonthStatus>=0)?{ color: "#00CC00"}:{ color: "red"}): { color: "#194868" }}>{vals[property.indexOf(p)]}</Text>
+                                )}
+                            </View>
+                        </TouchableOpacity>
+                    );
+                })}
+            </View>
+        );
     }
 
     function renderEdit() {

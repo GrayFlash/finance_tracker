@@ -1,17 +1,14 @@
-// import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
 import Home from './screens/Home';
 import Profile from './screens/Profile';
-// import WelcomeForm from './screens/welcome_form';
-// import Camera from './screens/camera';
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { person } from "./data/dummyPerson";
 
 const Stack = createStackNavigator();
 
-const stackDesignHead = {
+const stackDesignHeadForProfile = {
 	title: "Home", 
 	headerTintColor:"black",
 	headerStyle:{ 
@@ -46,7 +43,7 @@ function App(props) {
         <Stack.Screen
           name="Profile"
           component={Profile}
-          options={{...stackDesignHead, title:"Profile"}}
+          options={{...stackDesignHeadForProfile, title:"Profile"}}
         />
       </Stack.Navigator> 
     </View>
@@ -64,6 +61,7 @@ export default()=>{
 function ProfileButton() {
   const navigation = useNavigation();
   let personData = person;
+  console.log(personData);
 	return (
 		<TouchableOpacity 
 			style={{marginRight: 10, padding: 0, backgroundColor: "#F5F5F5", borderRadius: 500}}
