@@ -5,6 +5,7 @@ import * as ImagePicker from 'expo-image-picker';
 import Constants from 'expo-constants';
 import BottomSheet from 'reanimated-bottom-sheet';
 import ManualAdd from './timepassForm';
+import RenderProducts from './RenderProducts';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 //import key from './CloudVision';
 //import predict from '../../ML/index';
@@ -22,6 +23,7 @@ const cloudVision  = 'https://vision.googleapis.com/v1/images:annotate?key=' + c
 export default function ScanBill({categoriesData, people}) {
 
     const [image, setImage] = useState(null);
+    const [scannedData, setScannedData] = useState([]);
 
     const updateUserData = async(total) =>{
         fetch("http://9776686554bd.ngrok.io/updatePerson",{
@@ -197,6 +199,9 @@ export default function ScanBill({categoriesData, people}) {
               }
               //console.log('\n');
           }
+
+          setScannedData(arr);
+
           var total = 0;
           console.log("done");
           console.log(arr.length);
@@ -217,7 +222,6 @@ export default function ScanBill({categoriesData, people}) {
           }
           await updateUserData(total);
           await updateCategoryExpense(total);
-
       }
 
     
@@ -303,6 +307,11 @@ export default function ScanBill({categoriesData, people}) {
 
         sheetRef.current.snapTo(1);
     }
+
+    const doneButtonHandler = (props) => {
+        console.log("Done Button is Pressed!!");
+        setImage(null);
+    }
     
     const renderInner = () => (
         <View style={styles.panel}>
@@ -350,28 +359,32 @@ export default function ScanBill({categoriesData, people}) {
                 enabledGestureInteraction={true}
             />
 
-            <Animated.View style={{
-                opacity: Animated.add(0.1, Animated.multiply(fall, 1.0)),
-            }}>
-                <TouchableOpacity onPress={() => {sheetRef.current.snapTo(0); console.log("Bottom sheet is called")}} >
-                    <View style={styles.cameraButton}>
-                        <Text style={{color: "white", textAlign: "center", fontWeight: 'bold', fontSize: 16}}>
-                            Scan your Bill
-                        </Text>
-                    </View>
-                </TouchableOpacity>
-                {image && 
-                    <Image source={{ uri: image.uri }} 
-                            style={{
-                                width: 200,
-                                height: 50,
-                                resizeMode: 'stretch',
-                                alignSelf: "center",
-                                margin: 10,
-                            }} />
-                }
-                <ManualAdd people={people} categoriesData={categoriesData} />
-            </Animated.View>
+            { image ? (
+                <RenderProducts doneButtonHandler={doneButtonHandler} scannedData={scannedData} />
+            ) : (
+                <Animated.View style={{
+                    opacity: Animated.add(0.1, Animated.multiply(fall, 1.0)),
+                }}>
+                    <TouchableOpacity onPress={() => {sheetRef.current.snapTo(0); console.log("Bottom sheet is called")}} >
+                        <View style={styles.cameraButton}>
+                            <Text style={{color: "white", textAlign: "center", fontWeight: 'bold', fontSize: 16}}>
+                                Scan your Bill
+                            </Text>
+                        </View>
+                    </TouchableOpacity>
+                    {image && 
+                        <Image source={{ uri: image.uri }} 
+                                style={{
+                                    width: 200,
+                                    height: 50,
+                                    resizeMode: 'stretch',
+                                    alignSelf: "center",
+                                    margin: 10,
+                                }} />
+                    }
+                    <ManualAdd />
+                </Animated.View>
+            )}
 
         </View>
     );

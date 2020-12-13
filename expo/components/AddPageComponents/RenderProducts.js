@@ -2,7 +2,7 @@ import { StyleSheet, Text, View,} from 'react-native';
 import React,{useState, useEffect} from "react";
 import { Dimensions, TouchableOpacity, FlatList, Image } from 'react-native';
 
-export default function RenderProducts() {
+export default function RenderProducts({ doneButtonHandler }) {
     return (
         <View>
                 <View style={{
@@ -56,7 +56,7 @@ export default function RenderProducts() {
 
             <TouchableOpacity 
                 style={{paddingTop: 10,marginTop: 10}}
-                onPress={() => NavbarButtonHandler("expenses")}
+                onPress={() => doneButtonHandler() }
             >
                 <View style={{
                     backgroundColor: "#444444",
