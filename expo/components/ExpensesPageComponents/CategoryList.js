@@ -11,26 +11,28 @@ import {
 
 export default function CategoryList({ setSelectedCategory, categories, clhav, totalExpenses, categoriesData }) {
 
-    const renderItem = ({ item }) => (
+    function renderItem({ item }){
+        //console.log(item.icon)
+        return(
         <TouchableOpacity
             onPress={() => setSelectedCategory(item)}
             style={styles.itemButton}
         >
             <Image
-                source={item.icon}
+                source={{uri: item.icon}}
                 style={{ width: 20, height: 20, tintColor: item.color }}
             />
             <Text style={styles.itemText}>{item.name}</Text>
         </TouchableOpacity>
     );
-
+        }
     return (
         <View style={{ paddingHorizontal: 19 }}>
             <Animated.View style={{ height: clhav }}>
                 <FlatList
                     data={categoriesData}
                     renderItem={renderItem}
-                    keyExtractor={item => `${item.id}`}
+                    keyExtractor={item => `${item._id}`}
                     numColumns={2}
                 />
             </Animated.View>

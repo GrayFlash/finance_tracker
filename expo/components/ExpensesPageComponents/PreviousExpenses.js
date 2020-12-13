@@ -122,7 +122,7 @@ export default function PreviousExpenses({ selectedCategory, allExpenses }) {
                 <FlatList
                     data={allExpenses}
                     renderItem={renderItem}
-                    keyExtractor={item => `${item.id}`}
+                    keyExtractor={item => `${item._id}`}
                     horizontal
                     showsHorizontalScrollIndicator={false}
                 />

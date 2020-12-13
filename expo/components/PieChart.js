@@ -15,7 +15,7 @@ export default function ChartPage() {
 
     // UPDATE links
     const fetchData = () => {
-        fetch('http://f09c6a449f0c.ngrok.io/personDetails')
+        fetch('http://9776686554bd.ngrok.io/personDetails')
         .then(res=>res.json())
         .then(results=>{
             console.log("People")
@@ -24,7 +24,7 @@ export default function ChartPage() {
     }
     const fetchCategory = () => {
         let x = fetchData();
-        fetch('http://f09c6a449f0c.ngrok.io/fetchCategoryData')
+        fetch('http://9776686554bd.ngrok.io/fetchCategoryData')
         .then(res=>res.json())
         .then(results=>{
             console.log("Yes")
@@ -73,12 +73,6 @@ export default function ChartPage() {
                 onRefresh={()=>fetchCategory()}
                 refreshing={loading}
             />
-            {/* <FlatList
-                data = {categoriesData}
-                keyExtractor={item=>item._id}
-                onRefresh={()=>fetchData()}
-                refreshing={loading}
-            /> */}
             <View style={{ alignItems: 'center', justifyContent: 'center' }}>
                 <VictoryPie
                     colorScale={getColorScaleData()}

@@ -71,7 +71,7 @@ app.post('/addExpense', (req, res)=>{
     })
 })
 
-app.post('/fetchExpense',(req, res)=>{
+app.get('/fetchExpense',(req, res)=>{
     expenses.find({}).then(data=>{
         res.send(data)
     }).catch(err=>{
