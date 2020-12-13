@@ -59,8 +59,12 @@ export default function EditProduct({ item, categoriesData, NavbarButtonHandler 
                 style={{paddingTop: 10,marginTop: 10}}
                 onPress={() => NavbarButtonHandler("expenses")}
             >
-                <View style={styles.button}>
-                    <Text style={{color: "white", textAlign: "center"}}>Cancel</Text>
+                <View style={{
+                    backgroundColor: "white",
+                    padding: 12,
+                    borderRadius: 6,
+                }}>
+                    <Text style={{color: "black", textAlign: "center"}}>Cancel</Text>
                 </View>
             </TouchableOpacity>
         </View>

@@ -9,12 +9,14 @@ import {
     Button
 } from 'react-native';
 import ScanBill from './AddPageComponents/ScanBill';
+import RenderProducts from './AddPageComponents/RenderProducts';
 
 export default function AddSection() {
     return (
         <ScrollView style={styles.mainAddSection} contentContainerStyle={{ flexGrow: 1 }}>   
             
-            <ScanBill />
+            {/* <ScanBill /> */}
+            <RenderProducts />
             
         </ScrollView>
     );
