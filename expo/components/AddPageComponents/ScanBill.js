@@ -6,9 +6,9 @@ import Constants from 'expo-constants';
 import BottomSheet from 'reanimated-bottom-sheet';
 import ManualAdd from './timepassForm';
 import {TouchableOpacity} from 'react-native-gesture-handler';
-import key from './CloudVision';
+//import key from './CloudVision';
 
-const cv2 ={key};
+const cv2 ="";
 
 const cloudVision  = 'https://vision.googleapis.com/v1/images:annotate?key=' + cv2;
 

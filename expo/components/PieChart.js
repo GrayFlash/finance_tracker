@@ -1,21 +1,55 @@
 import { StyleSheet, Text, View,} from 'react-native';
-import React from "react";
-import { Dimensions, TouchableOpacity } from 'react-native';
+import React,{useState, useEffect} from "react";
+import { Dimensions, TouchableOpacity, FlatList } from 'react-native';
 import { VictoryPie} from "victory-native";
 import { person } from "../data/dummyPerson";
 
 export default function ChartPage() {
     const screenWidth = Dimensions.get('window').width
 
-    const [viewMode, setViewMode] = React.useState(`${person.categoriesData[0].name}`);
+    const [viewMode, setViewMode] = useState("Education");
+    const [categoriesData, setCategoriesData] = useState([])
+    const [people, setPeople] = useState([])
+    const [loading, setLoading] = useState(true)
+
+
+    // UPDATE links
+    const fetchData = () => {
+        fetch('http://f09c6a449f0c.ngrok.io/personDetails')
+        .then(res=>res.json())
+        .then(results=>{
+            console.log("People")
+            setPeople(results[0])
+        })
+    }
+    const fetchCategory = () => {
+        let x = fetchData();
+        fetch('http://f09c6a449f0c.ngrok.io/fetchCategoryData')
+        .then(res=>res.json())
+        .then(results=>{
+            console.log("Yes")
+            console.log(results)
+            setCategoriesData(results)
+            setLoading(false)
+        }).catch(err=>{
+            console.log(err)
+        })
+    }
+
+    useEffect(()=>{
+        fetchCategory(),
+        fetchData()
+    },[])
+
 
     function getSampleData() {
         let requiredData = [];
-        let mul = 100/person.totalExpenses;
-        for(let i=0 ; i<person.categoriesData.length ; i++) {
-            const obj = person.categoriesData[i];
+        let mul = 100/people.totalExpenses;
+        //console.log(categoriesData)
+        for(let i=0 ; i<categoriesData.length ; i++) {
+            const obj = categoriesData[i];
             let percentage = Math.round(obj.totalExpenseInThis*mul *10)/10;
-            requiredData = [...requiredData, { x:`${percentage}`, y:percentage, z:person.categoriesData[i].name} ];
+            requiredData = [...requiredData, { x:`${percentage}`, y:percentage, z:categoriesData[i].name} ];
         }
         //console.log(requiredData);
         return requiredData;
@@ -23,8 +57,8 @@ export default function ChartPage() {
 
     function getColorScaleData() {
         let colorScaleData = [];
-        for(let i=0 ; i<person.categoriesData.length ; i++) {
-            const obj = person.categoriesData[i];
+        for(let i=0 ; i<categoriesData.length ; i++) {
+            const obj = categoriesData[i];
             colorScaleData = [...colorScaleData, obj.color];
         }
         //console.log(colorScaleData);
@@ -33,6 +67,18 @@ export default function ChartPage() {
 
     return (
         <View>
+            <FlatList
+                data = {categoriesData}
+                keyExtractor={item=>item._id}
+                onRefresh={()=>fetchCategory()}
+                refreshing={loading}
+            />
+            {/* <FlatList
+                data = {categoriesData}
+                keyExtractor={item=>item._id}
+                onRefresh={()=>fetchData()}
+                refreshing={loading}
+            /> */}
             <View style={{ alignItems: 'center', justifyContent: 'center' }}>
                 <VictoryPie
                     colorScale={getColorScaleData()}
@@ -52,10 +98,10 @@ export default function ChartPage() {
                 </View>
             </View>
 
-            {person.categoriesData.map((obj) => {
+            {categoriesData.map((obj) => {
                 return(
                     <TouchableOpacity
-                        key={obj.id}
+                        key={obj._id}
                         style={{
                             flexDirection: 'row',
                             height: 40,
@@ -82,11 +128,11 @@ export default function ChartPage() {
 
                         {/* Expenses */}
                         <View style={{ justifyContent: 'center' }}>
-                            <Text style={{ color: (viewMode == `${obj.name}`) ? "white" : "#194868" }}>{obj.totalExpenseInThis} USD - {Math.round((obj.totalExpenseInThis*100)/person.totalExpenses *10)/10}%</Text>
+                            <Text style={{ color: (viewMode == `${obj.name}`) ? "white" : "#194868" }}>{obj.totalExpenseInThis} Rs - {Math.round((obj.totalExpenseInThis*100)/people.totalExpenses *10)/10}%</Text>
                         </View>
                     </TouchableOpacity>
                 );
-            })}        
+            })}
         </View>
     );
 }

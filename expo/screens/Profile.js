@@ -15,8 +15,9 @@ export default function Profile() {
     const [thisMonthStatus, setThisMonthStatus] = useState("")
     const [_id, set_id] = useState("")
 
+    // UPDATE links -2
     const fetchData = () => {
-        fetch("http://4c59326dde6b.ngrok.io/personDetails")
+        fetch("http://f09c6a449f0c.ngrok.io/personDetails")
         .then(res=>res.json())
         .then(results=>{
             
@@ -35,7 +36,7 @@ export default function Profile() {
     }
 
     const updateData = () =>{
-        fetch("http://4c59326dde6b.ngrok.io/updatePerson",{
+        fetch("http://f09c6a449f0c.ngrok.io/updatePerson",{
             method:"post",
                 headers:{
                     'Content-Type':'application/json'
