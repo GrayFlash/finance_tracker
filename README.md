@@ -61,4 +61,32 @@ This pie chart also shows the percentage amount you spent on a particular catego
 <img height="800px" src="https://github.com/GrayFlash/finance_tracker/blob/main/expo/assets/readme_images/profile.png">
 </div>
 
+## How to Use
 
+Download <a href="https://expo.io/tools">Expo Cli</a> app from PlayStore/AppStore.
+
+We have published this project on <a href="https://expo.io/@neelbavarva/projects/expanse-tracker">Expo Client</a> where you can directly use this app.
+
+<h5>OR</h5>
+
+Clone this repo in your local machine.
+
+#### Usage
+
+Open this project in termina then,
+
+```bash
+$ cd/expo
+```
+Now run the app by using
+
+```bash
+$ npm start
+```
+OR
+
+```bash
+$ expo start
+```
+
+Now open your Expo app that you downloaded from playstore and scan the QR code that will appear on your terminal after you run the app.
