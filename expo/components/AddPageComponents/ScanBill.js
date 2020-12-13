@@ -8,6 +8,9 @@ import ManualAdd from './timepassForm';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 
 
+
+const cloudVision  = 'https://vision.googleapis.com/v1/images:annotate?key=' + cv2;
+
 export default function ScanBill() {
 
     const [image, setImage] = useState(null);
@@ -55,7 +58,53 @@ export default function ScanBill() {
           var texts = [];
           var y=0;
           console.log("Starting with text")
-          console.log(res.responses[0].fullTextAnnotation.text)
+          //console.log(res.responses[0].fullTextAnnotation.text)
+          let x = await res.responses[0].fullTextAnnotation.text;
+          console.log(x);
+          console.log(typeof x);
+          var k = x.split("\n");
+          let arr = [];
+          var flag = 1;
+          var count = 0;
+          var lastStr = 0;
+          var lastString = "";
+          var lastNum = 0;
+          var lastNumber = 0;
+          var diff = 0;
+          for(var i in x.split("\n")){
+              //console.log(k[i]);
+              var words = k[i].split(" ");
+              if(words.length === 1 && flag===1){
+                  count ++;
+              }else{
+                  flag = 0;
+                  for(var y in words){
+                      //console.log(y);
+                      if(lastStr === 0 && isNaN(words[y])){
+                          lastStr = 1;
+                          lastNum = 0;
+                          lastString = words[y];
+                          diff = 0;
+                      }else if(lastNum === 0 && !isNaN(words[y])){
+                          lastNum = 1;
+                          lastNumber = parseFloat(words[y]);
+                      }else if(lastStr === 1 && isNaN(words[y]) && lastNum===0){
+                        lastString = lastString+" "+words[y];
+                      }else if(lastStr === 1 && isNaN(words[y]) && lastNum===1){
+                        arr.push(lastString, lastNumber);
+                        lastStr = 0;
+                        lastNum = 0;
+                      }
+                      diff++;
+                  }
+              }
+              //console.log('\n');
+          }
+          console.log("done");
+          console.log(arr.length);
+          for(var i=0; i< arr.length; i++){
+              console.log(arr[i]);
+          }
       }
 
     
