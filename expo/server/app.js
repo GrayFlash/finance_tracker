@@ -12,6 +12,8 @@ require('./expenses')
 app.use(bodyParser.json())
 const user = mongoose.model("user")
 const fixedExpense = mongoose.model("fixedExpense")
+const expenses = mongoose.model("expenses")
+const person = mongoose.model("person")
 const mongoUri = {key};
 
 
@@ -47,13 +49,57 @@ app.post('/send-data',(req,res)=>{
 })
 
 app.post('/addExpense', (req, res)=>{
-    const fixedExpenses = new fixedExpense({
-        expense: req.body.expense,
-        amount: req.body.amount
+    const Expenses = new expenses({
+        title: req.body.title,
+        description: req.body.description,
+        category: req.body.category,
+        total: req.body.total
     })
-    fixedExpenses.save()
+    Expenses.save()
     .then(data=>{
         console.log(data)
+        res.send(data)
+    }).catch(err=>{
+        console.log(err)
+    })
+})
+
+app.post('/addPerson',(req, res)=>{
+    const Person = new person({
+        name: req.body.name,
+        income: req.body.income,
+        totalExpenses: req.body.totalExpenses,
+        targetToSave: req.body.targetToSave,
+        thisMonthStatus: req.body.thisMonthStatus,
+        savings: req.body.savings
+    })
+    Person.save()
+    .then(data=>{
+        console.log(data)
+        res.send(data)
+    }).catch(err=>{
+        console.log(err)
+    })
+})
+
+app.post('/updatePerson', (req,res)=>{
+    person.findByIdAndUpdate(req.body.id,{
+        name: req.body.name,
+        income: req.body.income,
+        totalExpenses: req.body.totalExpenses,
+        targetToSave: req.body.targetToSave,
+        thisMonthStatus: req.body.thisMonthStatus,
+        savings: req.body.savings
+    }).then(data=>{
+        console.log(data)
+        res.send(data)
+    }).catch(err=>{
+        console.log(err)
+    })
+})
+
+app.get('/personDetails', (req, res)=>{
+    person.find({}).then(data=>{
         res.send(data)
     }).catch(err=>{
         console.log(err)
