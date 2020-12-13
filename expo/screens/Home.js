@@ -5,13 +5,12 @@ import AddSection from '../components/AddPage';
 import Expenses from '../components/Expenses';
 import NavigationBar from '../components/NavigationBar';
 import ChartPage from '../components/PieChart';
-import {categoriesData} from '../data/dummyPerson';
+import { person } from '../data/dummyPerson';
 
 export default function Home (props) {
 
     const categoryListHeightAnimationValue = useRef(new Animated.Value(172.5)).current;
     const [selectedCategory, setSelectedCategory] = React.useState(null);
-    const [categories, setCategories] = React.useState(categoriesData);
     const [viewMode, setViewMode] = React.useState("expenses");
 
     const NavbarButtonHandler = (mode) => {
@@ -37,10 +36,12 @@ export default function Home (props) {
             {
                 viewMode == "expenses" &&
                 <Expenses   clhav={categoryListHeightAnimationValue} 
-                            categories={categories}
                             selectedCategory={selectedCategory}
                             setSelectedCategory={categoryButtonHandler} 
-                            setViewMode={viewModeHandler} 
+                            setViewMode={viewModeHandler}
+                            totalExpenses={person.totalExpenses}
+                            categoriesData={person.categoriesData}
+                            allExpenses={person.expenses}
                 /> 
             }
             {

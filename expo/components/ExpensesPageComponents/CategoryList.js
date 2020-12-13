@@ -9,7 +9,7 @@ import {
     FlatList,
  } from 'react-native';
 
-export default function CategoryList({ setSelectedCategory, categories, clhav }) {
+export default function CategoryList({ setSelectedCategory, categories, clhav, totalExpenses, categoriesData }) {
 
     const renderItem = ({ item }) => (
         <TouchableOpacity
@@ -28,7 +28,7 @@ export default function CategoryList({ setSelectedCategory, categories, clhav })
         <View style={{ paddingHorizontal: 19 }}>
             <Animated.View style={{ height: clhav }}>
                 <FlatList
-                    data={categories}
+                    data={categoriesData}
                     renderItem={renderItem}
                     keyExtractor={item => `${item.id}`}
                     numColumns={2}
@@ -38,7 +38,7 @@ export default function CategoryList({ setSelectedCategory, categories, clhav })
             <TouchableOpacity style={styles.totalExpenseButton} >
                 <View>
                     <Text style={styles.totalExpenseText}>
-                        Total spend $6109
+                        Total spend ${totalExpenses}
                     </Text>
                 </View>
             </TouchableOpacity>

@@ -8,7 +8,7 @@ import {
     
  } from 'react-native';
 
-export default function CategoryHeader({ setViewMode }) {
+export default function CategoryHeader({ setViewMode, totalCategories }) {
     return (
         <View style={styles.mainCategoryHeading}>
             {/* Title */}

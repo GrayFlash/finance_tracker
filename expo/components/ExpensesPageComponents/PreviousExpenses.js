@@ -1,16 +1,20 @@
 import React from 'react';
-import { 
-    StyleSheet,
+import {
     Text,
     View,
-    TouchableOpacity,
     Image,
-    Animated,
     FlatList,
  } from 'react-native';
 
-export default function PreviousExpenses({ selectedCategory }) {
-    let allExpenses = selectedCategory ? selectedCategory.expenses : [ ];
+export default function PreviousExpenses({ selectedCategory, allExpenses }) {
+    
+    if(selectedCategory !== null) {
+        allExpenses = allExpenses.filter(item => {
+            if(item.category === selectedCategory.name) {
+                return item;
+            }
+        });
+    }
 
     const renderItem = ({ item, index }) => (
         <View style={{
@@ -78,9 +82,14 @@ export default function PreviousExpenses({ selectedCategory }) {
                 <Text style={{ fontSize: 16, lineHeight: 22, color: "#194868" }}>PREVIOUS EXPENSES</Text>
                 <Text style={{fontSize: 14, lineHeight: 22, color: '#898C95' }}>This Week</Text>
             </View>
-
             {
-                allExpenses.length > 0 &&
+                selectedCategory === null &&
+                <View style={{ alignItems: 'center', justifyContent: 'center', height: 300 }}>
+                    <Text style={{ color: "#194868", fontSize: 12, lineHeight: 22 }}>Click on any above categories in categories section</Text>
+                </View>
+            }
+            {
+                selectedCategory !== null &&
                 <FlatList
                     data={allExpenses}
                     renderItem={renderItem}
@@ -89,14 +98,6 @@ export default function PreviousExpenses({ selectedCategory }) {
                     showsHorizontalScrollIndicator={false}
                 />
             }
-
-            {
-                allExpenses.length == 0 &&
-                <View style={{ alignItems: 'center', justifyContent: 'center', height: 300 }}>
-                    <Text style={{ color: "#194868", fontSize: 12, lineHeight: 22 }}>Click on any above categories in categories section</Text>
-                </View>
-            }
-
         </View>
 
     )
