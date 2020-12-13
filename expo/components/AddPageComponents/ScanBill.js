@@ -7,15 +7,33 @@ import BottomSheet from 'reanimated-bottom-sheet';
 import ManualAdd from './timepassForm';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 //import key from './CloudVision';
+import predict from '../../ML/index';
 
-// const cv2 ="";
 
-// const cloudVision  = 'https://vision.googleapis.com/v1/images:annotate?key=' + cv2;
+const cv2 ="AIzaSyCuyneizug7i6LI0aYq20l2gv41c7DLl08";
+
+const cloudVision  = 'https://vision.googleapis.com/v1/images:annotate?key=' + cv2;
 
 export default function ScanBill() {
 
     const [image, setImage] = useState(null);
 
+    const [title, setTitle] = useState("");
+    const [category, setCategory] = useState("");
+    const [total, setTotal] = useState(0);
+    const addExpense = async() => {
+        fetch('http://9776686554bd.ngrok.io/addExpense',{
+            method:"post",
+                headers:{
+                    'Content-Type':'application/json'
+                },
+                body:JSON.stringify({
+                    title: title,
+                    category: category,
+                    total: total
+                })
+        })
+    }
     useEffect(() => {
         (async () => {
         if (Platform.OS !== 'web') {
@@ -105,7 +123,16 @@ export default function ScanBill() {
           console.log(arr.length);
           for(var i=0; i< arr.length; i++){
               console.log(arr[i]);
+              if(i%2==0){
+                  setTitle(arr[i]);
+                  var pre = predict(title);
+                  setCategory(pre);
+              }else{
+                  setTotal(arr[i]);
+                  await addExpense();
+              }
           }
+
       }
 
     
