@@ -5,13 +5,11 @@ import { VictoryPie} from "victory-native";
 import { person } from "../data/dummyPerson";
 
 export default function ChartPage() {
-    const screenWidth = Dimensions.get('window').width
-
-    const [viewMode, setViewMode] = useState("Education");
+    const screenWidth = Dimensions.get('window').width;
     const [categoriesData, setCategoriesData] = useState([])
     const [people, setPeople] = useState([])
     const [loading, setLoading] = useState(true)
-
+    const [viewMode, setViewMode] = useState(null);
 
     // UPDATE links
     const fetchData = () => {
@@ -40,7 +38,6 @@ export default function ChartPage() {
         fetchCategory(),
         fetchData()
     },[])
-
 
     function getSampleData() {
         let requiredData = [];
