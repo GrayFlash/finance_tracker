@@ -3,7 +3,7 @@ import { View, StyleSheet, Text } from 'react-native';
 import CategoryList from './ExpensesPageComponents/CategoryList';
 import PreviousExpenses from './ExpensesPageComponents/PreviousExpenses';
 
-export default function Expenses({ clhav, selectedCategory, setSelectedCategory, setViewMode, totalExpenses, categoriesData, allExpenses }) {
+export default function Expenses({ clhav, selectedCategory, setSelectedCategory, editProductHandler, totalExpenses, categoriesData, allExpenses }) {
 
     return (
         <View>
@@ -21,7 +21,7 @@ export default function Expenses({ clhav, selectedCategory, setSelectedCategory,
                             categoriesData={categoriesData}
             />
 
-            <PreviousExpenses selectedCategory={selectedCategory} allExpenses={allExpenses}  />      
+            <PreviousExpenses editProductHandler={editProductHandler} selectedCategory={selectedCategory} allExpenses={allExpenses}  />      
         </View>
     );
 }

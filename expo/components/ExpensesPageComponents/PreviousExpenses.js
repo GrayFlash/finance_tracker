@@ -7,7 +7,7 @@ import {
     TouchableOpacity
  } from 'react-native';
 
-export default function PreviousExpenses({ selectedCategory, allExpenses }) {
+export default function PreviousExpenses({ selectedCategory, editProductHandler, allExpenses }) {
     
     if(selectedCategory !== null) {
         allExpenses = allExpenses.filter(item => {
@@ -60,24 +60,6 @@ export default function PreviousExpenses({ selectedCategory, allExpenses }) {
                 </Text>
             </View>
 
-            {/* Price */}
-            {/* <TouchableOpacity
-                style={{
-                    height: 45,
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    marginTop: 24,
-                    borderBottomStartRadius: 8,
-                    borderBottomEndRadius: 8,
-                    backgroundColor: selectedCategory.color,
-                }}
-            >
-                <Text style={{ color: "white", fontSize: 15, lineHeight: 22 }}>{item.total.toFixed(2)} $</Text>
-                <View>
-                    <Image style={{width: 20, height:20, tintColor:"white"}}source={require('../../assets/icons/right-arrow.png')} />
-                </View>
-            </TouchableOpacity> */}
-
             <TouchableOpacity
                 style={{
                     flexDirection: 'row',
@@ -89,7 +71,7 @@ export default function PreviousExpenses({ selectedCategory, allExpenses }) {
                     borderBottomEndRadius: 8,
                     backgroundColor: selectedCategory.color,
                 }}
-                // onPress={() => setViewMode("edit")}
+                onPress={() => editProductHandler("editProduct", item)}
                 
               >
                 {/* Name/Category */}
@@ -122,7 +104,7 @@ export default function PreviousExpenses({ selectedCategory, allExpenses }) {
                 <FlatList
                     data={allExpenses}
                     renderItem={renderItem}
-                    keyExtractor={item => `${item._id}`}
+                    keyExtractor={item => `${item.id}`}
                     horizontal
                     showsHorizontalScrollIndicator={false}
                 />

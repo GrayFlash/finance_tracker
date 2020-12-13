@@ -3,6 +3,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import { View, Animated, FlatList } from 'react-native';
 import AddSection from '../components/AddPage';
 import Expenses from '../components/Expenses';
+import EditProduct from '../components/ExpensesPageComponents/EditProduct';
 import NavigationBar from '../components/NavigationBar';
 import ChartPage from '../components/PieChart';
 import { person } from '../data/dummyPerson';
@@ -12,6 +13,7 @@ export default function Home (props) {
     const categoryListHeightAnimationValue = useRef(new Animated.Value(172.5)).current;
     const [selectedCategory, setSelectedCategory] = useState(null);
     const [viewMode, setViewMode] = useState("expenses");
+    const [editProductProps, setEditProductProps] = React.useState(null);
     const [expenses, setExpenses] = useState([])
     const [categoriesData, setCategoriesData] = useState([])
     const [people, setPeople] = useState([])
@@ -75,8 +77,10 @@ export default function Home (props) {
         setSelectedCategory(item);
     }
 
-    const viewModeHandler = (mode) => {
-        console.log("ViewMode change Button is pressed.");
+    const editProductHandler = (mode, item) => {
+        console.log("Edit Product Button is pressed.");
+        console.log(item);
+        setEditProductProps(item);
         setViewMode(mode);
     }
 
@@ -96,11 +100,15 @@ export default function Home (props) {
                 <Expenses   clhav={categoryListHeightAnimationValue} 
                             selectedCategory={selectedCategory}
                             setSelectedCategory={categoryButtonHandler} 
-                            setViewMode={viewModeHandler}
+                            editProductHandler={editProductHandler}
                             totalExpenses={people.totalExpenses}
                             categoriesData={categoriesData}
                             allExpenses={expenses}
                 /> 
+            }
+            {
+                viewMode == "editProduct" &&
+                <EditProduct item={editProductProps} />
             }
             {
                 viewMode == "chart" &&

@@ -1,14 +1,14 @@
 import React, { useState, useEffect} from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet , Alert, Picker } from 'react-native'
 
-export default function EditProduct() {
+export default function EditProduct({ item }) {
     const [selectedValue, setSelectedValue] = useState("Education");
     return (
         <View style={styles.container} >
             <Text style={styles.Text}>Product Name</Text>
             <TextInput 
                 style={styles.inputField}
-                //placeholder="Product Name" 
+                value={item.title}
             />
 
             <Text style={styles.Text}>Category</Text>
@@ -39,26 +39,20 @@ export default function EditProduct() {
             <Text style={styles.Text}>Amount</Text>
             <TextInput 
                 style={styles.inputField}
-                //placeholder="Product Name" 
+                value={item.total.toString()}
             />
-
-            {/* <Text>Date</Text>
-            <TextInput 
-                style={styles.inputField}
-                //placeholder="Product Name" 
-            /> */}
 
             <Text style={styles.Text}>Description</Text>
             <TextInput 
                 style={styles.inputField}
-                // placeholder="Product Name" 
+                value={item.description}
             />
             <TouchableOpacity 
                 style={{paddingTop: 10,marginTop: 10}}
-                onPress={() => Alert.alert("Submit karne k baad ka code is on gaurav")}
+                onPress={() => Alert.alert("Submit karne k baad ka code is on Neel")}
             >
                 <View style={styles.button}>
-                    <Text style={{color: "white", textAlign: "center"}}>Add Product</Text>
+                    <Text style={{color: "white", textAlign: "center"}}>Edit Product</Text>
                 </View>
             </TouchableOpacity>
         </View>
