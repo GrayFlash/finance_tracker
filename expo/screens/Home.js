@@ -116,7 +116,7 @@ export default function Home (props) {
             }
             {
                 viewMode == "add" &&
-                <AddSection />
+                <AddSection  categoriesData={categoriesData} people={people}/>
             }
             
         </View>

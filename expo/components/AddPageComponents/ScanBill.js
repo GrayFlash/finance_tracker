@@ -19,9 +19,63 @@ const cv2 ="AIzaSyA6vM73Bi9Tfy5-thhOo6SQ11EShJ9Neg8";
 
 const cloudVision  = 'https://vision.googleapis.com/v1/images:annotate?key=' + cv2;
 
-export default function ScanBill() {
+export default function ScanBill({categoriesData, people}) {
 
     const [image, setImage] = useState(null);
+
+    const updateUserData = async(total) =>{
+        fetch("http://9776686554bd.ngrok.io/updatePerson",{
+            method:"post",
+                headers:{
+                    'Content-Type':'application/json'
+                },
+                body:JSON.stringify({
+                    id:_id,
+                    name: people.name,
+                    income: people.income,
+                    savings: people.savings,
+                    targetToSave: people.targetToSave,
+                    thisMonthStatus: people.thisMonthStatus,
+                    totalExpenses: people.totalExpenses+total
+                })
+        })
+        .then(res=>res.json())
+        .then(data=>{
+            Alert.alert(`Details of ${people.name} has been updated`)
+        })
+        .catch(err=>{
+            Alert.alert("Some Error")
+            console.log(err)
+        })
+    }
+
+    const updateCategoryExpense = async(total, category) =>{
+        for(i in categoriesData){
+            if(categoriesData[i].name === category){
+                fetch("http://9776686554bd.ngrok.io/updateCategory",{
+                    method:"post",
+                        headers:{
+                            'Content-Type':'application/json'
+                        },
+                        body:JSON.stringify({
+                            id:categoriesData[i]._id,
+                            name: categoriesData[i].name,
+                            icon: categoriesData[i].icon,
+                            color: categoriesData[i].color,
+                            totalExpenseInThis: categoriesData[i].totalExpenseInThis + total
+                        })
+                })
+                .then(res=>res.json())
+                .then(data=>{
+                    Alert.alert(`Details of ${people.name} has been updated`)
+                })
+                .catch(err=>{
+                    Alert.alert("Some Error")
+                    console.log(err)
+        })
+            }
+        }
+    }
 
     // const predict = async (name) => {
     //     t = [...name];
@@ -43,6 +97,7 @@ export default function ScanBill() {
     const [title, setTitle] = useState("");
     const [category, setCategory] = useState("");
     const [total, setTotal] = useState(0);
+    
     const addExpense = async(te, ca, to) => {
         fetch('http://9776686554bd.ngrok.io/addExpense',{
             method:"post",
@@ -142,6 +197,7 @@ export default function ScanBill() {
               }
               //console.log('\n');
           }
+          var total = 0;
           console.log("done");
           console.log(arr.length);
           var te = "";
@@ -154,10 +210,13 @@ export default function ScanBill() {
                   //console.log(pre);
                   setCategory("food");
               }else{
+                  total += arr[i];
                   setTotal(arr[i]);
                   await addExpense(te, "Food", arr[i]);
               }
           }
+          await updateUserData(total);
+          await updateCategoryExpense(total);
 
       }
 
@@ -311,7 +370,7 @@ export default function ScanBill() {
                                 margin: 10,
                             }} />
                 }
-                <ManualAdd />
+                <ManualAdd people={people} categoriesData={categoriesData} />
             </Animated.View>
 
         </View>

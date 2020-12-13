@@ -1,14 +1,69 @@
 import React, { useState, useEffect} from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet , Alert, Picker } from 'react-native'
 
-export default function ManualAdd() {
+export default function ManualAdd({categoriesData, people}) {
     const [selectedValue, setSelectedValue] = useState("Food");
 
     const [title, setTitle] = useState("");
     const [category, setCategory] = useState("Food");
     const [total, setTotal] = useState(0);
     const [description, setDescription] = useState("");
-    const addExpense = async(te, ca, to) => {
+    const updateUserData = async() =>{
+        fetch("http://9776686554bd.ngrok.io/updatePerson",{
+            method:"post",
+                headers:{
+                    'Content-Type':'application/json'
+                },
+                body:JSON.stringify({
+                    id:people._id,
+                    name: people.name,
+                    income: people.income,
+                    savings: people.savings,
+                    targetToSave: people.targetToSave,
+                    thisMonthStatus: people.thisMonthStatus,
+                    totalExpenses: parseInt(people.totalExpenses)+parseInt(total)
+                })
+        })
+        .then(res=>res.json())
+        .then(data=>{
+            Alert.alert(`Details of ${people.name} has been updated`)
+        })
+        .catch(err=>{
+            Alert.alert("Some Error")
+            console.log(err)
+        })
+    }
+
+    const updateCategoryExpense = async() =>{
+        for(var i in categoriesData){
+            if(categoriesData[i].name === category){
+                fetch("http://9776686554bd.ngrok.io/updateCategory",{
+                    method:"post",
+                        headers:{
+                            'Content-Type':'application/json'
+                        },
+                        body:JSON.stringify({
+                            id:categoriesData[i]._id,
+                            name: categoriesData[i].name,
+                            icon: categoriesData[i].icon,
+                            color: categoriesData[i].color,
+                            totalExpenseInThis: parseInt(categoriesData[i].totalExpenseInThis) + parseInt(total)
+                        })
+                })
+                .then(res=>res.json())
+                .then(data=>{
+                    Alert.alert(`Details of ${people.name} has been updated`)
+                })
+                .catch(err=>{
+                    Alert.alert("Some Error")
+                    console.log(err)
+        })
+            }
+        }
+    }
+
+    
+    const addExpense = () => {
         fetch('http://9776686554bd.ngrok.io/addExpense',{
             method:"post",
                 headers:{
@@ -20,6 +75,11 @@ export default function ManualAdd() {
                     total: parseInt(total),
                     description: description
                 })
+        })
+        .then(res=>res.json())
+        .then(data =>{
+            updateCategoryExpense();
+            updateUserData();
         })
     }
     return (
@@ -80,7 +140,7 @@ export default function ManualAdd() {
             />
             <TouchableOpacity 
                 style={{paddingTop: 10,marginTop: 10}}
-                onPress={() => Alert.alert("Submit karne k baad ka code is on gaurav")}
+                onPress={() => addExpense()}
             >
                 <View style={styles.button}>
                     <Text style={{color: "white", textAlign: "center"}}>Add Product</Text>
