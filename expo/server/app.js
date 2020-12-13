@@ -2,7 +2,7 @@ const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
-import key from './uri';
+
 require('./user')
 require('./fixedExpense')
 require('./person')
@@ -14,7 +14,7 @@ const user = mongoose.model("user")
 const fixedExpense = mongoose.model("fixedExpense")
 const expenses = mongoose.model("expenses")
 const person = mongoose.model("person")
-const mongoUri = {key};
+const mongoUri = "mongodb+srv://Gaurav_Ubuntu:zcDTxXONvFWZxNrh@cluster0-oi6g0.mongodb.net/test?retryWrites=true&w=majority";
 
 
 mongoose.connect(mongoUri,{

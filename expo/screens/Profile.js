@@ -1,8 +1,68 @@
-import React from 'react';
-import { View , Text, StyleSheet, Image, TouchableOpacity, TextInput, Alert } from 'react-native';
+import React, {useState, useEffect} from 'react';
+import { KeyboardAvoidingView, View , Text, StyleSheet, Image, TouchableOpacity, TextInput, Alert, FlatList } from 'react-native';
 import { person } from '../data/dummyPerson';
 
 export default function Profile() {
+
+    const [data, setData] = useState([])
+    const [loading, setLoading] = useState(true)
+
+    const [name, setName] = useState("")
+    const [income, setIncome] = useState(0)
+    const [savings, setSavings] = useState(0)
+    const [targetToSave, setTargetToSave] = useState(0)
+    const [totalExpenses, setTotalExpenses] = useState(0)
+    const [thisMonthStatus, setThisMonthStatus] = useState("")
+    const [_id, set_id] = useState("")
+
+    const fetchData = () => {
+        fetch("http://4c59326dde6b.ngrok.io/personDetails")
+        .then(res=>res.json())
+        .then(results=>{
+            
+            setData(results)
+            setName(results[0].name)
+            setIncome(results[0].income)
+            setSavings(results[0].savings)
+            setTargetToSave(results[0].targetToSave)
+            setTotalExpenses(results[0].totalExpenses)
+            setThisMonthStatus(results[0].thisMonthStatus)
+            set_id(results[0]._id)
+            
+            console.log(results[0].name)
+            setLoading(false)
+        })
+    }
+
+    const updateData = () =>{
+        fetch("http://4c59326dde6b.ngrok.io/updatePerson",{
+            method:"post",
+                headers:{
+                    'Content-Type':'application/json'
+                },
+                body:JSON.stringify({
+                    id:_id,
+                    name: name,
+                    income: income,
+                    savings: savings,
+                    targetToSave: targetToSave,
+                    thisMonthStatus: thisMonthStatus,
+                    totalExpenses: totalExpenses
+                })
+        })
+        .then(res=>res.json())
+        .then(data=>{
+            Alert.alert(`Details of ${name} has been updated`)
+            setViewMode("expense")
+        })
+        .catch(err=>{
+            Alert.alert("Some Error")
+            console.log(err)
+        })
+    }
+    useEffect(()=>{
+        fetchData()
+    },[])
 
     const LineDivider = () => {
         return (
@@ -45,7 +105,7 @@ export default function Profile() {
 
                 {/* Expenses */}
                 <View style={{ justifyContent: 'center' }}>
-                    <Text style={{ color: "#194868" }}>{person.income} USD</Text>
+                    <Text style={{ color: "#194868" }}>{income} USD</Text>
                 </View>
             </TouchableOpacity>
 
@@ -77,7 +137,7 @@ export default function Profile() {
 
                 {/* Expenses */}
                 <View style={{ justifyContent: 'center' }}>
-                    <Text style={{ color: "#194868" }}>{person.totalExpenses} USD</Text>
+                    <Text style={{ color: "#194868" }}>{totalExpenses} USD</Text>
                 </View>
             </TouchableOpacity>
 
@@ -108,7 +168,7 @@ export default function Profile() {
 
                 {/* Expenses */}
                 <View style={{ justifyContent: 'center' }}>
-                    <Text style={{ color: "#194868" }}>{person.targetToSave} USD</Text>
+                    <Text style={{ color: "#194868" }}>{targetToSave} USD</Text>
                 </View>
             </TouchableOpacity>
 
@@ -139,7 +199,7 @@ export default function Profile() {
 
                 {/* Expenses */}
                 <View style={{ justifyContent: 'center' }}>
-                    <Text style={{ color: "red" }}>Over Spent  ({person.thisMonthStatus})</Text>
+                    <Text style={{ color: "red" }}>Over Spent  ({thisMonthStatus})</Text>
                 </View>
             </TouchableOpacity>
 
@@ -184,32 +244,38 @@ export default function Profile() {
     function renderEdit() {
         return (
             <View>
+            
             <View style={styles.container} >
+            <KeyboardAvoidingView behavior="position">
             <Text style={styles.Text}>My Name</Text>
             <TextInput 
                 style={styles.inputField}
-                
+                value={name}
+                onChangeText={text => setName(text)}
             />
 
             <Text style={styles.Text}>Monthly Income</Text>
             <TextInput 
                 style={styles.inputField}
-               
+                value={income.toString()}
+                onChangeText={text => setIncome(parseInt(text))}
             />
 
             <Text style={styles.Text}>Target to save</Text>
             <TextInput 
                 style={styles.inputField}
-                
+                value={targetToSave.toString()}
+                onChangeText={text => setTargetToSave(parseInt(text))}
             />
-
+            </KeyboardAvoidingView>
             {/* <Text style={styles.Text}>Extra expense this month</Text>
             <TextInput 
                 style={styles.inputField}
             /> */}
+            
             <TouchableOpacity 
                 style={{marginTop: 5}}
-                onPress={() => Alert.alert("Submit karne k baad ka code is on gaurav")}
+                onPress={() => updateData()}
             >
                 <View style={styles.button}>
                     <Text style={{color: "white", textAlign: "center"}}>Save Changes</Text>
@@ -235,14 +301,22 @@ export default function Profile() {
     }
 
     return (
+
         <View>
+            <FlatList
+            data={data[0]}
+            keyExtractor={item=>item._id}
+            onRefresh={()=>fetchData()}
+            refreshing={loading}
+            />
+            <KeyboardAvoidingView behavior="position">
             <View style={styles.header}>
                 <Image 
                     source={require('../assets/icons/profile.jpg')} 
                     style={{width: 100, height: 100, borderRadius: 1000}}
                 />
                 <Text style={{paddingTop: 10, fontSize: 16, lineHeight: 22}}>
-                    {person.name}
+                    {name}
                 </Text>
             </View>
             <View style={{ flexDirection: 'row', height: 80, backgroundColor: "#F5F7F9" }}>
@@ -278,6 +352,8 @@ export default function Profile() {
                         borderBottomColor: viewMode == "edit" ? "#BEC1D2" : "#F5F7F9",
                         borderBottomWidth: 2,
                     }}
+
+                    // OVER HERE
                     onPress={() => setViewMode("edit")}
                 >
                     <View
@@ -305,6 +381,7 @@ export default function Profile() {
                         {renderEdit()}
                     </View>
                 }
+                </KeyboardAvoidingView>
         </View>
     );
 }
