@@ -1,7 +1,7 @@
 import React, { useState, useEffect} from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet , Alert, Picker } from 'react-native'
 
-export default function EditProduct({ item }) {
+export default function EditProduct({ item, categoriesData }) {
     const [selectedValue, setSelectedValue] = useState("Education");
     return (
         <View style={styles.container} >
@@ -27,12 +27,11 @@ export default function EditProduct({ item }) {
                     style={{ height: 50, width: 350 }}
                     onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}>
                     
-                    <Picker.Item label="Education" value="Education" />
-                    <Picker.Item label="Nutrition" value="Nutrition" />
-                    <Picker.Item label="Child" value="Child" />
-                    <Picker.Item label="Beauty" value="Beauty" />
-                    <Picker.Item label="Sports" value="Sports" />
-                    <Picker.Item label="Clothing" value="Clothing" />
+                    {categoriesData.map((item) => {
+                        return (
+                            <Picker.Item key={item.id} label={item.name} value={item.name} />
+                        );  
+                    })}
                 </Picker>
             </View>
 

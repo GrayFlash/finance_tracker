@@ -108,7 +108,7 @@ export default function Home (props) {
             }
             {
                 viewMode == "editProduct" &&
-                <EditProduct item={editProductProps} />
+                <EditProduct item={editProductProps} categoriesData={categoriesData} />
             }
             {
                 viewMode == "chart" &&
