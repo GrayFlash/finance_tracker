@@ -71,6 +71,15 @@ app.post('/addExpense', (req, res)=>{
     })
 })
 
+app.post('/fetchExpense',(req, res)=>{
+    expenses.find({}).then(data=>{
+        res.send(data)
+    }).catch(err=>{
+        console.log(err)
+    })
+})
+
+// EXPENSE control end
 
 
 // CATEGORIES section
