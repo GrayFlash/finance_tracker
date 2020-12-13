@@ -72,7 +72,6 @@ export default function PreviousExpenses({ selectedCategory, editProductHandler,
                     backgroundColor: selectedCategory.color,
                 }}
                 onPress={() => editProductHandler("editProduct", item)}
-                
               >
                 {/* Name/Category */}
                 <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center', marginLeft: 10 }}>

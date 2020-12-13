@@ -1,7 +1,7 @@
 import React, { useState, useEffect} from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet , Alert, Picker } from 'react-native'
 
-export default function EditProduct({ item, categoriesData }) {
+export default function EditProduct({ item, categoriesData, NavbarButtonHandler }) {
     const [selectedValue, setSelectedValue] = useState("Education");
     return (
         <View style={styles.container} >
@@ -29,7 +29,7 @@ export default function EditProduct({ item, categoriesData }) {
                     
                     {categoriesData.map((item) => {
                         return (
-                            <Picker.Item key={item.id} label={item.name} value={item.name} />
+                            <Picker.Item key={item._id} label={item.name} value={item.name} />
                         );  
                     })}
                 </Picker>
@@ -52,6 +52,15 @@ export default function EditProduct({ item, categoriesData }) {
             >
                 <View style={styles.button}>
                     <Text style={{color: "white", textAlign: "center"}}>Edit Product</Text>
+                </View>
+            </TouchableOpacity>
+
+            <TouchableOpacity 
+                style={{paddingTop: 10,marginTop: 10}}
+                onPress={() => NavbarButtonHandler("expenses")}
+            >
+                <View style={styles.button}>
+                    <Text style={{color: "white", textAlign: "center"}}>Cancel</Text>
                 </View>
             </TouchableOpacity>
         </View>

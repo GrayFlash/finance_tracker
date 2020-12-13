@@ -108,7 +108,7 @@ export default function Home (props) {
             }
             {
                 viewMode == "editProduct" &&
-                <EditProduct item={editProductProps} categoriesData={categoriesData} />
+                <EditProduct item={editProductProps} categoriesData={categoriesData} NavbarButtonHandler={NavbarButtonHandler} />
             }
             {
                 viewMode == "chart" &&
