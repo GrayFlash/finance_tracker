@@ -40,7 +40,7 @@ export default function PreviousExpenses({ selectedCategory, editProductHandler,
                     }}
                 >
                     <Image
-                        source={selectedCategory.icon}
+                        source={{uri: selectedCategory.icon}}
                         style={{
                             width: 30,
                             height: 30,
@@ -104,7 +104,7 @@ export default function PreviousExpenses({ selectedCategory, editProductHandler,
                 <FlatList
                     data={allExpenses}
                     renderItem={renderItem}
-                    keyExtractor={item => `${item.id}`}
+                    keyExtractor={item => `${item._id}`}
                     horizontal
                     showsHorizontalScrollIndicator={false}
                 />
