@@ -2,7 +2,7 @@ const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
-
+import key from './uri';
 require('./user')
 require('./fixedExpense')
 require('./person')
@@ -12,7 +12,7 @@ require('./expenses')
 app.use(bodyParser.json())
 const user = mongoose.model("user")
 const fixedExpense = mongoose.model("fixedExpense")
-const mongoUri = "";
+const mongoUri = {key};
 
 
 mongoose.connect(mongoUri,{
