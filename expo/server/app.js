@@ -5,6 +5,9 @@ const mongoose = require('mongoose')
 
 require('./user')
 require('./fixedExpense')
+require('./person')
+require('./categoriesData')
+require('./expenses')
 
 app.use(bodyParser.json())
 const user = mongoose.model("user")
