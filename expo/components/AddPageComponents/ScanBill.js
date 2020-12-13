@@ -8,7 +8,6 @@ import ManualAdd from './timepassForm';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 
 
-const cv2 = "AIzaSyB-FUmUaj0PCgplL4TmZIzph6cjVyu4XRE";
 
 const cloudVision  = 'https://vision.googleapis.com/v1/images:annotate?key=' + cv2;
 
