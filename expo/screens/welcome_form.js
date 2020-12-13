@@ -3,6 +3,7 @@ import { View, Text, ScrollView, StyleSheet } from 'react-native';
 import { TextInput, Button, RadioButton } from 'react-native-paper';
 import * as Permissions from 'expo-permissions';
 import * as ImagePicker from 'expo-image-picker';
+import * as myConstClass from './HttpLink';
 
 const WelcomeForm = () => {
 
@@ -17,7 +18,7 @@ const WelcomeForm = () => {
         console.log(Name);
         console.log(Salary);
         console.log(checked);
-        fetch("https://ade16d0eb120.ngrok.io/send-data",{
+        fetch(`${myConstClass.HTTP_LINK}/send-data`,{
             method:"post",
             headers:{
                 'Content-Type':'application/json'

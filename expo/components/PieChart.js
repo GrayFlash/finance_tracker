@@ -3,6 +3,7 @@ import React,{useState, useEffect} from "react";
 import { Dimensions, TouchableOpacity, FlatList } from 'react-native';
 import { VictoryPie} from "victory-native";
 import { person } from "../data/dummyPerson";
+import * as myConstClass from '../screens/HttpLink';
 
 export default function ChartPage() {
     const screenWidth = Dimensions.get('window').width;
@@ -13,7 +14,7 @@ export default function ChartPage() {
 
     // UPDATE links
     const fetchData = () => {
-        fetch('http://6dafdc2fb092.ngrok.io/personDetails')
+        fetch(`${myConstClass.HTTP_LINK}/personDetails`)
         .then(res=>res.json())
         .then(results=>{
             console.log("People")
@@ -22,7 +23,7 @@ export default function ChartPage() {
     }
     const fetchCategory = () => {
         let x = fetchData();
-        fetch('http://6dafdc2fb092.ngrok.io/fetchCategoryData')
+        fetch(`${myConstClass.HTTP_LINK}/fetchCategoryData`)
         .then(res=>res.json())
         .then(results=>{
             console.log("Yes")

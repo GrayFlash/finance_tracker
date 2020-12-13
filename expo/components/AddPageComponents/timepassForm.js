@@ -1,5 +1,6 @@
 import React, { useState, useEffect} from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet , Alert, Picker } from 'react-native'
+import { View, Text, TextInput, TouchableOpacity, StyleSheet , Alert, Picker } from 'react-native';
+import * as myConstClass from '../../screens/HttpLink';
 
 export default function ManualAdd({categoriesData, people}) {
     const [selectedValue, setSelectedValue] = useState("Food");
@@ -9,7 +10,7 @@ export default function ManualAdd({categoriesData, people}) {
     const [total, setTotal] = useState(0);
     const [description, setDescription] = useState("");
     const updateUserData = async() =>{
-        fetch("http://6dafdc2fb092.ngrok.io/updatePerson",{
+        fetch(`${myConstClass.HTTP_LINK}/updatePerson`,{
             method:"post",
                 headers:{
                     'Content-Type':'application/json'
@@ -37,7 +38,7 @@ export default function ManualAdd({categoriesData, people}) {
     const updateCategoryExpense = async() =>{
         for(var i in categoriesData){
             if(categoriesData[i].name === category){
-                fetch("http://6dafdc2fb092.ngrok.io/updateCategory",{
+                fetch(`${myConstClass.HTTP_LINK}/updateCategory`,{
                     method:"post",
                         headers:{
                             'Content-Type':'application/json'
@@ -64,7 +65,7 @@ export default function ManualAdd({categoriesData, people}) {
 
     
     const addExpense = () => {
-        fetch('http://6dafdc2fb092.ngrok.io/addExpense',{
+        fetch(`${myConstClass.HTTP_LINK}/addExpense`,{
             method:"post",
                 headers:{
                     'Content-Type':'application/json'

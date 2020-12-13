@@ -7,6 +7,7 @@ import BottomSheet from 'reanimated-bottom-sheet';
 import ManualAdd from './timepassForm';
 import RenderProducts from './RenderProducts';
 import {TouchableOpacity} from 'react-native-gesture-handler';
+import * as myConstClass from '../../screens/HttpLink';
 //import key from './CloudVision';
 //import predict from '../../ML/index';
 
@@ -26,7 +27,7 @@ export default function ScanBill({categoriesData, people}) {
     const [scannedData, setScannedData] = useState([]);
 
     const updateUserData = async(total) =>{
-        fetch("http://6dafdc2fb092.ngrok.io/updatePerson",{
+        fetch(`${myConstClass.HTTP_LINK}/updatePerson`,{
             method:"post",
                 headers:{
                     'Content-Type':'application/json'
@@ -54,7 +55,7 @@ export default function ScanBill({categoriesData, people}) {
     const updateCategoryExpense = async(total, category) =>{
         for(i in categoriesData){
             if(categoriesData[i].name === category){
-                fetch("http://6dafdc2fb092.ngrok.io/updateCategory",{
+                fetch(`${myConstClass.HTTP_LINK}/updateCategory`,{
                     method:"post",
                         headers:{
                             'Content-Type':'application/json'
@@ -101,7 +102,7 @@ export default function ScanBill({categoriesData, people}) {
     const [total, setTotal] = useState(0);
     
     const addExpense = async(te, ca, to) => {
-        fetch('http://6dafdc2fb092.ngrok.io/addExpense',{
+        fetch(`${myConstClass.HTTP_LINK}/addExpense`,{
             method:"post",
                 headers:{
                     'Content-Type':'application/json'

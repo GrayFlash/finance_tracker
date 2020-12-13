@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { KeyboardAvoidingView, View , Text, StyleSheet, Image, TouchableOpacity, TextInput, Alert, FlatList } from 'react-native';
+import * as myConstClass from './HttpLink';
 
 export default function Profile() {
 
@@ -16,7 +17,7 @@ export default function Profile() {
 
     // UPDATE links -2
     const fetchData = () => {
-        fetch("http://6dafdc2fb092.ngrok.io/personDetails")
+        fetch(`${myConstClass.HTTP_LINK}/personDetails`)
         .then(res=>res.json())
         .then(results=>{
             
@@ -35,7 +36,7 @@ export default function Profile() {
     }
 
     const updateData = () =>{
-        fetch("http://6dafdc2fb092.ngrok.io/updatePerson",{
+        fetch(`${myConstClass.HTTP_LINK}/updatePerson`,{
             method:"post",
                 headers:{
                     'Content-Type':'application/json'

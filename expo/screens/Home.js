@@ -7,6 +7,7 @@ import EditProduct from '../components/ExpensesPageComponents/EditProduct';
 import NavigationBar from '../components/NavigationBar';
 import ChartPage from '../components/PieChart';
 import { person } from '../data/dummyPerson';
+import * as myConstClass from './HttpLink';
 
 export default function Home (props) {
 
@@ -24,7 +25,7 @@ export default function Home (props) {
     // FETCHES - expense, categories, profile
 
     const fetchExpense = () =>{
-        fetch('http://6dafdc2fb092.ngrok.io/fetchExpense')
+        fetch(`${myConstClass.HTTP_LINK}/fetchExpense`)
         .then(res=>res.json())
         .then(results=>{
             console.log("Expenses")
@@ -37,7 +38,7 @@ export default function Home (props) {
 
     const fetchData = () => {
         //let y = fetchExpense();
-        fetch('http://6dafdc2fb092.ngrok.io/personDetails')
+        fetch(`${myConstClass.HTTP_LINK}/personDetails`)
         .then(res=>res.json())
         .then(results=>{
             console.log("People")
@@ -46,7 +47,7 @@ export default function Home (props) {
     }
     const fetchCategory = () => {
         let x = fetchData();
-        fetch('http://6dafdc2fb092.ngrok.io/fetchCategoryData')
+        fetch(`${myConstClass.HTTP_LINK}/fetchCategoryData`)
         .then(res=>res.json())
         .then(results=>{
             console.log("Category");
