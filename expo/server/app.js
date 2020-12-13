@@ -3,6 +3,9 @@ const app = express()
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 
+
+// IMPORTING Schemas
+
 require('./user')
 require('./fixedExpense')
 require('./person')
@@ -14,8 +17,9 @@ const user = mongoose.model("user")
 const fixedExpense = mongoose.model("fixedExpense")
 const expenses = mongoose.model("expenses")
 const person = mongoose.model("person")
+const categoriesData = mongoose.model("categoriesData")
 const mongoUri = "mongodb+srv://Gaurav_Ubuntu:zcDTxXONvFWZxNrh@cluster0-oi6g0.mongodb.net/test?retryWrites=true&w=majority";
-
+// SETUP mondodb
 
 mongoose.connect(mongoUri,{
     useNewUrlParser: true,
@@ -31,6 +35,7 @@ mongoose.connection.on("error", (err)=>{
 })
 
 
+// DEPRECATED 
 app.post('/send-data',(req,res)=>{
     //console.log(res)
     const User = new user({
@@ -48,6 +53,8 @@ app.post('/send-data',(req,res)=>{
     })
 })
 
+// EXPENSE control
+
 app.post('/addExpense', (req, res)=>{
     const Expenses = new expenses({
         title: req.body.title,
@@ -64,6 +71,53 @@ app.post('/addExpense', (req, res)=>{
     })
 })
 
+
+
+// CATEGORIES section
+app.post('/addCategory', (req, res)=>{
+    const Category = new categoriesData({
+        name: req.body.name,
+        icon: req.body.icon,
+        color: req.body.color,
+        totalExpenseInThis: req.body.totalExpenseInThis
+    })
+    Category.save()
+    .then(data=>{
+        console.log(data)
+        res.send(data)
+    }).catch(err=>{
+        console.log(err)
+    })
+})
+
+app.post('/updateCategory', (req, res)=>{
+    categoriesData.findByIdAndUpdate(req.body.id, {
+        name: req.body.name,
+        icon: req.body.icon,
+        color: req.body.color,
+        totalExpenseInThis: req.body.totalExpenseInThis
+    }).then(data=>{
+        console.log(data)
+        res.send(data)
+    }).catch(err=>{
+        console.log(err)
+    })
+})
+
+app.get('/fetchCategoryData', (req, res)=>{
+    categoriesData.find({}).then(data=>{
+        res.send(data)
+    }).catch(err=>{
+        console.log(err)
+    })
+})
+
+// CATEGORY end
+
+
+
+
+// PROFILE Section
 app.post('/addPerson',(req, res)=>{
     const Person = new person({
         name: req.body.name,
@@ -105,6 +159,8 @@ app.get('/personDetails', (req, res)=>{
         console.log(err)
     })
 })
+// PROFILE ends
+
 
 app.listen(3000,()=>{
     console.log("Server Running at port 3000")
