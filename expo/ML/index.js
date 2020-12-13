@@ -1,6 +1,6 @@
 const { data } = require('@tensorflow/tfjs');
 
-tf = require('@tensorflow/tfjs');
+tf = require('@tensorflow/tfjs-node');
 knnClassifier = require('@tensorflow-models/knn-classifier');
 fs = require('fs')
 const model = tf.sequential();
@@ -34,6 +34,7 @@ predict('fromal shirt').then((obj)=>console.log(obj));
 predict('frying pan').then((obj)=>console.log(obj));
 predict('amul butter').then((obj)=>console.log(obj));
 predict('clinic plus shampoo').then((obj)=>console.log(obj));
+model.save('file://model')
 }
 
 const predict = async (name) => {

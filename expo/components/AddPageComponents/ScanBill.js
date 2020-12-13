@@ -9,8 +9,13 @@ import {TouchableOpacity} from 'react-native-gesture-handler';
 //import key from './CloudVision';
 //import predict from '../../ML/index';
 
+// tf = require('@tensorflow/tfjs')
+// knnClassifier = require('@tensorflow-models/knn-classifier');
 
-const cv2 ="AIzaSyCuyneizug7i6LI0aYq20l2gv41c7DLl08";
+// const model = tf.loadLayersModel('file://model');
+// const classifier = knnClassifier.create();
+
+const cv2 ="AIzaSyA6vM73Bi9Tfy5-thhOo6SQ11EShJ9Neg8";
 
 const cloudVision  = 'https://vision.googleapis.com/v1/images:annotate?key=' + cv2;
 
@@ -18,19 +23,36 @@ export default function ScanBill() {
 
     const [image, setImage] = useState(null);
 
+    // const predict = async (name) => {
+    //     t = [...name];
+    //     for(i=0;i<name.length;i++){
+    //         t[i]=t[i].charCodeAt();
+    //         if(t[i]>=65 && t[i]<=90)t[i]+=32;
+    //         else if(t[i]>=97 && t[i]<=122)t[i]+=0;
+    //         else t[i]=96;
+    //         t[i]-=96;
+    //     }
+    //     for(i=name.length;i<100;i++){
+    //         t[i]=0;
+    //     }
+    //     return classifier.predictClass(model.predict(tf.tensor(t,[1,100]))).then((obj) => {
+    //         return obj;
+    //     });
+    // }
+    
     const [title, setTitle] = useState("");
     const [category, setCategory] = useState("");
     const [total, setTotal] = useState(0);
-    const addExpense = async() => {
+    const addExpense = async(te, ca, to) => {
         fetch('http://9776686554bd.ngrok.io/addExpense',{
             method:"post",
                 headers:{
                     'Content-Type':'application/json'
                 },
                 body:JSON.stringify({
-                    title: title,
-                    category: category,
-                    total: total
+                    title: te,
+                    category: ca,
+                    total: to
                 })
         })
     }
@@ -74,6 +96,7 @@ export default function ScanBill() {
           }
         );
         let res = await response.json();
+        console.log(res)
           var texts = [];
           var y=0;
           console.log("Starting with text")
@@ -121,15 +144,18 @@ export default function ScanBill() {
           }
           console.log("done");
           console.log(arr.length);
+          var te = "";
           for(var i=0; i< arr.length; i++){
               console.log(arr[i]);
               if(i%2==0){
                   setTitle(arr[i]);
-                  //var pre = predict(title);
-                  setCategory(food);
+                  te  = arr[i];
+                  //var pre = await predict(title);
+                  //console.log(pre);
+                  setCategory("food");
               }else{
                   setTotal(arr[i]);
-                  await addExpense();
+                  await addExpense(te, "Food", arr[i]);
               }
           }
 

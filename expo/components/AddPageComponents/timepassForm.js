@@ -2,13 +2,34 @@ import React, { useState, useEffect} from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet , Alert, Picker } from 'react-native'
 
 export default function ManualAdd() {
-    const [selectedValue, setSelectedValue] = useState("Education");
+    const [selectedValue, setSelectedValue] = useState("Food");
+
+    const [title, setTitle] = useState("");
+    const [category, setCategory] = useState("Food");
+    const [total, setTotal] = useState(0);
+    const [description, setDescription] = useState("");
+    const addExpense = async(te, ca, to) => {
+        fetch('http://9776686554bd.ngrok.io/addExpense',{
+            method:"post",
+                headers:{
+                    'Content-Type':'application/json'
+                },
+                body:JSON.stringify({
+                    title: total,
+                    category: category,
+                    total: parseInt(total),
+                    description: description
+                })
+        })
+    }
     return (
         <View style={styles.container} >
             <Text style={styles.Text}>Product Name</Text>
             <TextInput 
                 style={styles.inputField}
                 //placeholder="Product Name" 
+                value={title}
+                onChangeText={text => setTitle(text)}
             />
 
             <Text style={styles.Text}>Category</Text>
@@ -23,16 +44,16 @@ export default function ManualAdd() {
                 borderColor: "#D1D1D1",
             }}>
                 <Picker
-                    selectedValue={selectedValue}
+                    selectedValue={category}
                     style={{ height: 50, width: 350 }}
-                    onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}>
+                    onValueChange={(itemValue, itemIndex) => setCategory(itemValue)}>
                     
-                    <Picker.Item label="Education" value="Education" />
-                    <Picker.Item label="Nutrition" value="Nutrition" />
-                    <Picker.Item label="Child" value="Child" />
-                    <Picker.Item label="Beauty" value="Beauty" />
-                    <Picker.Item label="Sports" value="Sports" />
-                    <Picker.Item label="Clothing" value="Clothing" />
+                    <Picker.Item label="Hygiene" value="Hygiene" />
+                    <Picker.Item label="Food" value="Food" />
+                    <Picker.Item label="Home" value="Home" />
+                    <Picker.Item label="Others" value="Others" />
+                    <Picker.Item label="Stationery" value="Stationery" />
+                    <Picker.Item label="Clothes" value="Clothes" />
                 </Picker>
             </View>
 
@@ -40,6 +61,8 @@ export default function ManualAdd() {
             <TextInput 
                 style={styles.inputField}
                 //placeholder="Product Name" 
+                value={total.toString()}
+                onChangeText={text => setTotal(text)}
             />
 
             {/* <Text>Date</Text>
@@ -52,6 +75,8 @@ export default function ManualAdd() {
             <TextInput 
                 style={styles.inputField}
                 // placeholder="Product Name" 
+                value={description}
+                onChangeText={text => setDescription(text)}
             />
             <TouchableOpacity 
                 style={{paddingTop: 10,marginTop: 10}}

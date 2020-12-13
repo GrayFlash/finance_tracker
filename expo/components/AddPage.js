@@ -15,8 +15,8 @@ export default function AddSection() {
     return (
         <ScrollView style={styles.mainAddSection} contentContainerStyle={{ flexGrow: 1 }}>   
             
-            {/* <ScanBill /> */}
-            <RenderProducts />
+            <ScanBill />
+            {/* <RenderProducts /> */}
             
         </ScrollView>
     );
