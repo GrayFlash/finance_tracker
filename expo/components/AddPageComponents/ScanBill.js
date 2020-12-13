@@ -7,7 +7,7 @@ import BottomSheet from 'reanimated-bottom-sheet';
 import ManualAdd from './timepassForm';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 //import key from './CloudVision';
-import predict from '../../ML/index';
+//import predict from '../../ML/index';
 
 
 const cv2 ="AIzaSyCuyneizug7i6LI0aYq20l2gv41c7DLl08";
@@ -125,8 +125,8 @@ export default function ScanBill() {
               console.log(arr[i]);
               if(i%2==0){
                   setTitle(arr[i]);
-                  var pre = predict(title);
-                  setCategory(pre);
+                  //var pre = predict(title);
+                  setCategory(food);
               }else{
                   setTotal(arr[i]);
                   await addExpense();

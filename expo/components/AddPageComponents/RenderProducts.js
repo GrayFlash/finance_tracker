@@ -5,7 +5,6 @@ import { Dimensions, TouchableOpacity, FlatList, Image } from 'react-native';
 export default function RenderProducts() {
     return (
         <View>
-
                 <View style={{
                     alignItems: 'center', 
                     paddingBottom: 15,
@@ -16,7 +15,6 @@ export default function RenderProducts() {
                 }}>
                     <Text style={{ color: "#194868" }}>Your scanned product's list</Text>
                 </View>
-
 
                 {/* RENDER PRODUCTS HERE */}
             
@@ -54,9 +52,7 @@ export default function RenderProducts() {
                 </TouchableOpacity>
             </View>
 
-
             {/* BUTTON THAT UPLOADS INFO OR DOES SOMETHING AFTER USER CONFIRMS THE SCANNED PRODUCTS */}
-
 
             <TouchableOpacity 
                 style={{paddingTop: 10,marginTop: 10}}
@@ -69,9 +65,7 @@ export default function RenderProducts() {
                 }}>
                     <Text style={{color: "white", textAlign: "center"}}>Done</Text>
                 </View>
-            </TouchableOpacity>
-            
-            
+            </TouchableOpacity>  
         </View>
     );
 }
@@ -83,7 +77,6 @@ const styles = StyleSheet.create({
         alignItems: "center",
         backgroundColor: "#f5fcff",
       },
-    
 })
 
     

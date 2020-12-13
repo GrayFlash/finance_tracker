@@ -2,7 +2,8 @@ import React, { useState, useEffect} from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet , Alert, Picker } from 'react-native'
 
 export default function EditProduct({ item, categoriesData, NavbarButtonHandler }) {
-    const [selectedValue, setSelectedValue] = useState("Education");
+    const [selectedValue, setSelectedValue] = useState(item.category);
+    //console.log("YOoooooooo here i am ! "+item.category);
     return (
         <View style={styles.container} >
             <Text style={styles.Text}>Product Name</Text>
@@ -12,9 +13,7 @@ export default function EditProduct({ item, categoriesData, NavbarButtonHandler 
             />
 
             <Text style={styles.Text}>Category</Text>
-            {/* <TextInput 
-                style={styles.inputField}
-            /> */}
+            
             <View style={{
                 backgroundColor: "white",
                 marginTop: 8,

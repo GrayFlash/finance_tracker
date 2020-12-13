@@ -55,9 +55,13 @@ export default function PreviousExpenses({ selectedCategory, editProductHandler,
             <View style={{ paddingHorizontal: 24 }}>
                 {/* Title and description */}
                 <Text style={{ fontSize: 18, lineHeight: 20 }}>{item.title}</Text>
+                
+                {(item.description) ? 
                 <Text style={{ fontSize: 12, lineHeight: 30, flexWrap: 'wrap', color: '#898C95' }}>
                     {item.description}
-                </Text>
+                </Text> : 
+                <View style={{ height: 30 }} /> }
+                
             </View>
 
             <TouchableOpacity
