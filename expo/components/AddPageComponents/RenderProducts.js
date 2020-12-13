@@ -2,33 +2,62 @@ import { StyleSheet, Text, View,} from 'react-native';
 import React,{useState, useEffect} from "react";
 import { Dimensions, TouchableOpacity, FlatList, Image } from 'react-native';
 
-export default function RenderProducts({ doneButtonHandler }) {
+export default function RenderProducts({ doneButtonHandler, scannedData }) {
     return (
         <View>
-                <View style={{
-                    alignItems: 'center', 
-                    paddingBottom: 15,
-                    marginHorizontal: 15,
-                    marginBottom: 12,
-                    borderBottomWidth: 1,
-                    borderBottomColor: 'black'
-                }}>
-                    <Text style={{ color: "#194868" }}>Your scanned product's list</Text>
-                </View>
+            <View style={{
+                alignItems: 'center', 
+                paddingBottom: 15,
+                marginHorizontal: 15,
+                marginBottom: 12,
+                borderBottomWidth: 1,
+                borderBottomColor: 'black'
+            }}>
+                <Text style={{ color: "#194868" }}>Your scanned product's list</Text>
+            </View>
 
-                {/* RENDER PRODUCTS HERE */}
+            {/* RENDER PRODUCTS HERE */}
             
-                <View
-                    style={{
-                        flexDirection: 'row',
-                        height: 40,
-                        marginTop: 4,
-                        paddingHorizontal: 12,
-                        borderRadius: 10,
-                        backgroundColor: "white",
-                    }}
-               
-                >
+            <View
+                style={{
+                    flexDirection: 'row',
+                    height: 40,
+                    marginTop: 4,
+                    paddingHorizontal: 12,
+                    borderRadius: 10,
+                    backgroundColor: "white",
+                }}
+        
+            >
+
+                {() => {
+                    return (
+                        <>
+                            <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
+                                <Text style={{ marginLeft: 8, color: "#194868"}}>1.</Text>
+                                <Text style={{ marginLeft: 20, color: "#194868"}}>Expenses</Text>
+                            </View>
+
+                            <View style={{justifyContent: 'center', marginRight: 40}}>
+                                <Text style={{color: "#194868"}}>Category</Text>
+                            </View>
+
+                            <View style={{ justifyContent: 'center', marginRight: 30 }}>
+                                <Text style={{ color: "#194868" }}>1200</Text>
+                            </View>
+                            <TouchableOpacity style={{ 
+                                justifyContent: 'center', 
+                                backgroundColor: "#444444", 
+                                borderRadius: 8,
+                                paddingHorizontal: 4,
+                                marginVertical: 4
+                            }}>
+                                <Image style={{width:30, height:30, tintColor: "white"}} source={require('../../assets/icons/edit0.png')} />
+                            </TouchableOpacity>
+                        </>
+                    );
+                }}
+                {/** 
                 <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
                     <Text style={{ marginLeft: 8, color: "#194868"}}>1.</Text>
                     <Text style={{ marginLeft: 20, color: "#194868"}}>Expenses</Text>
@@ -49,7 +78,7 @@ export default function RenderProducts({ doneButtonHandler }) {
                     marginVertical: 4
                 }}>
                     <Image style={{width:30, height:30, tintColor: "white"}} source={require('../../assets/icons/edit0.png')} />
-                </TouchableOpacity>
+                </TouchableOpacity>*/}
             </View>
 
             {/* BUTTON THAT UPLOADS INFO OR DOES SOMETHING AFTER USER CONFIRMS THE SCANNED PRODUCTS */}

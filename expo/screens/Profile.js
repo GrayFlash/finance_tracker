@@ -17,7 +17,7 @@ export default function Profile() {
 
     // UPDATE links -2
     const fetchData = () => {
-        fetch("http://9776686554bd.ngrok.io/personDetails")
+        fetch("http://6dafdc2fb092.ngrok.io/personDetails")
         .then(res=>res.json())
         .then(results=>{
             
@@ -36,7 +36,7 @@ export default function Profile() {
     }
 
     const updateData = () =>{
-        fetch("http://9776686554bd.ngrok.io/updatePerson",{
+        fetch("http://6dafdc2fb092.ngrok.io/updatePerson",{
             method:"post",
                 headers:{
                     'Content-Type':'application/json'

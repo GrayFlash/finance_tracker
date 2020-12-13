@@ -13,7 +13,7 @@ export default function ChartPage() {
 
     // UPDATE links
     const fetchData = () => {
-        fetch('http://9776686554bd.ngrok.io/personDetails')
+        fetch('http://6dafdc2fb092.ngrok.io/personDetails')
         .then(res=>res.json())
         .then(results=>{
             console.log("People")
@@ -22,7 +22,7 @@ export default function ChartPage() {
     }
     const fetchCategory = () => {
         let x = fetchData();
-        fetch('http://9776686554bd.ngrok.io/fetchCategoryData')
+        fetch('http://6dafdc2fb092.ngrok.io/fetchCategoryData')
         .then(res=>res.json())
         .then(results=>{
             console.log("Yes")

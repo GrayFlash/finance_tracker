@@ -24,7 +24,7 @@ export default function Home (props) {
     // FETCHES - expense, categories, profile
 
     const fetchExpense = () =>{
-        fetch('http://9776686554bd.ngrok.io/fetchExpense')
+        fetch('http://6dafdc2fb092.ngrok.io/fetchExpense')
         .then(res=>res.json())
         .then(results=>{
             console.log("Expenses")
@@ -37,7 +37,7 @@ export default function Home (props) {
 
     const fetchData = () => {
         //let y = fetchExpense();
-        fetch('http://9776686554bd.ngrok.io/personDetails')
+        fetch('http://6dafdc2fb092.ngrok.io/personDetails')
         .then(res=>res.json())
         .then(results=>{
             console.log("People")
@@ -46,7 +46,7 @@ export default function Home (props) {
     }
     const fetchCategory = () => {
         let x = fetchData();
-        fetch('http://9776686554bd.ngrok.io/fetchCategoryData')
+        fetch('http://6dafdc2fb092.ngrok.io/fetchCategoryData')
         .then(res=>res.json())
         .then(results=>{
             console.log("Category");

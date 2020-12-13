@@ -9,7 +9,7 @@ export default function ManualAdd({categoriesData, people}) {
     const [total, setTotal] = useState(0);
     const [description, setDescription] = useState("");
     const updateUserData = async() =>{
-        fetch("http://9776686554bd.ngrok.io/updatePerson",{
+        fetch("http://6dafdc2fb092.ngrok.io/updatePerson",{
             method:"post",
                 headers:{
                     'Content-Type':'application/json'
@@ -37,7 +37,7 @@ export default function ManualAdd({categoriesData, people}) {
     const updateCategoryExpense = async() =>{
         for(var i in categoriesData){
             if(categoriesData[i].name === category){
-                fetch("http://9776686554bd.ngrok.io/updateCategory",{
+                fetch("http://6dafdc2fb092.ngrok.io/updateCategory",{
                     method:"post",
                         headers:{
                             'Content-Type':'application/json'
@@ -64,7 +64,7 @@ export default function ManualAdd({categoriesData, people}) {
 
     
     const addExpense = () => {
-        fetch('http://9776686554bd.ngrok.io/addExpense',{
+        fetch('http://6dafdc2fb092.ngrok.io/addExpense',{
             method:"post",
                 headers:{
                     'Content-Type':'application/json'

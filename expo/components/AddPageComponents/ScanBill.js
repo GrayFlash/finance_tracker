@@ -16,7 +16,7 @@ import {TouchableOpacity} from 'react-native-gesture-handler';
 // const model = tf.loadLayersModel('file://model');
 // const classifier = knnClassifier.create();
 
-const cv2 ="AIzaSyA6vM73Bi9Tfy5-thhOo6SQ11EShJ9Neg8";
+const cv2 ="AIzaSyC7I0-odxsdo2RtV_S3OvpCOdhpyDA3gA4"; 
 
 const cloudVision  = 'https://vision.googleapis.com/v1/images:annotate?key=' + cv2;
 
@@ -26,7 +26,7 @@ export default function ScanBill({categoriesData, people}) {
     const [scannedData, setScannedData] = useState([]);
 
     const updateUserData = async(total) =>{
-        fetch("http://9776686554bd.ngrok.io/updatePerson",{
+        fetch("http://6dafdc2fb092.ngrok.io/updatePerson",{
             method:"post",
                 headers:{
                     'Content-Type':'application/json'
@@ -54,7 +54,7 @@ export default function ScanBill({categoriesData, people}) {
     const updateCategoryExpense = async(total, category) =>{
         for(i in categoriesData){
             if(categoriesData[i].name === category){
-                fetch("http://9776686554bd.ngrok.io/updateCategory",{
+                fetch("http://6dafdc2fb092.ngrok.io/updateCategory",{
                     method:"post",
                         headers:{
                             'Content-Type':'application/json'
@@ -101,7 +101,7 @@ export default function ScanBill({categoriesData, people}) {
     const [total, setTotal] = useState(0);
     
     const addExpense = async(te, ca, to) => {
-        fetch('http://9776686554bd.ngrok.io/addExpense',{
+        fetch('http://6dafdc2fb092.ngrok.io/addExpense',{
             method:"post",
                 headers:{
                     'Content-Type':'application/json'
