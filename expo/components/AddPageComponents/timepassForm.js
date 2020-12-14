@@ -140,7 +140,7 @@ export default function ManualAdd({categoriesData, people}) {
                 onChangeText={text => setDescription(text)}
             />
             <TouchableOpacity 
-                style={{paddingTop: 10,marginTop: 10}}
+                style={{paddingTop: 10,marginTop: 10, marginBottom: 20}}
                 onPress={() => addExpense()}
             >
                 <View style={styles.button}>

@@ -86,19 +86,22 @@ export default function Home (props) {
     }
 
     return (
-        <View>
+        
+        
+        <ScrollView>
             <FlatList
                 data = {categoriesData}
                 keyExtractor={item=>item._id}
                 onRefresh={()=>fetchCategory()}
                 refreshing={loading}
-            />
+                />
+                {<NavigationBar viewMode={viewMode} NavbarButtonHandler={NavbarButtonHandler}/>}
 
-            {<NavigationBar viewMode={viewMode} NavbarButtonHandler={NavbarButtonHandler}/>}
+            
 
             {
                 viewMode == "expenses" &&
-                <ScrollView style={{marginBottom: 20}}>
+                <View style={{marginBottom: 20}}>
                 <Expenses   clhav={categoryListHeightAnimationValue} 
                             selectedCategory={selectedCategory}
                             setSelectedCategory={categoryButtonHandler} 
@@ -107,7 +110,7 @@ export default function Home (props) {
                             categoriesData={categoriesData}
                             allExpenses={expenses}
                 /> 
-                </ScrollView>
+                </View>
             }
             {
                 viewMode == "editProduct" &&
@@ -115,15 +118,15 @@ export default function Home (props) {
             }
             {
                 viewMode == "chart" &&
-                <ScrollView>
+                <View>
                     <ChartPage />
-                </ScrollView>
+                </View>
             }
             {
                 viewMode == "add" &&
                 <AddSection  categoriesData={categoriesData} people={people}/>
             }
             
-        </View>
+        </ScrollView>
     );
 }

@@ -377,6 +377,7 @@ export default function ScanBill({categoriesData, people}) {
                 <Animated.View style={{
                     opacity: Animated.add(0.1, Animated.multiply(fall, 1.0)),
                 }}>
+                    
                     <TouchableOpacity onPress={() => {sheetRef.current.snapTo(0); console.log("Bottom sheet is called")}} >
                         <View style={styles.cameraButton}>
                             <Text style={{color: "white", textAlign: "center", fontWeight: 'bold', fontSize: 16}}>
@@ -395,6 +396,7 @@ export default function ScanBill({categoriesData, people}) {
                                 }} />
                     }
                     <ManualAdd />
+                    
                 </Animated.View>
             )}
 

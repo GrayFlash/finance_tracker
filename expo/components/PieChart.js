@@ -65,7 +65,7 @@ export default function ChartPage() {
     }
 
     return (
-        <View>
+        <View style={{marginBottom: 30}}>
             <FlatList
                 data = {categoriesData}
                 keyExtractor={item=>item._id}
