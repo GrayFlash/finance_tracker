@@ -1,12 +1,13 @@
-import { StyleSheet, Text, View,} from 'react-native';
+import { StyleSheet, Text, View, Dimensions, TouchableOpacity, FlatList, ScrollView} from 'react-native';
 import React,{useState, useEffect} from "react";
-import { Dimensions, TouchableOpacity, FlatList } from 'react-native';
 import { VictoryPie} from "victory-native";
 import { person } from "../data/dummyPerson";
 import * as myConstClass from '../screens/HttpLink';
+const {width, height} = Dimensions.get('window');
 
 export default function ChartPage() {
-    const screenWidth = Dimensions.get('window').width;
+    const screenWidth = width;
+    const screenHeight = height;
     const [categoriesData, setCategoriesData] = useState([])
     const [people, setPeople] = useState([])
     const [loading, setLoading] = useState(true)
@@ -92,6 +93,7 @@ export default function ChartPage() {
 
             {categoriesData.map((obj) => {
                 return(
+                    <ScrollView>
                     <TouchableOpacity
                         key={obj._id}
                         style={{
@@ -123,6 +125,7 @@ export default function ChartPage() {
                             <Text style={{ color: (viewMode == `${obj.name}`) ? "white" : "#194868" }}>{obj.totalExpenseInThis} Rs - {Math.round((obj.totalExpenseInThis*100)/people.totalExpenses *10)/10}%</Text>
                         </View>
                     </TouchableOpacity>
+                    </ScrollView>
                 );
             })}
         </View>

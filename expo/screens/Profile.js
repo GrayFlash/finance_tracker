@@ -77,13 +77,14 @@ export default function Profile() {
 
     function renderExpense() {
 
-        const property = [ "Monthly Income", "Expenses", "Target to save", "This month's status", "Edit Values" ];
+        const property = [ "Monthly Income", "Expenses", "Target to save", "This month's status"];
         const vals = [ `${income} USD`, `${totalExpenses} USD`, `${targetToSave} USD`, `Over Spent  (${thisMonthStatus})`];
         return (
             <View style={{ marginTop: 6 }} >
                 {property.map((p) => {
                     return (
-                        <TouchableOpacity
+                        <View>
+                        <View
                             key={property.indexOf(p)}
                             style={{
                                 flexDirection: 'row',
@@ -95,7 +96,6 @@ export default function Profile() {
                                 backgroundColor: "white",
                             }}
                             onPress={() => {
-                                if(p==="Edit Values") setViewMode("edit"); 
                                 console.log(p+" is pressed!");
                             }}
                         >
@@ -105,16 +105,39 @@ export default function Profile() {
                             </View>
 
                             {/* Expenses */}
-                            <View style={{ justifyContent: 'center' }}>
-                                {(p==="Edit Values") ? (
-                                    <Image style={{width: 20, height:20}}source={require('../assets/icons/right-arrow.png')} />
-                                ) : (
-                                    <Text style={ (p==="This month's status") ? ((thisMonthStatus>=0)?{ color: "#00CC00"}:{ color: "red"}): { color: "#194868" }}>{vals[property.indexOf(p)]}</Text>
-                                )}
+                            <View style={{ justifyContent: 'center' }}>                             
+                                <Text style={ (p==="This month's status") ? ((thisMonthStatus>=0)?{ color: "#00CC00"}:{ color: "red"}): { color: "#194868" }}>{vals[property.indexOf(p)]}</Text>                               
                             </View>
-                        </TouchableOpacity>
+                        </View>
+                    </View>
                     );
                 })}
+                <TouchableOpacity
+                        // key={property.indexOf(p)}
+                        style={{
+                            flexDirection: 'row',
+                            height: 60,
+                            paddingHorizontal: 12,
+                            marginTop: 14,
+                            marginHorizontal: 18,
+                            borderRadius: 10,
+                            backgroundColor: "white",
+                        }}
+                        onPress={() => {
+                            setViewMode("edit"); 
+                            console.log("Edit is pressed!");
+                        }}
+                    >
+                        {/* Name/Category */}
+                        <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
+                            <Text style={{ marginLeft: 8, color: "#194868"}}>Edit Values</Text>
+                        </View>
+
+                        {/* Expenses */}
+                        <View style={{ justifyContent: 'center' }}>
+                            <Image style={{width: 20, height:20}}source={require('../assets/icons/right-arrow.png')} />
+                        </View>
+                    </TouchableOpacity>
             </View>
         );
     }

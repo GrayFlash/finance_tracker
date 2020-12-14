@@ -37,13 +37,13 @@ export default function CategoryList({ setSelectedCategory, categories, clhav, t
                 />
             </Animated.View>
 
-            <TouchableOpacity style={styles.totalExpenseButton} >
+            <View style={styles.totalExpenseButton} >
                 <View>
                     <Text style={styles.totalExpenseText}>
                         Total spend ${totalExpenses}
                     </Text>
                 </View>
-            </TouchableOpacity>
+            </View>
         </View>
     );
 }
