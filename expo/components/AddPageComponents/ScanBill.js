@@ -202,7 +202,12 @@ export default function ScanBill({categoriesData, people}) {
           }
 
           setScannedData(arr);
-
+          var productName = [];
+          var priceArray = [];
+          var categoryArray = [];
+          var pos1 = 0;
+          var pos2 = 0;
+          var pos3 = 0;
           var total = 0;
           console.log("done");
           console.log(arr.length);
@@ -212,12 +217,18 @@ export default function ScanBill({categoriesData, people}) {
               if(i%2==0){
                   setTitle(arr[i]);
                   te  = arr[i];
+                  productName[pos1] = te;
+                  pos1++;
+                  categoryArray[pos3] = "Food";
+                  pos3++;
                   //var pre = await predict(title);
                   //console.log(pre);
                   setCategory("food");
               }else{
                   total += arr[i];
                   setTotal(arr[i]);
+                  priceArray[pos2] = parseInt(arr[i]);
+                  pos2++;
                   await addExpense(te, "Food", arr[i]);
               }
           }
