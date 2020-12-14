@@ -17,7 +17,7 @@ import * as myConstClass from '../../screens/HttpLink';
 // const model = tf.loadLayersModel('file://model');
 // const classifier = knnClassifier.create();
 
-const cv2 ="AIzaSyC7I0-odxsdo2RtV_S3OvpCOdhpyDA3gA4"; 
+const cv2 =""; 
 
 const cloudVision  = 'https://vision.googleapis.com/v1/images:annotate?key=' + cv2;
 
