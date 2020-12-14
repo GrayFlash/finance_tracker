@@ -113,32 +113,32 @@ export default function Profile() {
                     );
                 })}
                 <TouchableOpacity
-                        // key={property.indexOf(p)}
-                        style={{
-                            flexDirection: 'row',
-                            height: 60,
-                            paddingHorizontal: 12,
-                            marginTop: 14,
-                            marginHorizontal: 18,
-                            borderRadius: 10,
-                            backgroundColor: "white",
-                            marginBottom: 14,
-                        }}
-                        onPress={() => {
-                            setViewMode("edit"); 
-                            console.log("Edit is pressed!");
-                        }}
-                    >
-                        {/* Name/Category */}
-                        <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-                            <Text style={{ marginLeft: 8, color: "#194868"}}>Edit Values</Text>
-                        </View>
+                    // key={property.indexOf(p)}
+                    style={{
+                        flexDirection: 'row',
+                        height: 60,
+                        paddingHorizontal: 12,
+                        marginTop: 14,
+                        marginHorizontal: 18,
+                        borderRadius: 10,
+                        backgroundColor: "white",
+                        marginBottom: 14,
+                    }}
+                    onPress={() => {
+                        setViewMode("edit"); 
+                        console.log("Edit is pressed!");
+                    }}
+                >
+                    {/* Name/Category */}
+                    <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
+                        <Text style={{ marginLeft: 8, color: "#194868"}}>Edit Values</Text>
+                    </View>
 
-                        {/* Expenses */}
-                        <View style={{ justifyContent: 'center' }}>
-                            <Image style={{width: 20, height:20}}source={require('../assets/icons/right-arrow.png')} />
-                        </View>
-                    </TouchableOpacity>
+                    {/* Expenses */}
+                    <View style={{ justifyContent: 'center' }}>
+                        <Image style={{width: 20, height:20}}source={require('../assets/icons/right-arrow.png')} />
+                    </View>
+                </TouchableOpacity>
             </View>
         );
     }

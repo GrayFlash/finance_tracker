@@ -1,15 +1,49 @@
 import React, { useState, useEffect} from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet , Alert, Picker } from 'react-native'
+import HTTP_LINK from '../../screens/HttpLink';
 
 export default function EditProduct({ item, categoriesData, NavbarButtonHandler }) {
     const [selectedValue, setSelectedValue] = useState(item.category);
-    //console.log("YOoooooooo here i am ! "+item.category);
+
+    const [_id, set_id] = useState(item._id);
+    const [productName, setProductName] = useState(item.title);
+    const [amount, setAmount] = useState(item.total.toString());
+    const [description, setDescription] = useState(item.description);
+
+    const updateData = () => {
+        console.log("Yooooo Bitch!!!");
+        fetch(`${HTTP_LINK}/updateExpense`,{
+            method:"post",
+            headers:{
+                'Content-Type':'application/json'
+            },
+            body:JSON.stringify({
+                id:_id,
+                title:productName,
+                description:description,
+                category:selectedValue,
+                total:Number(amount)
+            })
+        })
+        .then(res=>res.json())
+        .then(data=>{
+            Alert.alert(`Details of ${productName} has been updated`)
+            setViewMode("expense")
+        })
+        .catch(err=>{
+            Alert.alert("Some Error")
+            console.log(err)
+        })
+        NavbarButtonHandler("expenses");
+    }
+
     return (
         <View style={styles.container} >
             <Text style={styles.Text}>Product Name</Text>
             <TextInput 
                 style={styles.inputField}
-                value={item.title}
+                value={productName}
+                onChangeText={(text) => setProductName(text)}
             />
 
             <Text style={styles.Text}>Category</Text>
@@ -37,17 +71,19 @@ export default function EditProduct({ item, categoriesData, NavbarButtonHandler 
             <Text style={styles.Text}>Amount</Text>
             <TextInput 
                 style={styles.inputField}
-                value={item.total.toString()}
+                value={amount}
+                onChangeText={text => setAmount(text)}
             />
 
             <Text style={styles.Text}>Description</Text>
             <TextInput 
                 style={styles.inputField}
-                value={item.description}
+                value={description}
+                onChangeText={text => setDescription(text)}
             />
             <TouchableOpacity 
                 style={{paddingTop: 10,marginTop: 10}}
-                onPress={() => Alert.alert("Submit karne k baad ka code is on Neel")}
+                onPress={() => updateData()}
             >
                 <View style={styles.button}>
                     <Text style={{color: "white", textAlign: "center"}}>Edit Product</Text>

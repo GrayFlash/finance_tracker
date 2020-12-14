@@ -79,6 +79,20 @@ app.get('/fetchExpense',(req, res)=>{
     })
 })
 
+app.post('/updateExpense', (req, res)=>{
+    expenses.findByIdAndUpdate(req.body.id , {
+        title: req.body.title,
+        description: req.body.description,
+        category: req.body.category,
+        total: req.body.total
+    }).then(data=>{
+        console.log(data)
+        res.send(data)
+    }).catch(err=>{
+        console.log(err)
+    })
+})
+
 // EXPENSE control end
 
 
