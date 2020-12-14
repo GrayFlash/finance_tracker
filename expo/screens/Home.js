@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useRef, useState, useEffect } from 'react';
-import { View, Animated, FlatList } from 'react-native';
+import { View, Animated, FlatList, ScrollView } from 'react-native';
 import AddSection from '../components/AddPage';
 import Expenses from '../components/Expenses';
 import EditProduct from '../components/ExpensesPageComponents/EditProduct';
@@ -98,6 +98,7 @@ export default function Home (props) {
 
             {
                 viewMode == "expenses" &&
+                <ScrollView style={{marginBottom: 20}}>
                 <Expenses   clhav={categoryListHeightAnimationValue} 
                             selectedCategory={selectedCategory}
                             setSelectedCategory={categoryButtonHandler} 
@@ -106,6 +107,7 @@ export default function Home (props) {
                             categoriesData={categoriesData}
                             allExpenses={expenses}
                 /> 
+                </ScrollView>
             }
             {
                 viewMode == "editProduct" &&
@@ -113,7 +115,9 @@ export default function Home (props) {
             }
             {
                 viewMode == "chart" &&
-                <ChartPage />
+                <ScrollView>
+                    <ChartPage />
+                </ScrollView>
             }
             {
                 viewMode == "add" &&

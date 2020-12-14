@@ -12,7 +12,7 @@ import ScanBill from './AddPageComponents/ScanBill';
 
 export default function AddSection({ categoriesData, people}) {
     return (
-        <ScrollView style={styles.mainAddSection} contentContainerStyle={{ flexGrow: 1 }}>   
+        <ScrollView style={styles.mainAddSection}>   
             
             <ScanBill categoriesData={categoriesData} people={people} />
             
@@ -22,7 +22,7 @@ export default function AddSection({ categoriesData, people}) {
 
 const styles = StyleSheet.create({
     mainAddSection : {
-        marginTop: 20, 
+        marginTop: 10, 
         marginHorizontal: 24,
     },
 });

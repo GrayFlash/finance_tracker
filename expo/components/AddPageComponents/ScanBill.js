@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, Button, Image, Alert } from 'react-native';
+import { StyleSheet, Text, View, Image, Alert, ScrollView } from 'react-native';
 import Animated from 'react-native-reanimated';
 import * as ImagePicker from 'expo-image-picker';
 import Constants from 'expo-constants';
@@ -360,7 +360,7 @@ export default function ScanBill({categoriesData, people}) {
     let fall = new Animated.Value(1);
  
     return (
-        <View style={{flex: 1}} >
+        <ScrollView style={{flex: 1}} >
             <BottomSheet
                 ref={sheetRef}
                 snapPoints={[250, 0]}
@@ -398,7 +398,7 @@ export default function ScanBill({categoriesData, people}) {
                 </Animated.View>
             )}
 
-        </View>
+        </ScrollView>
     );
 }
 

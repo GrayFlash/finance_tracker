@@ -76,7 +76,7 @@ export default function ChartPage() {
                 <VictoryPie
                     colorScale={getColorScaleData()}
                     radius={({ datum }) => (viewMode == datum.z) ? screenWidth * 0.4 : screenWidth * 0.4 - 10}
-                    innerRadius={70}
+                    innerRadius={screenWidth*0.17}
                     labelRadius={({ innerRadius }) => (screenWidth * 0.4 + innerRadius) / 2.5}
                     data={getSampleData()}
                     style={{
@@ -90,10 +90,11 @@ export default function ChartPage() {
                     <Text style={{ textAlign: 'center', fontSize: 12, lineHeight: 22 }}>This Month</Text>
                 </View>
             </View>
+            
 
+            
             {categoriesData.map((obj) => {
                 return(
-                    <ScrollView>
                     <TouchableOpacity
                         key={obj._id}
                         style={{
@@ -124,10 +125,11 @@ export default function ChartPage() {
                         <View style={{ justifyContent: 'center' }}>
                             <Text style={{ color: (viewMode == `${obj.name}`) ? "white" : "#194868" }}>{obj.totalExpenseInThis} Rs - {Math.round((obj.totalExpenseInThis*100)/people.totalExpenses *10)/10}%</Text>
                         </View>
-                    </TouchableOpacity>
-                    </ScrollView>
+                    </TouchableOpacity> 
                 );
             })}
+            
+            
         </View>
     );
 }

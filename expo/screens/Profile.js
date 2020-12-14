@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import { KeyboardAvoidingView, View , Text, StyleSheet, Image, TouchableOpacity, TextInput, Alert, FlatList } from 'react-native';
+import { KeyboardAvoidingView, View , Text, StyleSheet, Image, TouchableOpacity, TextInput, Alert, FlatList, ScrollView } from 'react-native';
 import * as myConstClass from './HttpLink';
 
 export default function Profile() {
@@ -122,6 +122,7 @@ export default function Profile() {
                             marginHorizontal: 18,
                             borderRadius: 10,
                             backgroundColor: "white",
+                            marginBottom: 14,
                         }}
                         onPress={() => {
                             setViewMode("edit"); 
@@ -191,19 +192,20 @@ export default function Profile() {
                         backgroundColor: "white",
                         padding: 12,
                         borderRadius: 6,
-                        marginTop: 20
+                        marginTop: 20,
+                        marginBottom: 10
                     }}>
                     <Text style={{color: "black", textAlign: "center"}}>Cancel</Text>
                 </View>
             </TouchableOpacity>
-        </View>
             </View>
+        </View>
         )
     }
 
     return (
 
-        <View>
+        <ScrollView>
             <FlatList
             data={data[0]}
             keyExtractor={item=>item._id}
@@ -283,7 +285,7 @@ export default function Profile() {
                     </View>
                 }
                 </KeyboardAvoidingView>
-        </View>
+        </ScrollView>
     );
 }
 

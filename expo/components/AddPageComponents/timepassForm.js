@@ -1,5 +1,5 @@
 import React, { useState, useEffect} from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet , Alert, Picker } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet , Alert, Picker, ScrollView } from 'react-native';
 import * as myConstClass from '../../screens/HttpLink';
 
 export default function ManualAdd({categoriesData, people}) {
