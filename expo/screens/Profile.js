@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import { KeyboardAvoidingView, View , Text, StyleSheet, Image, TouchableOpacity, TextInput, Alert, FlatList, ScrollView } from 'react-native';
+import { KeyboardAvoidingView, View , Text, StyleSheet, Image, TouchableOpacity, TextInput, Alert, FlatList, ScrollView, ImageBackground } from 'react-native';
 import * as myConstClass from './HttpLink';
 
 export default function Profile() {
@@ -232,17 +232,20 @@ export default function Profile() {
             refreshing={loading}
             />
             <KeyboardAvoidingView behavior="position">
+            <ImageBackground source={require('../assets/images/profile_background.jpeg')} style={styles.image}>
+                
             <View style={styles.header}>
                 <Image 
-                    source={require('../assets/icons/profile.jpg')} 
+                    source={require('../assets/images/profile.jpeg')} 
                     style={{width: 100, height: 100, borderRadius: 1000}}
                 />
-                <Text style={{paddingTop: 10, fontFamily: 'GothamMedium', fontSize: 18, lineHeight: 22}}>
+                <Text style={{paddingTop: 10, fontFamily: 'GothamMedium', fontSize: 18, lineHeight: 22, color: "white"}}>
                     {name}
                 </Text>
             </View>
+            </ImageBackground>
             <View style={{ flexDirection: 'row', height: 80, backgroundColor: "#F5F7F9" }}>
-
+            
             <TouchableOpacity
                     style={{ 
                         flex: 1,
@@ -304,7 +307,9 @@ export default function Profile() {
                     </View>
                 }
                 </KeyboardAvoidingView>
+                
         </ScrollView>
+        
     );
 }
 
@@ -315,7 +320,6 @@ const styles = StyleSheet.create({
     }, 
     header : {
        padding : 50,
-       backgroundColor: '#d1d0cd',
        alignItems: 'center', 
        justifyContent: 'center',
     },
@@ -340,7 +344,12 @@ const styles = StyleSheet.create({
         padding: 12,
         borderRadius: 6,
         marginTop: 20
-    }
+    },
+    image: {
+        flex: 1,
+        resizeMode: "cover",
+        justifyContent: "center"
+    },
 });
 
 
