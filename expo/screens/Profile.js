@@ -218,7 +218,7 @@ export default function Profile() {
                     source={require('../assets/icons/profile.jpg')} 
                     style={{width: 100, height: 100, borderRadius: 1000}}
                 />
-                <Text style={{paddingTop: 10, fontFamily: 'GothamMedium', lineHeight: 22}}>
+                <Text style={{paddingTop: 10, fontFamily: 'GothamMedium', fontSize: 18, lineHeight: 22}}>
                     {name}
                 </Text>
             </View>
