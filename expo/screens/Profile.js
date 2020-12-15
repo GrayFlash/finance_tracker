@@ -88,10 +88,10 @@ export default function Profile() {
                             key={property.indexOf(p)}
                             style={{
                                 flexDirection: 'row',
-                                height: 60,
+                                height: 55,
                                 paddingHorizontal: 12,
                                 marginTop: 14,
-                                marginHorizontal: 18,
+                                marginHorizontal: 14,
                                 borderRadius: 10,
                                 backgroundColor: "white",
                             }}
@@ -116,10 +116,10 @@ export default function Profile() {
                     // key={property.indexOf(p)}
                     style={{
                         flexDirection: 'row',
-                        height: 60,
+                        height: 55,
                         paddingHorizontal: 12,
                         marginTop: 14,
-                        marginHorizontal: 18,
+                        marginHorizontal: 14,
                         borderRadius: 10,
                         backgroundColor: "white",
                         marginBottom: 14,
@@ -193,7 +193,8 @@ export default function Profile() {
                         padding: 12,
                         borderRadius: 6,
                         marginTop: 20,
-                        marginBottom: 10
+                        marginBottom: 10,
+                        marginHorizontal: 10,
                     }}>
                     <Text style={{color: "black", textAlign: "center", fontFamily: 'GothamMedium'}}>Cancel</Text>
                 </View>
@@ -244,14 +245,14 @@ export default function Profile() {
                 </Text>
             </View>
             </ImageBackground>
-            <View style={{ flexDirection: 'row', height: 80, backgroundColor: "#F5F7F9" }}>
+            <View style={{ flexDirection: 'row', height: 40, backgroundColor: "#F5F7F9" }}>
             
             <TouchableOpacity
                     style={{ 
                         flex: 1,
                         margin: 5,
-                        borderBottomColor: viewMode == "expense" ? "#BEC1D2" : "#F5F7F9",
-                        borderBottomWidth: 2,
+                        backgroundColor: viewMode == "expense" ? "#BEC1D2" : "#F5F7F9",
+                        borderRadius: 5,
                     }}
                     onPress={() => setViewMode("expense")}
                 >
@@ -264,18 +265,19 @@ export default function Profile() {
                         }}
                     >
                         
-                        <Image style={{width: 40, height:40}} source={require('../assets/icons/salary.png')} />
+                        {/* <Image style={{width: 40, height:40}} source={require('../assets/icons/salary.png')} /> */}
+                        <Text style={{fontFamily: 'GothamMedium', color: viewMode == "expense" ? "white" : "black",}}>Info</Text>
                     </View>
                 </TouchableOpacity>
 
-                <LineDivider />
+                {/* <LineDivider /> */}
 
                 <TouchableOpacity
                     style={{ 
                         flex: 1,
                         margin: 5,
-                        borderBottomColor: viewMode == "edit" ? "#BEC1D2" : "#F5F7F9",
-                        borderBottomWidth: 2,
+                        backgroundColor: viewMode == "edit" ? "#BEC1D2" : "#F5F7F9",
+                        borderRadius: 5,
                     }}
 
                     // OVER HERE
@@ -290,7 +292,8 @@ export default function Profile() {
                         }}
                     >
                         
-                        <Image style={{width: 40, height:40}} source={require('../assets/icons/pages.png')} />
+                        {/* <Image style={{width: 40, height:40}} source={require('../assets/icons/pages.png')} /> */}
+                        <Text style={{fontFamily: 'GothamMedium', color: viewMode == "edit" ? "white" : "black",}}>Edit</Text>
                     </View>
                 </TouchableOpacity>
                 </View>
@@ -329,6 +332,7 @@ const styles = StyleSheet.create({
         borderColor: "#D1D1D1",
         borderRadius: 5,
         padding: 10,
+        marginHorizontal: 10,
         fontFamily: 'GothamLight'
     },
 
@@ -336,6 +340,7 @@ const styles = StyleSheet.create({
         color: "black",
         paddingTop: 8,
         paddingBottom: 8,
+        marginHorizontal: 10,
         fontFamily: 'GothamMedium'
     },
 
@@ -343,7 +348,8 @@ const styles = StyleSheet.create({
         backgroundColor: "black",
         padding: 12,
         borderRadius: 6,
-        marginTop: 20
+        marginTop: 20,
+        marginHorizontal: 10,
     },
     image: {
         flex: 1,

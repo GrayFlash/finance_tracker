@@ -106,9 +106,7 @@ export default function ManualAdd({categoriesData, people}) {
             }}>
                 <Picker
                     selectedValue={category}
-                    style={{ height: 50, width: 350 }}
                     onValueChange={(itemValue, itemIndex) => setCategory(itemValue)}>
-                    
                     <Picker.Item label="Hygiene" value="Hygiene" />
                     <Picker.Item label="Food" value="Food" />
                     <Picker.Item label="Home" value="Home" />
