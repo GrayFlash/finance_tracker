@@ -33,7 +33,7 @@ export default function ChartPage({ catData, ppl }) {
     }
 
     return (
-        <View style={{marginBottom: 30}}>
+        <View style={{marginBottom: 30,}}>
 
             <View style={{ alignItems: 'center', justifyContent: 'center' }}>
                 <VictoryPie

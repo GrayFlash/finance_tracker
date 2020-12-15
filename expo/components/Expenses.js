@@ -30,7 +30,6 @@ const styles = StyleSheet.create({
     mainCategoryHeading : {
         flexDirection: 'row', 
         paddingHorizontal: 26,
-        paddingTop: 24,
         paddingBottom:14, 
         justifyContent: 'space-between', 
         alignItems: 'center', 

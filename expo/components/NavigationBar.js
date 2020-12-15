@@ -22,8 +22,6 @@ export default function NavigationBar({ NavbarButtonHandler, viewMode }) {
 
     return (
         <View>
-
-
         <View style={{ flex: 1, justifyContent: 'center', backgroundColor: "white",}}>
             <View style={{ flexDirection: 'row', marginTop: 40 , marginBottom: 10}}>
                 <TouchableOpacity style={{ flex: 1,}}>
@@ -44,7 +42,7 @@ export default function NavigationBar({ NavbarButtonHandler, viewMode }) {
             </View>
         </View>
             
-        <View style={{ flex: 1, justifyContent: 'center', padding: 24, marginTop: 20, }}>
+        <View style={{ flex: 1, justifyContent: 'center', padding: 24,}}>
             <View style={{ flexDirection: 'row', height: 55, backgroundColor: "white", borderRadius: 12 }}>
                 {/* Claim */}
                 <TouchableOpacity

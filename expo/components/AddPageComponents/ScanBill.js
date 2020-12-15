@@ -407,7 +407,6 @@ export default function ScanBill({categoriesData, people}) {
 const styles = StyleSheet.create({
     cameraButton : {
         backgroundColor: "#666666",
-        marginTop: 10,
         padding: 14, 
         marginHorizontal: 12,
         borderRadius:8,

@@ -154,7 +154,7 @@ export default function ManualAdd({categoriesData, people}) {
 const styles = StyleSheet.create({
     container: {
         margin: 10,
-        paddingTop: 30,
+        paddingTop: 20,
     }, 
     inputField : {
         backgroundColor: "white",
@@ -162,6 +162,7 @@ const styles = StyleSheet.create({
         borderColor: "#D1D1D1",
         borderRadius: 5,
         padding: 10,
+        marginTop: 8,
         fontFamily: 'GothamLight', 
         fontSize: 14,
     },

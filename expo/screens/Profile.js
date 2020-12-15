@@ -206,6 +206,25 @@ export default function Profile() {
     return (
 
         <ScrollView>
+            <View style={{ flex: 1, justifyContent: 'center', backgroundColor: "white",}}>
+            <View style={{ flexDirection: 'row', marginTop: 40 , marginBottom: 10}}>
+                <TouchableOpacity style={{ flex: 1,}}>
+                    <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
+                        <Image style={{marginLeft: 0, width: 27, height: 27, marginRight: 60 }} source={require('../assets/icons/back_arrow_icon.png')} />
+                    </View>
+                </TouchableOpacity>
+                <View style={{ flex: 1,}}>
+                    <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
+                        <Text style={{  marginLeft: 0, fontSize: 18,fontFamily: 'GothamMedium', color: "black"}}>Profile</Text>
+                    </View>
+                </View>
+                <View style={{ flex: 1,}}>
+                    <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
+                        <Text style={{  marginLeft: 0, fontSize: 16,fontFamily: 'GothamMedium', color: "white"}}>Right</Text>
+                    </View>
+                </View>
+            </View>
+        </View>
             <FlatList
             data={data[0]}
             keyExtractor={item=>item._id}
