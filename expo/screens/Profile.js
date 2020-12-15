@@ -1,3 +1,4 @@
+import { useNavigation } from '@react-navigation/native';
 import React, {useState, useEffect} from 'react';
 import { KeyboardAvoidingView, View , Text, StyleSheet, Image, TouchableOpacity, TextInput, Alert, FlatList, ScrollView, ImageBackground } from 'react-native';
 import * as myConstClass from './HttpLink';
@@ -202,28 +203,30 @@ export default function Profile() {
         )
     }
 
+    const navigation = useNavigation();
+
     return (
 
         <ScrollView>
             <View style={{ flex: 1, justifyContent: 'center', backgroundColor: "white",}}>
-            <View style={{ flexDirection: 'row', marginTop: 40 , marginBottom: 10}}>
-                <TouchableOpacity style={{ flex: 1,}}>
-                    <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
-                        <Image style={{marginLeft: 0, width: 27, height: 27, marginRight: 60 }} source={require('../assets/icons/back_arrow_icon.png')} />
+                <View style={{ flexDirection: 'row', marginTop: 40 , marginBottom: 10}}>
+                    <TouchableOpacity style={{ flex: 1,}} onPress={() => navigation.goBack()} >
+                        <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
+                            <Image style={{marginLeft: 0, width: 27, height: 27, marginRight: 60 }} source={require('../assets/icons/back_arrow_icon.png')} />
+                        </View>
+                    </TouchableOpacity>
+                    <View style={{ flex: 1,}}>
+                        <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
+                            <Text style={{  marginLeft: 0, fontSize: 18,fontFamily: 'GothamMedium', color: "black"}}>Profile</Text>
+                        </View>
                     </View>
-                </TouchableOpacity>
-                <View style={{ flex: 1,}}>
-                    <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
-                        <Text style={{  marginLeft: 0, fontSize: 18,fontFamily: 'GothamMedium', color: "black"}}>Profile</Text>
-                    </View>
-                </View>
-                <View style={{ flex: 1,}}>
-                    <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
-                        <Text style={{  marginLeft: 0, fontSize: 16,fontFamily: 'GothamMedium', color: "white"}}>Right</Text>
+                    <View style={{ flex: 1,}}>
+                        <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
+                            <Text style={{  marginLeft: 0, fontSize: 16,fontFamily: 'GothamMedium', color: "white"}}>Right</Text>
+                        </View>
                     </View>
                 </View>
             </View>
-        </View>
             <FlatList
             data={data[0]}
             keyExtractor={item=>item._id}
@@ -232,40 +235,40 @@ export default function Profile() {
             />
             <KeyboardAvoidingView behavior="position">
             <ImageBackground source={require('../assets/images/profile_background.jpeg')} style={styles.image}>
-                
-            <View style={styles.header}>
-                <Image 
-                    source={require('../assets/images/profile.jpeg')} 
-                    style={{width: 100, height: 100, borderRadius: 1000}}
-                />
-                <Text style={{paddingTop: 10, fontFamily: 'GothamMedium', fontSize: 18, lineHeight: 22, color: "white"}}>
-                    {name}
-                </Text>
-            </View>
+                <View style={styles.header}>
+                    <Image 
+                        source={require('../assets/images/profile.jpeg')} 
+                        style={{width: 100, height: 100, borderRadius: 1000}}
+                    />
+                    <Text style={{paddingTop: 10, fontFamily: 'GothamMedium', fontSize: 18, lineHeight: 22, color: "white"}}>
+                        {name}
+                    </Text>
+                </View>
             </ImageBackground>
-            <View style={{ flexDirection: 'row', height: 40, backgroundColor: "#F5F7F9" }}>
             
-            <TouchableOpacity
-                    style={{ 
-                        flex: 1,
-                        margin: 5,
-                        backgroundColor: viewMode == "expense" ? "#BEC1D2" : "#F5F7F9",
-                        borderRadius: 5,
-                    }}
-                    onPress={() => setViewMode("expense")}
-                >
-                    <View
-                        style={{
+            <View style={{ flexDirection: 'row', height: 40, backgroundColor: "#F5F7F9" }}>
+                
+                <TouchableOpacity
+                        style={{ 
                             flex: 1,
-                            flexDirection: 'row',
-                            alignItems: 'center',
-                            justifyContent: 'center'
+                            margin: 5,
+                            backgroundColor: viewMode == "expense" ? "#BEC1D2" : "#F5F7F9",
+                            borderRadius: 5,
                         }}
-                    >
-                        
-                        {/* <Image style={{width: 40, height:40}} source={require('../assets/icons/salary.png')} /> */}
-                        <Text style={{fontFamily: 'GothamMedium', color: viewMode == "expense" ? "white" : "black",}}>Info</Text>
-                    </View>
+                        onPress={() => setViewMode("expense")}
+                >
+                        <View
+                            style={{
+                                flex: 1,
+                                flexDirection: 'row',
+                                alignItems: 'center',
+                                justifyContent: 'center'
+                            }}
+                        >
+                            
+                            {/* <Image style={{width: 40, height:40}} source={require('../assets/icons/salary.png')} /> */}
+                            <Text style={{fontFamily: 'GothamMedium', color: viewMode == "expense" ? "white" : "black",}}>Info</Text>
+                        </View>
                 </TouchableOpacity>
 
                 {/* <LineDivider /> */}

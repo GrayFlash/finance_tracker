@@ -79,7 +79,7 @@ export default function Home () {
 
     const editProductHandler = (mode, item) => {
         console.log("Edit Product Button is pressed.");
-        console.log(item);
+        console.log(item.title+" is Selected for Edit Product section.");
         setEditProductProps(item);
         setViewMode(mode);
     }
