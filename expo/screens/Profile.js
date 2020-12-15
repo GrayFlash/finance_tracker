@@ -83,7 +83,6 @@ export default function Profile() {
             <View style={{ marginTop: 6 }} >
                 {property.map((p) => {
                     return (
-                        <View>
                         <View
                             key={property.indexOf(p)}
                             style={{
@@ -109,11 +108,10 @@ export default function Profile() {
                                 <Text style={ (p==="This month's status") ? ((thisMonthStatus>=0)?{ color: "#00CC00", fontFamily: 'GothamLight'}:{ color: "red", fontFamily: 'GothamLight'}): { color: "#194868", fontFamily: 'GothamLight' }}>{vals[property.indexOf(p)]}</Text>                               
                             </View>
                         </View>
-                    </View>
                     );
                 })}
                 <TouchableOpacity
-                    // key={property.indexOf(p)}
+                    //key={property.indexOf(p)}
                     style={{
                         flexDirection: 'row',
                         height: 55,
@@ -290,8 +288,7 @@ export default function Profile() {
                             alignItems: 'center',
                             justifyContent: 'center'
                         }}
-                    >
-                        
+                    >    
                         {/* <Image style={{width: 40, height:40}} source={require('../assets/icons/pages.png')} /> */}
                         <Text style={{fontFamily: 'GothamMedium', color: viewMode == "edit" ? "white" : "black",}}>Edit</Text>
                     </View>

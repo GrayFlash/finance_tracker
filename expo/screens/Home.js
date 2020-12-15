@@ -1,6 +1,5 @@
-import { StatusBar } from 'expo-status-bar';
 import React, { useRef, useState, useEffect } from 'react';
-import { View, Animated, FlatList, ScrollView } from 'react-native';
+import { View, Animated, FlatList, ScrollView, LogBox } from 'react-native';
 import AddSection from '../components/AddPage';
 import Expenses from '../components/Expenses';
 import EditProduct from '../components/ExpensesPageComponents/EditProduct';
@@ -8,7 +7,7 @@ import NavigationBar from '../components/NavigationBar';
 import ChartPage from '../components/PieChart';
 import * as myConstClass from './HttpLink';
 
-export default function Home (props) {
+export default function Home () {
 
     const categoryListHeightAnimationValue = useRef(new Animated.Value(172.5)).current;
     const [selectedCategory, setSelectedCategory] = useState(null);
@@ -61,7 +60,8 @@ export default function Home (props) {
     useEffect(()=>{
         fetchCategory(),
         fetchData(),
-        fetchExpense()
+        fetchExpense(),
+        LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
     },[])
 
     // END of fetch
@@ -73,7 +73,7 @@ export default function Home (props) {
     }
 
     const categoryButtonHandler = (item) => {
-        console.log(`Yoo Bitch!!!!, ${item.name} category button is pressed....`);
+        console.log(`${item.name} category button is pressed....`);
         setSelectedCategory(item);
     }
 
@@ -84,31 +84,21 @@ export default function Home (props) {
         setViewMode(mode);
     }
 
-    return (
-        
-        
+    return (  
         <ScrollView>
-            <FlatList
-                data = {categoriesData}
-                keyExtractor={item=>item._id}
-                onRefresh={()=>fetchCategory()}
-                refreshing={loading}
-                />
-                {<NavigationBar viewMode={viewMode} NavbarButtonHandler={NavbarButtonHandler}/>}
-
-            
+            {<NavigationBar viewMode={viewMode} NavbarButtonHandler={NavbarButtonHandler}/>}
 
             {
                 viewMode == "expenses" &&
                 <View style={{marginBottom: 20}}>
-                <Expenses   clhav={categoryListHeightAnimationValue} 
-                            selectedCategory={selectedCategory}
-                            setSelectedCategory={categoryButtonHandler} 
-                            editProductHandler={editProductHandler}
-                            totalExpenses={people.totalExpenses}
-                            categoriesData={categoriesData}
-                            allExpenses={expenses}
-                /> 
+                    <Expenses   clhav={categoryListHeightAnimationValue} 
+                                selectedCategory={selectedCategory}
+                                setSelectedCategory={categoryButtonHandler} 
+                                editProductHandler={editProductHandler}
+                                totalExpenses={people.totalExpenses}
+                                categoriesData={categoriesData}
+                                allExpenses={expenses}
+                    /> 
                 </View>
             }
             {
@@ -117,9 +107,7 @@ export default function Home (props) {
             }
             {
                 viewMode == "chart" &&
-                <View>
-                    <ChartPage catData={categoriesData} ppl={people} />
-                </View>
+                <ChartPage catData={categoriesData} ppl={people} />
             }
             {
                 viewMode == "add" &&
