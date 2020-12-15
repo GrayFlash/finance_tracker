@@ -1,5 +1,7 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
+import 'react-native-gesture-handler';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import { StyleSheet, Text, View, TouchableOpacity, Image, Button } from 'react-native';
 import Home from './screens/Home';
 import Profile from './screens/Profile';
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
@@ -9,25 +11,17 @@ import {AppLoading} from 'expo';
 import {useFonts} from 'expo-font';
 // import { useFonts, Inter_900Black } from '@expo-google-fonts/inter';
 
-const Stack = createStackNavigator();
-
-const stackDesignHeadForProfile = {
-	title: "Home", 
-	headerTintColor:"black",
-	headerStyle:{ 
-		backgroundColor:"white"
-	}
+const Drawer = createDrawerNavigator();
+function HomePage({navigation}) {
+  return (
+    <Home/>
+  );
 }
 
-const stackDesignHeadForHome = {
-		title: "Home", 
-		headerTintColor:"black",
-        headerStyle:{ 
-        	backgroundColor:"white"
-		},
-		headerRight: () => (
-            <ProfileButton />
-        ),
+function ProfilePage() {
+  return (
+    <Profile/>
+  );
 }
 
 function App(props) {
@@ -46,20 +40,11 @@ function App(props) {
   return (
     <View style={styles.container}>
       {/* <WelcomeForm/> */}
-      {/* <Home /> */}
       {/* <Camera/> */}
-       <Stack.Navigator>
-        <Stack.Screen
-          name="Home"
-          component={Home}
-          options={stackDesignHeadForHome}
-        />
-        <Stack.Screen
-          name="Profile"
-          component={Profile}
-          options={{...stackDesignHeadForProfile, title:"Profile"}}
-        />
-      </Stack.Navigator> 
+     <Drawer.Navigator>
+      <Drawer.Screen name="Home" component={HomePage} />
+      <Drawer.Screen name="Profile" component={ProfilePage} />
+    </Drawer.Navigator>
     </View>
   );
 }
@@ -69,27 +54,8 @@ export default()=>{
     <NavigationContainer>
       <App/>
     </NavigationContainer>
+    
   )
-}
-
-function ProfileButton() {
-  const navigation = useNavigation();
-  let personData = person;
-  console.log(personData);
-	return (
-		<TouchableOpacity 
-			style={{marginRight: 10, padding: 0, backgroundColor: "#F5F5F5", borderRadius: 500}}
-			onPress={()=> navigation.navigate("Profile", {personData})}
-		>
-      <Image 
-          style={{
-          width: 28,
-          height: 28,
-          borderRadius: 5,
-          tintColor: "black"
-        }} source={require('./assets/icons/user.png')} />
-		</TouchableOpacity>
-	);	
 }
 
 const styles = StyleSheet.create({

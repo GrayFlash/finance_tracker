@@ -3,7 +3,8 @@ import {
     StyleSheet, 
     Text, 
     View,
-    TouchableOpacity
+    TouchableOpacity,
+    SafeAreaView
 } from 'react-native';
 import NavigationBar from '../components/NavigationBar';
 

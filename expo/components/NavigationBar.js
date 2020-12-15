@@ -4,6 +4,7 @@ import {
     Text, 
     View, 
     TouchableOpacity,
+    Image
 } from 'react-native';
 
 export default function NavigationBar({ NavbarButtonHandler, viewMode }) {
@@ -15,9 +16,35 @@ export default function NavigationBar({ NavbarButtonHandler, viewMode }) {
             </View>
         )
     }
+//     <TouchableOpacity >
+//     <Image style={{width: 30, height:30}} source={require('../assets/icons/more_icon.png')} />
+// </TouchableOpacity>
 
     return (
-        <View style={{ flex: 1, justifyContent: 'center', padding: 24, marginTop: 10, }}>
+        <View>
+
+
+        <View style={{ flex: 1, justifyContent: 'center', backgroundColor: "white",}}>
+            <View style={{ flexDirection: 'row', marginTop: 40 , marginBottom: 10}}>
+                <TouchableOpacity style={{ flex: 1,}}>
+                    <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
+                        <Image style={{marginLeft: 0, width: 27, height: 27, marginRight: 60 }} source={require('../assets/icons/menu.png')} />
+                    </View>
+                </TouchableOpacity>
+                <View style={{ flex: 1,}}>
+                    <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
+                        <Text style={{  marginLeft: 0, fontSize: 18,fontFamily: 'GothamMedium', color: "black"}}>Home</Text>
+                    </View>
+                </View>
+                <View style={{ flex: 1,}}>
+                    <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
+                        <Text style={{  marginLeft: 0, fontSize: 16,fontFamily: 'GothamMedium', color: "white"}}>Right</Text>
+                    </View>
+                </View>
+            </View>
+        </View>
+            
+        <View style={{ flex: 1, justifyContent: 'center', padding: 24, marginTop: 20, }}>
             <View style={{ flexDirection: 'row', height: 55, backgroundColor: "white", borderRadius: 12 }}>
                 {/* Claim */}
                 <TouchableOpacity
@@ -85,6 +112,7 @@ export default function NavigationBar({ NavbarButtonHandler, viewMode }) {
                     </View>
                 </TouchableOpacity>
             </View>
+        </View>
         </View>
     );
 }
