@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
         margin: 5,
         paddingVertical: 12,
         paddingHorizontal: 24,
-        borderRadius: 10,
+        borderRadius: 8,
         backgroundColor: "white",
     },
     itemText: {
@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
         marginTop: 5,
         marginHorizontal: 5,
         paddingVertical: 10,
-        borderRadius: 12
+        borderRadius: 8
     },
     totalExpenseText: {
         marginTop:0, 

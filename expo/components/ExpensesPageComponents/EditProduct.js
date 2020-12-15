@@ -38,7 +38,16 @@ export default function EditProduct({ item, categoriesData, NavbarButtonHandler 
     }
 
     return (
-        <View style={styles.container} >
+        <View style={styles.container}>
+            <Text style={{
+                textAlign: "center", 
+                color:"black", 
+                fontFamily:"GothamBold", 
+                fontSize: 17, 
+                paddingBottom: 10,
+            }}>Edit Your Product</Text>
+            <View style={{borderBottomWidth: 1, borderBottomColor: "black", marginHorizontal: 50, marginBottom: 20}} />
+            
             <Text style={styles.Text}>Product Name</Text>
             <TextInput 
                 style={styles.inputField}
@@ -57,7 +66,6 @@ export default function EditProduct({ item, categoriesData, NavbarButtonHandler 
             }}>
                 <Picker
                     selectedValue={selectedValue}
-                    style={{ height: 50, width: 350 }}
                     onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}>
                     
                     {categoriesData.map((item) => {
@@ -109,7 +117,8 @@ export default function EditProduct({ item, categoriesData, NavbarButtonHandler 
 const styles = StyleSheet.create({
     container: {
         margin: 10,
-        paddingTop: 30,
+        paddingTop: 10,
+        marginHorizontal: 28,
     }, 
     inputField : {
         backgroundColor: "white",
@@ -126,6 +135,7 @@ const styles = StyleSheet.create({
         color: "black",
         paddingTop: 8,
         paddingBottom: 4,
+        marginLeft: 2,
         fontFamily: 'GothamMedium'
     },
 

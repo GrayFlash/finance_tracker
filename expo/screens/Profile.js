@@ -316,7 +316,6 @@ export default function Profile() {
 const styles = StyleSheet.create({
     container: {
         margin: 10,
-        paddingTop: 5,
     }, 
     header : {
        padding : 50,
@@ -335,9 +334,10 @@ const styles = StyleSheet.create({
 
     Text : {
         color: "black",
-        paddingTop: 8,
+        paddingTop: 20,
         paddingBottom: 8,
-        marginHorizontal: 10,
+        marginHorizontal: 15,
+        fontSize: 14,
         fontFamily: 'GothamMedium'
     },
 

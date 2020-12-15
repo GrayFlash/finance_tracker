@@ -84,7 +84,17 @@ export default function ManualAdd({categoriesData, people}) {
         })
     }
     return (
+        <View>
+        <Text style={{fontFamily: 'GothamLight', color:"black", textAlign: "center", paddingTop: 30}}>OR</Text>
         <View style={styles.container} >
+            <Text style={{
+                textAlign: "center", 
+                color:"black", 
+                fontFamily:"GothamBold", 
+                fontSize: 17, 
+                paddingBottom: 10,
+            }}>Add Product</Text>
+            <View style={{borderBottomWidth: 1, borderBottomColor: "black", marginHorizontal: 60, marginBottom: 20}} />
             <Text style={styles.Text}>Product Name</Text>
             <TextInput 
                 style={styles.inputField}
@@ -100,6 +110,7 @@ export default function ManualAdd({categoriesData, people}) {
             <View style={{
                 backgroundColor: "white",
                 marginTop: 8,
+                marginBottom: 12,
                 borderRadius: 5,
                 borderWidth: 1,
                 borderColor: "#D1D1D1",
@@ -146,13 +157,14 @@ export default function ManualAdd({categoriesData, people}) {
                 </View>
             </TouchableOpacity>
         </View>
+        </View>
     );
 }
 
 const styles = StyleSheet.create({
     container: {
         margin: 10,
-        paddingTop: 20,
+        paddingTop: 10,
     }, 
     inputField : {
         backgroundColor: "white",
@@ -161,6 +173,7 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         padding: 10,
         marginTop: 8,
+        marginBottom: 12,
         fontFamily: 'GothamLight', 
         fontSize: 14,
     },
@@ -168,6 +181,7 @@ const styles = StyleSheet.create({
     Text : {
         fontSize: 14,
         color: "black",
+        marginLeft: 2,
         paddingTop: 8,
         fontFamily: 'GothamMedium',
     },

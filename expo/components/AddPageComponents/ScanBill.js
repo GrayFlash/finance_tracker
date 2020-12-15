@@ -408,7 +408,7 @@ const styles = StyleSheet.create({
     cameraButton : {
         backgroundColor: "#666666",
         padding: 14, 
-        marginHorizontal: 12,
+        marginHorizontal: 14,
         borderRadius:8,
     },
     panel: {

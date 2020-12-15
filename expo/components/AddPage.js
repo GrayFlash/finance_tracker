@@ -23,6 +23,6 @@ export default function AddSection({ categoriesData, people}) {
 const styles = StyleSheet.create({
     mainAddSection : {
         marginTop: 10, 
-        marginHorizontal: 24,
+        marginHorizontal: 18,
     },
 });

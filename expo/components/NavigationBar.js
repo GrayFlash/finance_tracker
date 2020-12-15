@@ -43,14 +43,14 @@ export default function NavigationBar({ NavbarButtonHandler, viewMode }) {
         </View>
             
         <View style={{ flex: 1, justifyContent: 'center', padding: 24,}}>
-            <View style={{ flexDirection: 'row', height: 55, backgroundColor: "white", borderRadius: 12 }}>
+            <View style={{ flexDirection: 'row', height: 55, backgroundColor: "white", borderRadius: 8 }}>
                 {/* Claim */}
                 <TouchableOpacity
                     style={{ 
                         flex: 1,
                         backgroundColor: viewMode == "expenses" ? "#BEC1D2" : null, 
                         margin: 5,
-                        borderRadius: 10,
+                        borderRadius: 6,
                     }}
                     onPress={() => NavbarButtonHandler("expenses")}
                     
@@ -69,7 +69,7 @@ export default function NavigationBar({ NavbarButtonHandler, viewMode }) {
                         flex: 1,
                         backgroundColor: viewMode == "chart" ? "#BEC1D2" : null, 
                         margin: 5,
-                        borderRadius: 10,
+                        borderRadius: 8,
                     }}
                     onPress={() => NavbarButtonHandler("chart")}
                 >
@@ -94,7 +94,7 @@ export default function NavigationBar({ NavbarButtonHandler, viewMode }) {
                         flex: 1,
                         backgroundColor: viewMode == "add" ? "#BEC1D2" : null, 
                         margin: 5,
-                        borderRadius: 10,
+                        borderRadius: 8,
                     }}
                     onPress={() => NavbarButtonHandler("add")}
                 >

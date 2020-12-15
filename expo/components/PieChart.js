@@ -65,7 +65,7 @@ export default function ChartPage({ catData, ppl }) {
                             marginTop: 5,
                             paddingHorizontal: 12,
                             marginHorizontal: 18,
-                            borderRadius: 10,
+                            borderRadius: 8,
                             backgroundColor: (selectedCategory == `${obj.name}`) ? "#BEC1D2" : "white",
                         }}
                         onPress={() => setSelectedCategory(`${obj.name}`)}
