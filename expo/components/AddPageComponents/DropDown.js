@@ -14,19 +14,19 @@ export default class DropDown extends React.Component {
               <View style={[styles.menu, { top, left: left - width/2, width}]}>
 
               <TouchableOpacity style={{width, alignItems: 'center', paddingTop: 5}} onPress={() => this.props.hide('Item 1')}>
-                <Text>Item 1</Text>
+                <Text style={styles.text}>Item 1</Text>
               </TouchableOpacity>
 
               <TouchableOpacity style={{width, alignItems: 'center', paddingTop: 5}} onPress={() => this.props.hide('Item 2')}>
-                <Text>Item 2</Text>
+                <Text style={styles.text}>Item 2</Text>
               </TouchableOpacity>
 
               <TouchableOpacity style={{width, alignItems: 'center', paddingTop: 5}} onPress={() => this.props.hide('Item 3')}>
-                <Text>Item 3</Text>
+                <Text style={styles.text}>Item 3</Text>
               </TouchableOpacity>
 
               <TouchableOpacity style={{width, alignItems: 'center', paddingVertical: 5}} onPress={() => this.props.hide('Item 4')}>
-                <Text>Item 4</Text>
+                <Text style={styles.text}>Item 4</Text>
               </TouchableOpacity>
               </View>
           </View>
@@ -58,6 +58,9 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.36,
     shadowRadius: 6.68,
     elevation: 11,
+  },
+  Text: {
+    fontFamily: 'GothamMedium'
   }
 });
 

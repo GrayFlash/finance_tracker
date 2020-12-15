@@ -48,16 +48,16 @@ export default function PreviousExpenses({ selectedCategory, editProductHandler,
                         }}
                     />
                 </View>
-                <Text style={{ fontSize: 16, lineHeight: 22, color: selectedCategory.color, fontWeight:'bold'}}>{selectedCategory.name}</Text>
+                <Text style={{ fontSize: 16, lineHeight: 22, color: selectedCategory.color, fontFamily: 'GothamMedium'}}>{selectedCategory.name}</Text>
             </View>
 
             {/* Expense Description */}
             <View style={{ paddingHorizontal: 24 }}>
                 {/* Title and description */}
-                <Text style={{ fontSize: 18, lineHeight: 20 }}>{item.title}</Text>
+                <Text style={{ fontSize: 18, lineHeight: 20, fontFamily: 'GothamMedium' }}>{item.title}</Text>
                 
                 {(item.description) ? 
-                <Text style={{ fontSize: 12, lineHeight: 30, flexWrap: 'wrap', color: '#898C95' }}>
+                <Text style={{ fontSize: 12, lineHeight: 30, flexWrap: 'wrap', color: '#898C95', fontFamily: 'GothamLight' }}>
                     {item.description}
                 </Text> : 
                 <View style={{ height: 30 }} /> }
@@ -79,7 +79,7 @@ export default function PreviousExpenses({ selectedCategory, editProductHandler,
               >
                 {/* Name/Category */}
                 <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center', marginLeft: 10 }}>
-                    <Text style={{ marginLeft: 8, color: "white"}}>{item.total.toFixed(2)} $</Text>
+                    <Text style={{ marginLeft: 8, color: "white", fontFamily: 'GothamMedium'}}>{item.total.toFixed(2)} $</Text>
                 </View>
 
                 {/* Expenses */}
@@ -93,13 +93,13 @@ export default function PreviousExpenses({ selectedCategory, editProductHandler,
     return (
         <View>
             <View style={{ height: 80, backgroundColor: '#F2F2F2', padding: 24 }}>
-                <Text style={{ fontSize: 16, lineHeight: 22, color: "#194868" }}>PREVIOUS EXPENSES</Text>
-                <Text style={{fontSize: 14, lineHeight: 22, color: '#898C95' }}>This Week</Text>
+                <Text style={{ fontSize: 16, lineHeight: 22, color: "#194868", fontFamily: 'GothamMedium'}}>PREVIOUS EXPENSES</Text>
+                <Text style={{fontSize: 14, lineHeight: 22, color: '#898C95', fontFamily: 'GothamLight'}}>This Week</Text>
             </View>
             {
                 selectedCategory === null &&
                 <View style={{ alignItems: 'center', justifyContent: 'center', height: 300 }}>
-                    <Text style={{ color: "#194868", fontSize: 12, lineHeight: 22 }}>Click on any above categories in categories section</Text>
+                    <Text style={{ color: "#194868", lineHeight: 22, fontFamily: 'GothamLight' }}>Click on any above categories in categories section</Text>
                 </View>
             }
             {

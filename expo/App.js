@@ -5,6 +5,9 @@ import Profile from './screens/Profile';
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { person } from "./data/dummyPerson";
+import {AppLoading} from 'expo';
+import {useFonts} from 'expo-font';
+// import { useFonts, Inter_900Black } from '@expo-google-fonts/inter';
 
 const Stack = createStackNavigator();
 
@@ -28,6 +31,17 @@ const stackDesignHeadForHome = {
 }
 
 function App(props) {
+  let [fontsLoaded] = useFonts({
+    'GothamBlack': require('./assets/fonts/Gotham-Black.otf'),
+    'GothamBold': require('./assets/fonts/Gotham-Bold.otf'),
+    'GothamMedium': require('./assets/fonts/GothamMedium.ttf'),
+    'GothamLight': require('./assets/fonts/GothamLight.ttf'),
+    'GothamThin': require('./assets/fonts/Gotham-Thin.otf'),
+  });
+
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  }
 
   return (
     <View style={styles.container}>

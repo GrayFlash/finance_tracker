@@ -80,14 +80,14 @@ export default function ChartPage() {
                     labelRadius={({ innerRadius }) => (screenWidth * 0.4 + innerRadius) / 2.5}
                     data={getSampleData()}
                     style={{
-                        labels: { fill: "white", fontSize: 16, lineHeight: 22 },
+                        labels: { fill: "white",fontFamily: 'GothamBlack', fontSize: 16, lineHeight: 22 },
                     }}
                     width={screenWidth}
                     height={screenWidth}
                 />
                 <View style={{ position: 'absolute', top: '43%', left: "40%"}}>
-                    <Text style={{ textAlign: 'center', fontSize: 20, lineHeight: 32, color: "gray" }}>Expenses</Text>
-                    <Text style={{ textAlign: 'center', fontSize: 12, lineHeight: 22 }}>This Month</Text>
+                    <Text style={{ textAlign: 'center', fontFamily: 'GothamMedium', fontSize: 18, lineHeight: 32, color: "gray" }}>Expenses</Text>
+                    <Text style={{ textAlign: 'center', fontFamily: 'GothamLight', fontSize: 13, lineHeight: 22 }}>This Month</Text>
                 </View>
             </View>
             
@@ -118,12 +118,12 @@ export default function ChartPage() {
                                     borderRadius: 5
                                 }}
                             />
-                            <Text style={{ marginLeft: 8, color: (viewMode == `${obj.name}`) ? "white" : "#194868"}}>{obj.name}</Text>
+                            <Text style={{ marginLeft: 8, fontFamily: 'GothamMedium',color: (viewMode == `${obj.name}`) ? "white" : "#194868"}}>{obj.name}</Text>
                         </View>
 
                         {/* Expenses */}
                         <View style={{ justifyContent: 'center' }}>
-                            <Text style={{ color: (viewMode == `${obj.name}`) ? "white" : "#194868" }}>{obj.totalExpenseInThis} Rs - {Math.round((obj.totalExpenseInThis*100)/people.totalExpenses *10)/10}%</Text>
+                            <Text style={{fontFamily: 'GothamLight', color: (viewMode == `${obj.name}`) ? "white" : "#194868" }}>{obj.totalExpenseInThis} Rs - {Math.round((obj.totalExpenseInThis*100)/people.totalExpenses *10)/10}%</Text>
                         </View>
                     </TouchableOpacity> 
                 );

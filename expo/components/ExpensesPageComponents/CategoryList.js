@@ -61,8 +61,8 @@ const styles = StyleSheet.create({
     itemText: {
         marginLeft: 8, 
         color: "#194868", 
-        fontSize: 14, 
         lineHeight: 22, 
+        fontFamily: 'GothamMedium',
     },
     totalExpenseButton: {
         backgroundColor: "#FF615F",
@@ -76,5 +76,6 @@ const styles = StyleSheet.create({
         lineHeight: 22, 
         color: 'white', 
         textAlign: "center",
+        fontFamily: 'GothamMedium'
     }  
 });

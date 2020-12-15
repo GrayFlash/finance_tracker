@@ -17,7 +17,7 @@ export default function NavigationBar({ NavbarButtonHandler, viewMode }) {
     }
 
     return (
-        <View style={{ flex: 1, justifyContent: 'center', padding: 24, marginTop: 10,}}>
+        <View style={{ flex: 1, justifyContent: 'center', padding: 24, marginTop: 10, }}>
             <View style={{ flexDirection: 'row', height: 55, backgroundColor: "white", borderRadius: 12 }}>
                 {/* Claim */}
                 <TouchableOpacity
@@ -31,15 +31,7 @@ export default function NavigationBar({ NavbarButtonHandler, viewMode }) {
                     
                 >
                     <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
-                        {/* <Image
-                            source={require('../assets/icons/chart_icon.png')}
-                            resizeMode="contain"
-                            style={{
-                                width: 20,
-                                height: 20
-                            }}
-                        /> */}
-                        <Text style={{  marginLeft: 0, fontSize: 16, lineHeight: 22, color: "black"}}> Expenses </Text>
+                        <Text style={{  marginLeft: 0, fontSize: 16,fontFamily: 'GothamMedium', lineHeight: 22, color: "black"}}> Expenses </Text>
                     </View>
                 </TouchableOpacity>
 
@@ -64,15 +56,7 @@ export default function NavigationBar({ NavbarButtonHandler, viewMode }) {
                             justifyContent: 'center'
                         }}
                     >
-                        {/* <Image
-                            source={require('../assets/icons/chart_icon.png')}
-                            resizeMode="contain"
-                            style={{
-                                width: 20,
-                                height: 20
-                            }}
-                        /> */}
-                        <Text style={{ marginLeft: 0, fontSize: 16, lineHeight: 22, color: "black" }}>Pie Chart</Text>
+                        <Text style={{ marginLeft: 0, fontSize: 16, fontFamily: 'GothamMedium', lineHeight: 22, color: "black" }}>Pie Chart</Text>
                     </View>
                 </TouchableOpacity>
 
@@ -97,15 +81,7 @@ export default function NavigationBar({ NavbarButtonHandler, viewMode }) {
                             justifyContent: 'center'
                         }}
                     >
-                        {/* <Image
-                            source={require('../assets/icons/camera.png')}
-                            resizeMode="contain"
-                            style={{
-                                width: 40,
-                                height: 40,
-                            }}
-                        /> */}
-                        <Text style={{ marginLeft: 0, fontSize: 16, lineHeight: 22, color: "black" }}>Add</Text>
+                        <Text style={{ marginLeft: 0, fontSize: 16, fontFamily: 'GothamMedium', lineHeight: 22, color: "black" }}>Add</Text>
                     </View>
                 </TouchableOpacity>
             </View>

@@ -101,12 +101,12 @@ export default function Profile() {
                         >
                             {/* Name/Category */}
                             <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-                                <Text style={{ marginLeft: 8, color: "#194868"}}>{p}</Text>
+                                <Text style={{ marginLeft: 8, color: "#194868", fontFamily: 'GothamMedium'}}>{p}</Text>
                             </View>
 
                             {/* Expenses */}
                             <View style={{ justifyContent: 'center' }}>                             
-                                <Text style={ (p==="This month's status") ? ((thisMonthStatus>=0)?{ color: "#00CC00"}:{ color: "red"}): { color: "#194868" }}>{vals[property.indexOf(p)]}</Text>                               
+                                <Text style={ (p==="This month's status") ? ((thisMonthStatus>=0)?{ color: "#00CC00", fontFamily: 'GothamLight'}:{ color: "red", fontFamily: 'GothamLight'}): { color: "#194868", fontFamily: 'GothamLight' }}>{vals[property.indexOf(p)]}</Text>                               
                             </View>
                         </View>
                     </View>
@@ -131,7 +131,7 @@ export default function Profile() {
                 >
                     {/* Name/Category */}
                     <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-                        <Text style={{ marginLeft: 8, color: "#194868"}}>Edit Values</Text>
+                        <Text style={{ marginLeft: 8, color: "#194868", fontFamily: 'GothamMedium'}}>Edit Values</Text>
                     </View>
 
                     {/* Expenses */}
@@ -180,7 +180,7 @@ export default function Profile() {
                 onPress={() => updateData()}
             >
                 <View style={styles.button}>
-                    <Text style={{color: "white", textAlign: "center"}}>Save Changes</Text>
+                    <Text style={{color: "white", textAlign: "center", fontFamily: 'GothamMedium'}}>Save Changes</Text>
                 </View>
             </TouchableOpacity>
 
@@ -195,7 +195,7 @@ export default function Profile() {
                         marginTop: 20,
                         marginBottom: 10
                     }}>
-                    <Text style={{color: "black", textAlign: "center"}}>Cancel</Text>
+                    <Text style={{color: "black", textAlign: "center", fontFamily: 'GothamMedium'}}>Cancel</Text>
                 </View>
             </TouchableOpacity>
             </View>
@@ -218,7 +218,7 @@ export default function Profile() {
                     source={require('../assets/icons/profile.jpg')} 
                     style={{width: 100, height: 100, borderRadius: 1000}}
                 />
-                <Text style={{paddingTop: 10, fontSize: 16, lineHeight: 22}}>
+                <Text style={{paddingTop: 10, fontFamily: 'GothamMedium', lineHeight: 22}}>
                     {name}
                 </Text>
             </View>
@@ -300,18 +300,20 @@ const styles = StyleSheet.create({
        alignItems: 'center', 
        justifyContent: 'center',
     },
-        inputField : {
+    inputField : {
         backgroundColor: "white",
         borderWidth: 1,
         borderColor: "#D1D1D1",
         borderRadius: 5,
         padding: 10,
+        fontFamily: 'GothamLight'
     },
 
     Text : {
-        fontSize: 14,
         color: "black",
         paddingTop: 8,
+        paddingBottom: 8,
+        fontFamily: 'GothamMedium'
     },
 
     button : {

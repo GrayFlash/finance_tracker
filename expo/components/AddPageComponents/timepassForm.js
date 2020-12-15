@@ -144,7 +144,7 @@ export default function ManualAdd({categoriesData, people}) {
                 onPress={() => addExpense()}
             >
                 <View style={styles.button}>
-                    <Text style={{color: "white", textAlign: "center"}}>Add Product</Text>
+                    <Text style={{color: "white", textAlign: "center", fontFamily: 'GothamMedium'}}>Add Product</Text>
                 </View>
             </TouchableOpacity>
         </View>
@@ -162,13 +162,15 @@ const styles = StyleSheet.create({
         borderColor: "#D1D1D1",
         borderRadius: 5,
         padding: 10,
+        fontFamily: 'GothamLight', 
+        fontSize: 14,
     },
 
     Text : {
         fontSize: 14,
-        fontWeight: "bold",
         color: "black",
         paddingTop: 8,
+        fontFamily: 'GothamMedium',
     },
 
     button : {

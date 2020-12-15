@@ -38,7 +38,7 @@ export default function CameraButton() {
     <View>
         <TouchableOpacity onPress={pickImage} >
             <View style={styles.cameraButton}>
-                <Text style={{color: "black", textAlign: "center"}}>
+                <Text style={{color: "black", textAlign: "center",fontFamily: 'GothamMedium'}}>
                     Camera
                 </Text>
             </View>

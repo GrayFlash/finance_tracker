@@ -37,12 +37,12 @@ const styles = StyleSheet.create({
     },
     titleText: {
         color: "#194868",
-        fontSize: 16, 
         lineHeight: 22,
+        fontFamily: 'GothamBold'
     },
     titleSubText: { 
         color: '#898C95', 
-        fontSize: 14, 
         lineHeight: 22,
+        fontFamily: 'GothamLight'
     },
 })
