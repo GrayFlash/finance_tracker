@@ -6,7 +6,6 @@ import Expenses from '../components/Expenses';
 import EditProduct from '../components/ExpensesPageComponents/EditProduct';
 import NavigationBar from '../components/NavigationBar';
 import ChartPage from '../components/PieChart';
-import { person } from '../data/dummyPerson';
 import * as myConstClass from './HttpLink';
 
 export default function Home (props) {
@@ -28,7 +27,7 @@ export default function Home (props) {
         fetch(`${myConstClass.HTTP_LINK}/fetchExpense`)
         .then(res=>res.json())
         .then(results=>{
-            console.log("Expenses")
+            console.log("Expenses data received.")
             setExpenses(results)
             setLoading(false)
         })
@@ -41,7 +40,7 @@ export default function Home (props) {
         fetch(`${myConstClass.HTTP_LINK}/personDetails`)
         .then(res=>res.json())
         .then(results=>{
-            console.log("People")
+            console.log("People data received.")
             setPeople(results[0])
         })
     }
@@ -50,12 +49,12 @@ export default function Home (props) {
         fetch(`${myConstClass.HTTP_LINK}/fetchCategoryData`)
         .then(res=>res.json())
         .then(results=>{
-            console.log("Category");
+            console.log("categoriesData received.");
             //console.log(results)
             setCategoriesData(results)
             //setLoading(false)
         }).catch(err=>{
-            console.log(err)
+            console.log("Yo Bitch, got Error while receiving categoriesData in Home.js\n"+err)
         })
     }
 
@@ -74,7 +73,7 @@ export default function Home (props) {
     }
 
     const categoryButtonHandler = (item) => {
-        console.log(`${item.name} category button is pressed....`);
+        console.log(`Yoo Bitch!!!!, ${item.name} category button is pressed....`);
         setSelectedCategory(item);
     }
 
@@ -119,7 +118,7 @@ export default function Home (props) {
             {
                 viewMode == "chart" &&
                 <View>
-                    <ChartPage />
+                    <ChartPage catData={categoriesData} ppl={people} />
                 </View>
             }
             {

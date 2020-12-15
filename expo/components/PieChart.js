@@ -1,45 +1,13 @@
-import { StyleSheet, Text, View, Dimensions, TouchableOpacity, FlatList, ScrollView} from 'react-native';
+import { StyleSheet, Text, View, Dimensions, TouchableOpacity } from 'react-native';
 import React,{useState, useEffect} from "react";
 import { VictoryPie} from "victory-native";
-import { person } from "../data/dummyPerson";
-import * as myConstClass from '../screens/HttpLink';
-const {width, height} = Dimensions.get('window');
+const { width } = Dimensions.get('window');
 
-export default function ChartPage() {
+export default function ChartPage({ catData, ppl }) {
     const screenWidth = width;
-    const screenHeight = height;
-    const [categoriesData, setCategoriesData] = useState([])
-    const [people, setPeople] = useState([])
-    const [loading, setLoading] = useState(true)
-    const [viewMode, setViewMode] = useState(null);
-
-    // UPDATE links
-    const fetchData = () => {
-        fetch(`${myConstClass.HTTP_LINK}/personDetails`)
-        .then(res=>res.json())
-        .then(results=>{
-            console.log("People")
-            setPeople(results[0])
-        })
-    }
-    const fetchCategory = () => {
-        let x = fetchData();
-        fetch(`${myConstClass.HTTP_LINK}/fetchCategoryData`)
-        .then(res=>res.json())
-        .then(results=>{
-            console.log("Yes")
-            console.log(results)
-            setCategoriesData(results)
-            setLoading(false)
-        }).catch(err=>{
-            console.log(err)
-        })
-    }
-
-    useEffect(()=>{
-        fetchCategory(),
-        fetchData()
-    },[])
+    const categoriesData = catData;
+    const people = ppl;
+    const [selectedCategory, setSelectedCategory] = useState(categoriesData[0].name);
 
     function getSampleData() {
         let requiredData = [];
@@ -66,16 +34,11 @@ export default function ChartPage() {
 
     return (
         <View style={{marginBottom: 30}}>
-            <FlatList
-                data = {categoriesData}
-                keyExtractor={item=>item._id}
-                onRefresh={()=>fetchCategory()}
-                refreshing={loading}
-            />
+
             <View style={{ alignItems: 'center', justifyContent: 'center' }}>
                 <VictoryPie
                     colorScale={getColorScaleData()}
-                    radius={({ datum }) => (viewMode == datum.z) ? screenWidth * 0.4 : screenWidth * 0.4 - 10}
+                    radius={({ datum }) => (selectedCategory == datum.z) ? screenWidth * 0.4 : screenWidth * 0.4 - 10}
                     innerRadius={screenWidth*0.17}
                     labelRadius={({ innerRadius }) => (screenWidth * 0.4 + innerRadius) / 2.5}
                     data={getSampleData()}
@@ -92,7 +55,6 @@ export default function ChartPage() {
             </View>
             
 
-            
             {categoriesData.map((obj) => {
                 return(
                     <TouchableOpacity
@@ -104,9 +66,9 @@ export default function ChartPage() {
                             paddingHorizontal: 12,
                             marginHorizontal: 18,
                             borderRadius: 10,
-                            backgroundColor: (viewMode == `${obj.name}`) ? "#BEC1D2" : "white",
+                            backgroundColor: (selectedCategory == `${obj.name}`) ? "#BEC1D2" : "white",
                         }}
-                        onPress={() => setViewMode(`${obj.name}`)}
+                        onPress={() => setSelectedCategory(`${obj.name}`)}
                     >
                         {/* Name/Category */}
                         <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
@@ -118,12 +80,12 @@ export default function ChartPage() {
                                     borderRadius: 5
                                 }}
                             />
-                            <Text style={{ marginLeft: 8, fontFamily: 'GothamMedium',color: (viewMode == `${obj.name}`) ? "white" : "#194868"}}>{obj.name}</Text>
+                            <Text style={{ marginLeft: 8, fontFamily: 'GothamMedium',color: (selectedCategory == `${obj.name}`) ? "white" : "#194868"}}>{obj.name}</Text>
                         </View>
 
                         {/* Expenses */}
                         <View style={{ justifyContent: 'center' }}>
-                            <Text style={{fontFamily: 'GothamLight', color: (viewMode == `${obj.name}`) ? "white" : "#194868" }}>{obj.totalExpenseInThis} Rs - {Math.round((obj.totalExpenseInThis*100)/people.totalExpenses *10)/10}%</Text>
+                            <Text style={{fontFamily: 'GothamLight', color: (selectedCategory == `${obj.name}`) ? "white" : "#194868" }}>{obj.totalExpenseInThis} Rs - {Math.round((obj.totalExpenseInThis*100)/people.totalExpenses *10)/10}%</Text>
                         </View>
                     </TouchableOpacity> 
                 );
