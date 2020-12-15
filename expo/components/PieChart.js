@@ -33,9 +33,9 @@ export default function ChartPage({ catData, ppl }) {
     }
 
     return (
-        <View style={{marginBottom: 30,}}>
+        <View style={{marginBottom: 30}}>
 
-            <View style={{ alignItems: 'center', justifyContent: 'center' }}>
+            <View style={{ alignItems: 'center', justifyContent: 'center' , marginTop: -30}}>
                 <VictoryPie
                     colorScale={getColorScaleData()}
                     radius={({ datum }) => (selectedCategory == datum.z) ? screenWidth * 0.4 : screenWidth * 0.4 - 10}

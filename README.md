@@ -22,7 +22,7 @@ Here it is:
 <p>So in the PREVIOUS EXPENSES section it renders the expenses in the form of card. On pressing one of this card it will allow you to edit details of the particular item.</p>
 
 <div align="center">
-<img height="800px" src="https://github.com/GrayFlash/finance_tracker/blob/main/expo/assets/readme_images/expense.png">
+<img height="800px" src="https://github.com/GrayFlash/finance_tracker/blob/main/expo/assets/readme_images/expense.jpg">
 </div>
 
 <h4>2. Pie Chart</h4> 
@@ -30,7 +30,7 @@ Here it is:
 This pie chart also shows the percentage amount you spent on a particular category so that you can keep track of on which category you are spending more. </p>
 
 <div align="center">
-<img height="800px" src="https://github.com/GrayFlash/finance_tracker/blob/main/expo/assets/readme_images/piechart.png">
+<img height="800px" src="https://github.com/GrayFlash/finance_tracker/blob/main/expo/assets/readme_images/piechart.jpg">
 </div>
 
 <h4>3. Add Page</h4> 
@@ -41,7 +41,7 @@ This pie chart also shows the percentage amount you spent on a particular catego
 
 
 <div align="center">
-<img height="800px" src="https://github.com/GrayFlash/finance_tracker/blob/main/expo/assets/readme_images/addpage.png">
+<img height="800px" src="https://github.com/GrayFlash/finance_tracker/blob/main/expo/assets/readme_images/addpage.jpg">
 </div>
 <br>
 
@@ -49,7 +49,7 @@ This pie chart also shows the percentage amount you spent on a particular catego
 <br>
 
 <div align="center">
-<img height="800px" src="https://github.com/GrayFlash/finance_tracker/blob/main/expo/assets/readme_images/scan.png">
+<img height="800px" src="https://github.com/GrayFlash/finance_tracker/blob/main/expo/assets/readme_images/scan.jpg">
 </div>
 
 
@@ -58,7 +58,7 @@ This pie chart also shows the percentage amount you spent on a particular catego
 <p>Now in this component you can see your information like expenses, your salary, your target to save and can also edit these values.</p>
 
 <div align="center">
-<img height="800px" src="https://github.com/GrayFlash/finance_tracker/blob/main/expo/assets/readme_images/profile.png">
+<img height="800px" src="https://github.com/GrayFlash/finance_tracker/blob/main/expo/assets/readme_images/profile.jpg">
 </div>
 
 ## How to Use
