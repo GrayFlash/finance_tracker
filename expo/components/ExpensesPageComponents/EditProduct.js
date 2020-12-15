@@ -86,7 +86,7 @@ export default function EditProduct({ item, categoriesData, NavbarButtonHandler 
                 onPress={() => updateData()}
             >
                 <View style={styles.button}>
-                    <Text style={{color: "white", textAlign: "center"}}>Edit Product</Text>
+                    <Text style={{color: "white", textAlign: "center", fontFamily: 'GothamMedium'}}>Edit Product</Text>
                 </View>
             </TouchableOpacity>
 
@@ -99,7 +99,7 @@ export default function EditProduct({ item, categoriesData, NavbarButtonHandler 
                     padding: 12,
                     borderRadius: 6,
                 }}>
-                    <Text style={{color: "black", textAlign: "center"}}>Cancel</Text>
+                    <Text style={{color: "black", textAlign: "center", fontFamily: 'GothamMedium'}}>Cancel</Text>
                 </View>
             </TouchableOpacity>
         </View>
@@ -113,6 +113,8 @@ const styles = StyleSheet.create({
     }, 
     inputField : {
         backgroundColor: "white",
+        fontFamily: 'GothamLight',
+        fontSize: 13,
         borderWidth: 1,
         borderColor: "#D1D1D1",
         borderRadius: 5,
@@ -121,9 +123,10 @@ const styles = StyleSheet.create({
 
     Text : {
         fontSize: 14,
-        fontWeight: "bold",
         color: "black",
         paddingTop: 8,
+        paddingBottom: 4,
+        fontFamily: 'GothamMedium'
     },
 
     button : {
