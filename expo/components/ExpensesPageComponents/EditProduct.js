@@ -89,14 +89,35 @@ export default function EditProduct({ item, categoriesData, NavbarButtonHandler 
                 value={description}
                 onChangeText={text => setDescription(text)}
             />
+            
+            <View style={{flex: 1, flexDirection: 'row', alignItems: 'center'}}> 
             <TouchableOpacity 
-                style={{paddingTop: 10,marginTop: 10}}
+                style={{paddingTop: 10,marginTop: 10, flex: 1, marginRight: 5}}
                 onPress={() => updateData()}
             >
-                <View style={styles.button}>
+                <View style={{
+                    backgroundColor: "#222222",
+                    padding: 12,
+                    borderRadius: 6,
+                }}>
                     <Text style={{color: "white", textAlign: "center", fontFamily: 'GothamMedium'}}>Edit Product</Text>
                 </View>
             </TouchableOpacity>
+
+
+            <TouchableOpacity 
+                style={{paddingTop: 10,marginTop: 10, flex: 1, marginLeft: 5}}
+                onPress={() => NavbarButtonHandler("expenses")}
+            >
+                <View style={{
+                    backgroundColor: "red",
+                    padding: 12,
+                    borderRadius: 6,
+                }}>
+                    <Text style={{color: "white", textAlign: "center", fontFamily: 'GothamMedium'}}>Delete</Text>
+                </View>
+            </TouchableOpacity>
+            </View>
 
             <TouchableOpacity 
                 style={{paddingTop: 10,marginTop: 10}}
@@ -138,10 +159,4 @@ const styles = StyleSheet.create({
         marginLeft: 2,
         fontFamily: 'GothamMedium'
     },
-
-    button : {
-        backgroundColor: "#222222",
-        padding: 12,
-        borderRadius: 6,
-    }
 })

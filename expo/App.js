@@ -10,6 +10,20 @@ import {AppLoading} from 'expo';
 import {useFonts} from 'expo-font';
 // import { useFonts, Inter_900Black } from '@expo-google-fonts/inter';
 
+const navigationOptions = {
+	headerStyle: {
+	  backgroundColor: '#000',
+	  height: 50,
+	  justifyContent: 'flex-end',
+	  elevation: 0,
+	},
+	headerTitleStyle: {
+	  color: '#FFFFFF',
+	  justifyContent: 'flex-end',
+	},
+	headerTintColor: '#FFFFFF',
+  };
+
 const Drawer = createDrawerNavigator();
 
 function App(props) {
@@ -27,8 +41,6 @@ function App(props) {
 
 	return (
 		<View style={styles.container}>
-			{/* <WelcomeForm/> */}
-			{/* <Camera/> */}
 			<Drawer.Navigator>
 				<Drawer.Screen name="Home" component={Home} />
 				<Drawer.Screen name="Profile" component={Profile} />

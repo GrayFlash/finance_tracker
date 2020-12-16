@@ -20,10 +20,6 @@ export default function NavigationBar({ NavbarButtonHandler, viewMode }) {
 
     const navigation = useNavigation();
 
-//     <TouchableOpacity >
-//     <Image style={{width: 30, height:30}} source={require('../assets/icons/more_icon.png')} />
-// </TouchableOpacity>
-
     return (
         <View>
             <View style={{ flex: 1, justifyContent: 'center', backgroundColor: "white",}}>
