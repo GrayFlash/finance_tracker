@@ -37,6 +37,29 @@ export default function EditProduct({ item, categoriesData, NavbarButtonHandler 
         NavbarButtonHandler("expenses");
     }
 
+
+    const deleteData = () => {
+        console.log("Yooooo Bitch!!!");
+        fetch(`${HTTP_LINK}/deleteExpense`,{
+            method:"post",
+            headers:{
+                'Content-Type':'application/json'
+            },
+            body:JSON.stringify({
+                id:_id
+            })
+        })
+        .then(res=>res.json())
+        .then(data=>{
+            Alert.alert(`Details of ${productName} has been deleted`)
+            setViewMode("expense")
+        })
+        .catch(err=>{
+            Alert.alert("Some Error")
+            console.log(err)
+        })
+        NavbarButtonHandler("expenses");
+    }
     return (
         <View style={styles.container}>
             <Text style={{
@@ -107,7 +130,7 @@ export default function EditProduct({ item, categoriesData, NavbarButtonHandler 
 
             <TouchableOpacity 
                 style={{paddingTop: 10,marginTop: 10, flex: 1, marginLeft: 5}}
-                onPress={() => NavbarButtonHandler("expenses")}
+                onPress={() => deleteData()}
             >
                 <View style={{
                     backgroundColor: "red",

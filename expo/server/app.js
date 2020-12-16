@@ -18,7 +18,7 @@ const fixedExpense = mongoose.model("fixedExpense")
 const expenses = mongoose.model("expenses")
 const person = mongoose.model("person")
 const categoriesData = mongoose.model("categoriesData")
-const mongoUri = "";
+const mongoUri = "mongodb+srv://Gaurav_Ubuntu:zcDTxXONvFWZxNrh@cluster0-oi6g0.mongodb.net/test?retryWrites=true&w=majority";
 // SETUP mondodb
 
 mongoose.connect(mongoUri,{
@@ -93,6 +93,16 @@ app.post('/updateExpense', (req, res)=>{
     })
 })
 
+app.post('/deleteExpense', (req, res)=>{
+    //console.log("Wait delete")
+    expenses.findByIdAndDelete(req.body.id)
+    .then(data=>{
+        console.log(data)
+        res.send(data)
+    }).catch(err=>{
+        console.log(err)
+    })
+})
 // EXPENSE control end
 
 
