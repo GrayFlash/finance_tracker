@@ -47,7 +47,7 @@ export default function EditProduct({ item, categoriesData, NavbarButtonHandler 
 
     const deleteData = () => {
         console.log("Yooooo Bitch!!!");
-        fetch(`${HTTP_LINK}/deleteExpense`,{
+        fetch(`${myConstClass.HTTP_LINK}/deleteExpense`,{
             method:"post",
             headers:{
                 'Content-Type':'application/json'
