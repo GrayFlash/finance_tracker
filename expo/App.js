@@ -4,11 +4,11 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import { StyleSheet, Text, View, TouchableOpacity, Image, Button } from 'react-native';
 import Home from './screens/Home';
 import Profile from './screens/Profile';
+import Stock from './screens/Stock';
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import {AppLoading} from 'expo';
 import {useFonts} from 'expo-font';
-// import { useFonts, Inter_900Black } from '@expo-google-fonts/inter';
 
 const navigationOptions = {
 	headerStyle: {
@@ -44,6 +44,7 @@ function App(props) {
 			<Drawer.Navigator>
 				<Drawer.Screen name="Home" component={Home} />
 				<Drawer.Screen name="Profile" component={Profile} />
+				<Drawer.Screen name="Stock" component={Stock} />
 			</Drawer.Navigator>
 		</View>
 	);

@@ -221,9 +221,7 @@ export default function Profile() {
                         </View>
                     </View>
                     <View style={{ flex: 1,}}>
-                        <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
-                            <Text style={{  marginLeft: 0, fontSize: 16,fontFamily: 'GothamMedium', color: "white"}}>Right</Text>
-                        </View>
+                        <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }} />
                     </View>
                 </View>
             </View>
