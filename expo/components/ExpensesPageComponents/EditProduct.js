@@ -1,6 +1,6 @@
 import React, { useState, useEffect} from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet , Alert, Picker } from 'react-native'
-import HTTP_LINK from '../../screens/HttpLink';
+import * as myConstClass from '../../screens/HttpLink';
 
 export default function EditProduct({ item, categoriesData, NavbarButtonHandler }) {
     const [selectedValue, setSelectedValue] = useState(item.category);
@@ -11,8 +11,16 @@ export default function EditProduct({ item, categoriesData, NavbarButtonHandler 
     const [description, setDescription] = useState(item.description);
 
     const updateData = () => {
-        console.log("Yooooo Bitch!!!");
-        fetch(`${HTTP_LINK}/updateExpense`,{
+        const obj = {
+            id: _id,
+            title: productName,
+            description: description,
+            category: selectedValue,
+            total: Number(amount)
+        }
+        console.log("Yooooo Bitch!!!\n"+JSON.stringify(obj));
+        console.log(`${myConstClass.HTTP_LINK}/updateExpense`);
+        fetch(`${myConstClass.HTTP_LINK}/updateExpense`,{
             method:"post",
             headers:{
                 'Content-Type':'application/json'
@@ -28,13 +36,12 @@ export default function EditProduct({ item, categoriesData, NavbarButtonHandler 
         .then(res=>res.json())
         .then(data=>{
             Alert.alert(`Details of ${productName} has been updated`)
-            setViewMode("expense")
+            NavbarButtonHandler("expenses");
         })
         .catch(err=>{
             Alert.alert("Some Error")
             console.log(err)
         })
-        NavbarButtonHandler("expenses");
     }
 
 

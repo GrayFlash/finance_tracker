@@ -80,13 +80,14 @@ app.get('/fetchExpense',(req, res)=>{
 })
 
 app.post('/updateExpense', (req, res)=>{
+    console.log("Inside API")
     expenses.findByIdAndUpdate(req.body.id , {
         title: req.body.title,
         description: req.body.description,
         category: req.body.category,
         total: req.body.total
     }).then(data=>{
-        console.log(data)
+        console.log("This is Data: "+data)
         res.send(data)
     }).catch(err=>{
         console.log(err)
