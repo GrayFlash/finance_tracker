@@ -1,1 +1,1 @@
-export const HTTP_LINK = "http://50371d251aec.ngrok.io"
+export const HTTP_LINK = "http://0b9e69f9623f.ngrok.io"

@@ -14,6 +14,7 @@
     "mongoose": "^5.11.7",
     "ngrok": "^3.3.0",
     "nodemon": "^2.0.6",
+    "puppeteer": "^5.5.0",
     "unirest": "^0.6.0"
   }
 }

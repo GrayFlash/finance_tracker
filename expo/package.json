@@ -26,6 +26,7 @@
     "lodash": "^4.17.20",
     "nginx": "0.0.0",
     "nodemon": "^2.0.6",
+    "puppeteer": "^5.5.0",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-39.0.4.tar.gz",

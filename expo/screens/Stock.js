@@ -16,6 +16,22 @@ export default function Stock() {
     
     const navigation = useNavigation();
 
+    const [expenses, setExpenses] = useState([]);
+
+
+    const fetchValue = () =>{
+        fetch("http://localhost:5000/")
+        .then(res=>res.json())
+        .then(results=>{
+            console.log("Expenses data received.")
+            setExpenses(results)
+        })
+        return 1;
+    }
+
+    useEffect(()=>{
+        fetchValue()
+    })
     return (
 
         <ScrollView>
@@ -37,7 +53,7 @@ export default function Stock() {
                 </View>
             </View>
 
-            <Text style={{  margin: 10, fontSize: 18,fontFamily: 'GothamMedium', color: "black"}}>VictoryLine Charts</Text>
+            <Text style={{  margin: 10, fontSize: 18,fontFamily: 'GothamMedium', color: "black"}}>{expenses}</Text>
 
             <VictoryChart theme={VictoryTheme.material}>
                 <VictoryLine
