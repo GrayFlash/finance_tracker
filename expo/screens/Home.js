@@ -16,7 +16,7 @@ export default function Home () {
     const [expenses, setExpenses] = useState([])
     const [categoriesData, setCategoriesData] = useState([])
     const [people, setPeople] = useState([])
-    const [loading, setLoading] = useState(true)
+    const [loading, setLoading] = useState(true);
 
     // UPDATE links
     
@@ -39,7 +39,7 @@ export default function Home () {
         fetch(`${myConstClass.HTTP_LINK}/personDetails`)
         .then(res=>res.json())
         .then(results=>{
-            console.log("People data received.")
+            console.log("People data received inside Home Page.")
             setPeople(results[0])
         })
     }

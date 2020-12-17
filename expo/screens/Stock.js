@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 import React, {useState, useEffect} from 'react';
-import { KeyboardAvoidingView, View , Text, StyleSheet, Image, TouchableOpacity, TextInput, Alert, FlatList, ScrollView, ImageBackground, Dimensions} from 'react-native';
+import { KeyboardAvoidingView, View , Text, StyleSheet, Image, TouchableOpacity, TextInput, Alert, FlatList, ScrollView, ImageBackground, Dimensions, LogBox} from 'react-native';
 import * as myConstClass from './HttpLink';
 import {
     LineChart,
@@ -10,11 +10,28 @@ import {
     ContributionGraph
   } from 'react-native-chart-kit';
 import { VictoryBar, VictoryChart, VictoryTheme, VictoryLine } from "victory-native";
-import result from '../server/stock';
 
 export default function Stock() {
     
     const navigation = useNavigation();
+    const [result_stock, setResult_stock] = useState({ value:"" , raise: "", raisepercent: ''});
+
+    const fetchStock = () => {
+        //let y = fetchExpense();
+        fetch(`${myConstClass.HTTP_LINK}/stock`)
+        .then(res=>res.json())
+        .then(result_stock=>{
+            console.log("People data received inside Stock Page")
+            setResult_stock(result_stock);
+            console.log(result_stock);
+        })
+    }
+
+    useEffect(()=>{
+        fetchStock(),
+        LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
+    },[])
+    
     return (
 
         <ScrollView>
@@ -38,9 +55,9 @@ export default function Stock() {
 
 
             {/* THAKKER AAIYA PRINT KAR */}
-            <Text style={{  margin: 10, fontSize: 18,fontFamily: 'GothamMedium', color: "black"}}>Value: {result.value.toString()} </Text>
-            <Text style={{  margin: 10, fontSize: 18,fontFamily: 'GothamMedium', color: "black"}}>Raise: {result.raise.toString()} </Text>
-            <Text style={{  margin: 10, fontSize: 18,fontFamily: 'GothamMedium', color: "black"}}>raisePercent: {result.raisepercent.toString()} </Text>
+            <Text style={{  margin: 10, fontSize: 18,fontFamily: 'GothamMedium', color: "black"}}>Value: {result_stock.value.toString()} </Text>
+            <Text style={{  margin: 10, fontSize: 18,fontFamily: 'GothamMedium', color: "black"}}>Raise: {result_stock.raise.toString()} </Text>
+            <Text style={{  margin: 10, fontSize: 18,fontFamily: 'GothamMedium', color: "black"}}>raisePercent: {result_stock.raisepercent.toString()} </Text>
 
             <VictoryChart theme={VictoryTheme.material}>
                 <VictoryLine
