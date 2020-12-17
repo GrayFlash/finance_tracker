@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { View, Animated, FlatList, ScrollView, LogBox } from 'react-native';
+import { View, Animated, FlatList, ScrollView, LogBox, Alert } from 'react-native';
 import AddSection from '../components/AddPage';
 import Expenses from '../components/Expenses';
 import EditProduct from '../components/ExpensesPageComponents/EditProduct';
@@ -77,11 +77,62 @@ export default function Home () {
         setSelectedCategory(item);
     }
 
-    const editProductHandler = (mode, item) => {
-        console.log("Edit Product Button is pressed.");
+    const editProductOpenButtonHandler = (mode, item) => {
+        console.log("Edit Product Page is called.");
         console.log(item.title+" is Selected for Edit Product section.");
         setEditProductProps(item);
         setViewMode(mode);
+    }
+
+    const editProductSaveButtonHandler = (item) => {
+        console.log(`Saving ${item.title} product ...`);
+        fetch(`${myConstClass.HTTP_LINK}/updateExpense`,{
+            method:"post",
+            headers:{
+                'Content-Type':'application/json'
+            },
+            body:JSON.stringify(item)
+        })
+        .then(res=>res.json())
+        .then(data=>{
+            Alert.alert(`Details of ${item.title} has been updated`)
+        })
+        .then(() => {
+            NavbarButtonHandler("expenses");
+            setLoading(true);
+            fetchExpense();
+            setLoading(false);
+        })
+        .catch(err=>{
+            Alert.alert("Some Error on Saving product in Edit Product Page.")
+            console.log(err)
+        });
+    }
+
+    const editProductDeleteButtonHandler = (_id, productName) => {
+        fetch(`${myConstClass.HTTP_LINK}/deleteExpense`,{
+            method:"post",
+            headers:{
+                'Content-Type':'application/json'
+            },
+            body:JSON.stringify({
+                id:_id
+            })
+        })
+        .then(res=>res.json())
+        .then(data=>{
+            Alert.alert(`Details of ${productName} has been deleted`)
+        })
+        .then(() => {
+            NavbarButtonHandler("expenses");
+            setLoading(true);
+            fetchExpense();
+            setLoading(false);
+        })
+        .catch(err=>{
+            Alert.alert("Some Error while Deleting a product inside Edit Product Page.")
+            console.log(err)
+        });
     }
 
     return (  
@@ -93,17 +144,22 @@ export default function Home () {
                 <View style={{marginBottom: 20}}>
                     <Expenses   clhav={categoryListHeightAnimationValue} 
                                 selectedCategory={selectedCategory}
-                                setSelectedCategory={categoryButtonHandler} 
-                                editProductHandler={editProductHandler}
+                                setSelectedCategory={categoryButtonHandler}
                                 totalExpenses={people.totalExpenses}
                                 categoriesData={categoriesData}
                                 allExpenses={expenses}
+                                editProductHandler={editProductOpenButtonHandler}
                     /> 
                 </View>
             }
             {
                 viewMode == "editProduct" &&
-                <EditProduct item={editProductProps} categoriesData={categoriesData} NavbarButtonHandler={NavbarButtonHandler} />
+                <EditProduct    item={editProductProps} 
+                                categoriesData={categoriesData} 
+                                NavbarButtonHandler={NavbarButtonHandler} 
+                                editProductSaveButtonHandler={editProductSaveButtonHandler}
+                                editProductDeleteButtonHandler={editProductDeleteButtonHandler}
+                 />
             }
             {
                 viewMode == "chart" &&

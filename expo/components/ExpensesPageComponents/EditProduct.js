@@ -2,7 +2,7 @@ import React, { useState, useEffect} from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet , Alert, Picker } from 'react-native'
 import * as myConstClass from '../../screens/HttpLink';
 
-export default function EditProduct({ item, categoriesData, NavbarButtonHandler }) {
+export default function EditProduct({ item, categoriesData, editProductSaveButtonHandler, editProductDeleteButtonHandler }) {
     const [selectedValue, setSelectedValue] = useState(item.category);
 
     const [_id, set_id] = useState(item._id);
@@ -18,6 +18,8 @@ export default function EditProduct({ item, categoriesData, NavbarButtonHandler 
             category: selectedValue,
             total: Number(amount)
         }
+        editProductSaveButtonHandler(obj);
+        /*
         console.log("Yooooo Bitch!!!\n"+JSON.stringify(obj));
         console.log(`${myConstClass.HTTP_LINK}/updateExpense`);
         fetch(`${myConstClass.HTTP_LINK}/updateExpense`,{
@@ -42,11 +44,11 @@ export default function EditProduct({ item, categoriesData, NavbarButtonHandler 
             Alert.alert("Some Error")
             console.log(err)
         })
+        */
     }
 
 
     const deleteData = () => {
-        console.log("Yooooo Bitch!!!");
         fetch(`${myConstClass.HTTP_LINK}/deleteExpense`,{
             method:"post",
             headers:{
@@ -59,14 +61,16 @@ export default function EditProduct({ item, categoriesData, NavbarButtonHandler 
         .then(res=>res.json())
         .then(data=>{
             Alert.alert(`Details of ${productName} has been deleted`)
-            setViewMode("expense")
+        })
+        .then(() => {
+            NavbarButtonHandler("expenses");
         })
         .catch(err=>{
-            Alert.alert("Some Error")
+            Alert.alert("Some Error while Deleting a product inside Edit Product Page.")
             console.log(err)
-        })
-        NavbarButtonHandler("expenses");
+        });
     }
+
     return (
         <View style={styles.container}>
             <Text style={{
@@ -137,7 +141,7 @@ export default function EditProduct({ item, categoriesData, NavbarButtonHandler 
 
             <TouchableOpacity 
                 style={{paddingTop: 10,marginTop: 10, flex: 1, marginLeft: 5}}
-                onPress={() => deleteData()}
+                onPress={() => editProductDeleteButtonHandler(_id, productName)}
             >
                 <View style={{
                     backgroundColor: "red",
