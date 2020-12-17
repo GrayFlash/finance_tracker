@@ -77,6 +77,8 @@ export default function Home () {
         setSelectedCategory(item);
     }
 
+    /** Edit Product Start */
+
     const editProductOpenButtonHandler = (mode, item) => {
         console.log("Edit Product Page is called.");
         console.log(item.title+" is Selected for Edit Product section.");
@@ -139,6 +141,8 @@ export default function Home () {
         console.log("Cancel Button is pressed, back to Expenses Page.")
         setViewMode("expenses");
     }
+
+    /** Edit Product END */
 
     return (  
         <ScrollView>

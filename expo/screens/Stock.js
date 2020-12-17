@@ -17,33 +17,39 @@ export default function Stock() {
     const [result_sensex, setResult_sensex] = useState({ value:"" , raise: "", raisepercent: ''});
     const [result_nifty, setResult_nifty] = useState({ value:"" , raise: "", raisepercent: ''});
     const [viewMode, setViewMode] = useState("rates");
-
+    const [companyName, setCompanyName] = useState([]);
 
     const fetchStock_sensex = () => {
-        //let y = fetchExpense();
         fetch(`${myConstClass.HTTP_LINK}/sensex`)
         .then(res=>res.json())
         .then(result_stock=>{
-            console.log("People data received inside Stock Page")
+            console.log("fetchStock_sensex data received inside Stock Page")
             setResult_sensex(result_stock);
-            // console.log(result_stock);
         })
     }
 
     const fetchStock_nifty = () => {
-        //let y = fetchExpense();
         fetch(`${myConstClass.HTTP_LINK}/nifty`)
         .then(res=>res.json())
         .then(result_stock=>{
-            console.log("People data received inside Stock Page")
+            console.log("fetchStock_nifty data received inside Stock Page")
             setResult_nifty(result_stock);
-            // console.log(result_stock);
+        })
+    }
+
+    const fetchStock_companyNames = () => {
+        fetch(`${myConstClass.HTTP_LINK}/companyName`)
+        .then(res=>res.json())
+        .then(companyName=>{
+            console.log("SenSex companies data received inside Stock Page")
+            setCompanyName(companyName);
         })
     }
 
     useEffect(()=>{
         fetchStock_sensex(),
         fetchStock_nifty(),
+        fetchStock_companyNames(),
         LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
     },[])
 
@@ -127,10 +133,12 @@ export default function Stock() {
 
     function SenSex() {
         return(
-            <View>
-                <Text>
-                    AAIYA PRINT KAR BC
-                </Text>
+            <View style={ {marginLeft: 20} }>
+                {companyName.map(item => {
+                    return (
+                        <Text>{item}</Text>
+                    );
+                })}
             </View>
         )
     }
