@@ -9,8 +9,8 @@ import {
     ProgressChart,
     ContributionGraph
   } from 'react-native-chart-kit';
-  import { VictoryBar, VictoryChart, VictoryTheme, VictoryLine } from "victory-native";
-
+import { VictoryBar, VictoryChart, VictoryTheme, VictoryLine } from "victory-native";
+import result from '../server/stock';
 
 export default function Stock() {
     
@@ -38,9 +38,9 @@ export default function Stock() {
 
 
             {/* THAKKER AAIYA PRINT KAR */}
-            <Text style={{  margin: 10, fontSize: 18,fontFamily: 'GothamMedium', color: "black"}}>Value</Text>
-            <Text style={{  margin: 10, fontSize: 18,fontFamily: 'GothamMedium', color: "black"}}>Raise</Text>
-            <Text style={{  margin: 10, fontSize: 18,fontFamily: 'GothamMedium', color: "black"}}>raisePercent</Text>
+            <Text style={{  margin: 10, fontSize: 18,fontFamily: 'GothamMedium', color: "black"}}>Value: {result.value.toString()} </Text>
+            <Text style={{  margin: 10, fontSize: 18,fontFamily: 'GothamMedium', color: "black"}}>Raise: {result.raise.toString()} </Text>
+            <Text style={{  margin: 10, fontSize: 18,fontFamily: 'GothamMedium', color: "black"}}>raisePercent: {result.raisepercent.toString()} </Text>
 
             <VictoryChart theme={VictoryTheme.material}>
                 <VictoryLine
@@ -49,13 +49,12 @@ export default function Stock() {
                     parent: { border: "1px solid #ccc"}
                     }}
                     data={[
-                    { x: 1, y: 2 },
-                    { x: 2, y: 3 },
-                    { x: 3, y: 5 },
-                    { x: 4, y: 4 },
-                    { x: 5, y: 7 }
+                        { x: 1, y: 2 },
+                        { x: 2, y: 3 },
+                        { x: 3, y: 5 },
+                        { x: 4, y: 4 },
+                        { x: 5, y: 7 }
                     ]}
-                    
                 />
             </VictoryChart>
 

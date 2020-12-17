@@ -2,7 +2,11 @@ const puppeteer = require('puppeteer');
 const express = require('express');
 const app = express();
 
-let result = "";
+const result = {
+	value: 0,
+	raise: 0,
+	raisepercent: 0
+}
 
 async function senSex(url) {
   const browser = await puppeteer.launch();
@@ -23,7 +27,9 @@ async function senSex(url) {
   const txt2 = await el2.getProperty('textContent');
   const raisepercent = await txt2.jsonValue();
 
-  result = {value, raisepercent, raise};
+  result.value = value;
+  result.raise = raise;
+  result.raisepercent = raisepercent;
 
   console.log({value, raise, raisepercent});
 
@@ -41,5 +47,7 @@ app.get('/', (req, res) => {
 app.listen(5000,()=>{
     console.log("Server Running at port 5000")
 })
+
+export default result;
 
 // senSex Data Only
