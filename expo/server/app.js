@@ -3,6 +3,8 @@ const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
+const request = require('request');
+const cheerio = require('cheerio');
 
 
 // IMPORTING Schemas
@@ -283,6 +285,37 @@ nifty('https://www.google.com/search?q=NIFTY+50&oq=nifty&aqs=chrome.0.69i59j69i5
 
 app.get('/nifty', (req, res) => {
     res.send(result_nifty)
+})
+
+
+let companyName = [];
+
+request('https://economictimes.indiatimes.com/indices/sensex_30_companies?from=mdr', (error, 
+response, html) => {
+    if(!error && response.statusCode == 200) {
+        const $ = cheerio.load(html);
+
+        // COMPANY NAME
+
+        $('.w150').each((i, el) => {
+            const item = $(el)
+                .find('p')
+                .children('a')
+                .text();
+            // console.log(item);
+
+            if(i!==0){
+                companyName.push(item);
+            }
+
+        });
+        
+    }
+
+});
+
+app.get('/companyName', (req, res) => {
+    res.send(companyName);
 })
 
 

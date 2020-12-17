@@ -3,6 +3,8 @@ const cheerio = require('cheerio');
 const express = require('express');
 const app = express();
 
+let name = [];
+
 request('https://economictimes.indiatimes.com/indices/sensex_30_companies?from=mdr', (error, 
 response, html) => {
     if(!error && response.statusCode == 200) {
@@ -10,13 +12,18 @@ response, html) => {
 
         // COMPANY NAME
 
-        // $('.w150').each((i, el) => {
-        //     const item = $(el)
-        //         .find('p')
-        //         .children('a')
-        //         .text();
-        //     console.log(item);
-        // });
+        $('.w150').each((i, el) => {
+            const item = $(el)
+                .find('p')
+                .children('a')
+                .text();
+            // console.log(item);
+
+            if(i!==0){
+                name.push(item);
+            }
+
+        });
 
 
         // CHANGE
@@ -27,6 +34,7 @@ response, html) => {
         //         .text();
             
         //     console.log(item);
+        //     name.push(item);
         // });
 
         
@@ -35,9 +43,10 @@ response, html) => {
 
 });
 
-// app.get('/x', (req, res) => {
-//     res.send(company);
-// })
+app.get('/', (req, res) => {
+    res.send(name);
+})
 
-// app.listen(5000);
+app.listen(5000);
+
 

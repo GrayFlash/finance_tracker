@@ -124,6 +124,16 @@ export default function Stock() {
         )
     }
     
+
+    function SenSex() {
+        return(
+            <View>
+                <Text>
+                    AAIYA PRINT KAR BC
+                </Text>
+            </View>
+        )
+    }
     return (
 
         <ScrollView>
@@ -219,6 +229,8 @@ export default function Stock() {
             </View>
             
             { viewMode == "rates" && Rates()}
+
+            { viewMode == "sensex" && SenSex()}
 
         </ScrollView>
         
