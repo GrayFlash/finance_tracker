@@ -240,9 +240,6 @@ senSex('https://www.google.com/search?q=sen+sex&oq=sen+sex&aqs=chrome..69i57.486
 
 app.get('/sensex', (req, res) => {
     res.send(result_sensex)
-    .catch(err => {
-        console.log("Yooooooo Bitach"+err);
-    });
 })
 
 
@@ -286,9 +283,6 @@ nifty('https://www.google.com/search?q=NIFTY+50&oq=nifty&aqs=chrome.0.69i59j69i5
 
 app.get('/nifty', (req, res) => {
     res.send(result_nifty)
-    .catch(err => {
-        console.log("Yooooooo Bitach"+err);
-    });
 })
 
 
