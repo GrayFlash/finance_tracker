@@ -135,6 +135,11 @@ export default function Home () {
         });
     }
 
+    const editProductCancelButtonHandler = () => {
+        console.log("Cancel Button is pressed, back to Expenses Page.")
+        setViewMode("expenses");
+    }
+
     return (  
         <ScrollView>
             {<NavigationBar viewMode={viewMode} NavbarButtonHandler={NavbarButtonHandler}/>}
@@ -159,6 +164,7 @@ export default function Home () {
                                 NavbarButtonHandler={NavbarButtonHandler} 
                                 editProductSaveButtonHandler={editProductSaveButtonHandler}
                                 editProductDeleteButtonHandler={editProductDeleteButtonHandler}
+                                editProductCancelButtonHandler={editProductCancelButtonHandler}
                  />
             }
             {

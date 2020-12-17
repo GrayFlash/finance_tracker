@@ -1,75 +1,15 @@
+import { useNavigation } from '@react-navigation/native';
 import React, { useState, useEffect} from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet , Alert, Picker } from 'react-native'
 import * as myConstClass from '../../screens/HttpLink';
 
-export default function EditProduct({ item, categoriesData, editProductSaveButtonHandler, editProductDeleteButtonHandler }) {
+export default function EditProduct({ item, categoriesData, editProductSaveButtonHandler, editProductDeleteButtonHandler, editProductCancelButtonHandler }) {
     const [selectedValue, setSelectedValue] = useState(item.category);
 
     const [_id, set_id] = useState(item._id);
     const [productName, setProductName] = useState(item.title);
     const [amount, setAmount] = useState(item.total.toString());
     const [description, setDescription] = useState(item.description);
-
-    const updateData = () => {
-        const obj = {
-            id: _id,
-            title: productName,
-            description: description,
-            category: selectedValue,
-            total: Number(amount)
-        }
-        editProductSaveButtonHandler(obj);
-        /*
-        console.log("Yooooo Bitch!!!\n"+JSON.stringify(obj));
-        console.log(`${myConstClass.HTTP_LINK}/updateExpense`);
-        fetch(`${myConstClass.HTTP_LINK}/updateExpense`,{
-            method:"post",
-            headers:{
-                'Content-Type':'application/json'
-            },
-            body:JSON.stringify({
-                id:_id,
-                title:productName,
-                description:description,
-                category:selectedValue,
-                total:Number(amount)
-            })
-        })
-        .then(res=>res.json())
-        .then(data=>{
-            Alert.alert(`Details of ${productName} has been updated`)
-            NavbarButtonHandler("expenses");
-        })
-        .catch(err=>{
-            Alert.alert("Some Error")
-            console.log(err)
-        })
-        */
-    }
-
-
-    const deleteData = () => {
-        fetch(`${myConstClass.HTTP_LINK}/deleteExpense`,{
-            method:"post",
-            headers:{
-                'Content-Type':'application/json'
-            },
-            body:JSON.stringify({
-                id:_id
-            })
-        })
-        .then(res=>res.json())
-        .then(data=>{
-            Alert.alert(`Details of ${productName} has been deleted`)
-        })
-        .then(() => {
-            NavbarButtonHandler("expenses");
-        })
-        .catch(err=>{
-            Alert.alert("Some Error while Deleting a product inside Edit Product Page.")
-            console.log(err)
-        });
-    }
 
     return (
         <View style={styles.container}>
@@ -125,37 +65,46 @@ export default function EditProduct({ item, categoriesData, editProductSaveButto
             />
             
             <View style={{flex: 1, flexDirection: 'row', alignItems: 'center'}}> 
-            <TouchableOpacity 
-                style={{paddingTop: 10,marginTop: 10, flex: 1, marginRight: 5}}
-                onPress={() => updateData()}
-            >
-                <View style={{
-                    backgroundColor: "#222222",
-                    padding: 12,
-                    borderRadius: 6,
-                }}>
-                    <Text style={{color: "white", textAlign: "center", fontFamily: 'GothamMedium'}}>Edit Product</Text>
-                </View>
-            </TouchableOpacity>
+                <TouchableOpacity 
+                    style={{paddingTop: 10,marginTop: 10, flex: 1, marginRight: 5}}
+                    onPress={() => {
+                        const obj = {
+                            id: _id,
+                            title: productName,
+                            description: description,
+                            category: selectedValue,
+                            total: Number(amount)
+                        }
+                        editProductSaveButtonHandler(obj);
+                    }}
+                >
+                    <View style={{
+                        backgroundColor: "#222222",
+                        padding: 12,
+                        borderRadius: 6,
+                    }}>
+                        <Text style={{color: "white", textAlign: "center", fontFamily: 'GothamMedium'}}>Edit Product</Text>
+                    </View>
+                </TouchableOpacity>
 
 
-            <TouchableOpacity 
-                style={{paddingTop: 10,marginTop: 10, flex: 1, marginLeft: 5}}
-                onPress={() => editProductDeleteButtonHandler(_id, productName)}
-            >
-                <View style={{
-                    backgroundColor: "red",
-                    padding: 12,
-                    borderRadius: 6,
-                }}>
-                    <Text style={{color: "white", textAlign: "center", fontFamily: 'GothamMedium'}}>Delete</Text>
-                </View>
-            </TouchableOpacity>
+                <TouchableOpacity 
+                    style={{paddingTop: 10,marginTop: 10, flex: 1, marginLeft: 5}}
+                    onPress={() => editProductDeleteButtonHandler(_id, productName)}
+                >
+                    <View style={{
+                        backgroundColor: "red",
+                        padding: 12,
+                        borderRadius: 6,
+                    }}>
+                        <Text style={{color: "white", textAlign: "center", fontFamily: 'GothamMedium'}}>Delete</Text>
+                    </View>
+                </TouchableOpacity>
             </View>
 
             <TouchableOpacity 
                 style={{paddingTop: 10,marginTop: 10}}
-                onPress={() => NavbarButtonHandler("expenses")}
+                onPress={() => editProductCancelButtonHandler()}
             >
                 <View style={{
                     backgroundColor: "white",
