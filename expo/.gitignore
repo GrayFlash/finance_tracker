@@ -2,3 +2,5 @@ node_modules
 CloudVision.js
 uri.js
 ./screens/HttpLink.js
+env
+model
