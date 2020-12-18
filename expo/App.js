@@ -5,7 +5,7 @@ import { StyleSheet, Text, View, TouchableOpacity, Image, Button } from 'react-n
 import Home from './screens/Home';
 import Profile from './screens/Profile';
 import Stock from './screens/Stock';
-import List from './screens/List';
+import Crypto from './screens/Crypto';
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import {AppLoading} from 'expo';
@@ -46,7 +46,7 @@ function App(props) {
 				<Drawer.Screen name="Home" component={Home} />
 				<Drawer.Screen name="Profile" component={Profile} />
 				<Drawer.Screen name="Stock" component={Stock} />
-				<Drawer.Screen name="AddList" component={List} />
+				<Drawer.Screen name="Cryptocurrency" component={Crypto} />
 			</Drawer.Navigator>
 		</View>
 	);

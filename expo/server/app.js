@@ -199,7 +199,7 @@ app.get('/personDetails', (req, res)=>{
 // PROFILE ends
 
 
-/** Stock Page Result */
+// STOCK SCRAPPING
 
 const result_sensex = {
 	value: 0,
@@ -421,6 +421,9 @@ response, html) => {
 app.get('/ltp_nifty', (req, res) => {
     res.send(ltp_nifty);
 })
+
+// STOCK SCRAPPING ENDS
+
 
 app.listen(3000,()=>{
     console.log("Server Running at port 3000")

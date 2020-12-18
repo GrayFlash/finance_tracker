@@ -187,7 +187,6 @@ export default function Stock() {
             <View style={{ flex: 1, justifyContent: 'center', backgroundColor: "transparent"}}>
             <View style={{borderBottomWidth: 1, borderBottomColor: "#999999"}} />
             <View style={{ flexDirection: 'row', marginTop: 10 , marginBottom: 5}}>
-
                 <View style={{ flex: 1}}>
                     <Text style={{  marginLeft: 16, fontSize: 15,fontFamily: 'GothamBold', color: "black"}}>Company Name</Text>
                     <View style={{borderBottomWidth: 1, borderBottomColor: "#999999", marginTop: 10}} />

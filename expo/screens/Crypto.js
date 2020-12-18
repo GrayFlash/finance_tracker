@@ -3,7 +3,7 @@ import React, {useState, useEffect} from 'react';
 import { KeyboardAvoidingView, View , Text, StyleSheet, Image, TouchableOpacity, TextInput, Alert, FlatList, ScrollView, ImageBackground } from 'react-native';
 import * as myConstClass from './HttpLink';
 
-export default function List() {
+export default function Crypto() {
     
     const navigation = useNavigation();
 
@@ -17,9 +17,9 @@ export default function List() {
                             <Image style={{marginLeft: 0, width: 27, height: 27, marginRight: 60 }} source={require('../assets/icons/back_arrow_icon.png')} />
                         </View>
                     </TouchableOpacity>
-                    <View style={{ flex: 1,}}>
+                    <View>
                         <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
-                            <Text style={{  marginLeft: 0, fontSize: 18,fontFamily: 'GothamMedium', color: "black"}}>AddList</Text>
+                            <Text style={{  marginLeft: 0, fontSize: 18,fontFamily: 'GothamMedium', color: "black"}}>Cryptocurrencies</Text>
                         </View>
                     </View>
                     <View style={{ flex: 1,}}>
@@ -28,46 +28,8 @@ export default function List() {
                 </View>
             </View>
 
-            <View>
-        <View style={styles.container} >
-            <Text style={{
-                textAlign: "center", 
-                color:"black", 
-                fontFamily:"GothamBold", 
-                fontSize: 17, 
-                paddingBottom: 10,
-            }}>Add Product</Text>
-            <View style={{borderBottomWidth: 1, borderBottomColor: "black", marginHorizontal: 60, marginBottom: 20}} />
-            <Text style={styles.Text}>Product Name</Text>
-            <TextInput 
-                style={styles.inputField}
-                
-            />
-
-            <Text style={styles.Text}>Category</Text>
-
-            <Text style={styles.Text}>Amount</Text>
-            <TextInput 
-                style={styles.inputField}
-                
-            />
-
-            <Text style={styles.Text}>Description</Text>
-            <TextInput 
-                style={styles.inputField}
-                multiline={true}
-                
-            />
-            <TouchableOpacity 
-                style={{paddingTop: 10,marginTop: 10, marginBottom: 20}}
-                
-            >
-                <View style={{backgroundColor: "black"}}>
-                    <Text style={{color: "white", textAlign: "center", fontFamily: 'GothamMedium'}}>Add Product</Text>
-                </View>
-            </TouchableOpacity>
-        </View>
-        
+            <View style={{alignItems: 'center',marginTop: 200}}>
+                <Text style={{textAlign: 'center', fontSize: 20}}>Jyada time nahi lagega ye page add karne me, kar du add ye bhi?????</Text>
             </View>
         </ScrollView>
         
