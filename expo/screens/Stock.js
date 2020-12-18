@@ -17,15 +17,19 @@ export default function Stock() {
     const [result_sensex, setResult_sensex] = useState({ value:"" , raise: "", raisepercent: ''});
     const [result_nifty, setResult_nifty] = useState({ value:"" , raise: "", raisepercent: ''});
     const [viewMode, setViewMode] = useState("rates");
+
     const [companyName_sensex, setCompanyName_sensex] = useState([]);
     const [change_sensex, setChange_sensex] = useState([]);
     const [ltp_sensex, setLtp_sensex] = useState([]);
+
+    const [companyName_nifty, setCompanyName_nifty] = useState([]);
+    const [change_nifty, setChange_nifty] = useState([]);
+    const [ltp_nifty, setLtp_nifty] = useState([]);
 
     const fetchStock_sensex = () => {
         fetch(`${myConstClass.HTTP_LINK}/sensex`)
         .then(res=>res.json())
         .then(result_stock=>{
-            console.log("fetchStock_sensex data received inside Stock Page")
             setResult_sensex(result_stock);
         })
     }
@@ -34,7 +38,6 @@ export default function Stock() {
         fetch(`${myConstClass.HTTP_LINK}/nifty`)
         .then(res=>res.json())
         .then(result_stock=>{
-            console.log("fetchStock_nifty data received inside Stock Page")
             setResult_nifty(result_stock);
         })
     }
@@ -43,7 +46,6 @@ export default function Stock() {
         fetch(`${myConstClass.HTTP_LINK}/companyName_sensex`)
         .then(res=>res.json())
         .then(companyName=>{
-            console.log("SenSex companies data received inside Stock Page")
             setCompanyName_sensex(companyName);
         })
     }
@@ -52,7 +54,6 @@ export default function Stock() {
         fetch(`${myConstClass.HTTP_LINK}/change_sensex`)
         .then(res=>res.json())
         .then(companyName=>{
-            console.log("SenSex companies data received inside Stock Page")
             setChange_sensex(companyName);
         })
     }
@@ -61,8 +62,31 @@ export default function Stock() {
         fetch(`${myConstClass.HTTP_LINK}/ltp_sensex`)
         .then(res=>res.json())
         .then(companyName=>{
-            console.log("SenSex companies data received inside Stock Page")
             setLtp_sensex(companyName);
+        })
+    }
+
+    const fetchStock_companyNames_nifty = () => {
+        fetch(`${myConstClass.HTTP_LINK}/companyName_nifty`)
+        .then(res=>res.json())
+        .then(companyName=>{
+            setCompanyName_nifty(companyName);
+        })
+    }
+
+    const fetchStock_change_nifty = () => {
+        fetch(`${myConstClass.HTTP_LINK}/change_nifty`)
+        .then(res=>res.json())
+        .then(companyName=>{
+            setChange_nifty(companyName);
+        })
+    }
+
+    const fetchStock_ltp_nifty = () => {
+        fetch(`${myConstClass.HTTP_LINK}/ltp_nifty`)
+        .then(res=>res.json())
+        .then(companyName=>{
+            setLtp_nifty(companyName);
         })
     }
 
@@ -72,6 +96,9 @@ export default function Stock() {
         fetchStock_companyNames_sensex(),
         fetchStock_change_sensex(),
         fetchStock_ltp_sensex(),
+        fetchStock_companyNames_nifty(),
+        fetchStock_change_nifty(),
+        fetchStock_ltp_nifty(),
         LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
     },[])
 
@@ -155,29 +182,173 @@ export default function Stock() {
 
     function SenSex() {
         return(
-            <View style={{flexDirection: 'row'}}>
-            <View style={{marginLeft: 20,}}>
-                {companyName_sensex.map(item => {
-                    return (
-                        <Text>{item}</Text>
-                    );
-                })}
+            <View>
+
+            <View style={{ flex: 1, justifyContent: 'center', backgroundColor: "transparent"}}>
+            <View style={{borderBottomWidth: 1, borderBottomColor: "#999999"}} />
+            <View style={{ flexDirection: 'row', marginTop: 10 , marginBottom: 5}}>
+
+                <View style={{ flex: 1}}>
+                    <Text style={{  marginLeft: 16, fontSize: 15,fontFamily: 'GothamBold', color: "black"}}>Company Name</Text>
+                    <View style={{borderBottomWidth: 1, borderBottomColor: "#999999", marginTop: 10}} />
+                </View>
+
+                <View style={{ flex: 1}}>
+                    <Text style={{marginLeft: 26, fontSize: 15,fontFamily: 'GothamBold', color: "black"}}>LTP</Text>
+                    <View style={{borderBottomWidth: 1, borderBottomColor: "#999999", marginTop: 10}} />
+                </View>
+
+                <View>
+                    <Text style={{ marginRight: 16,  fontSize: 15,fontFamily: 'GothamBold', color: "black"}}>Change</Text>
+                    <View style={{borderBottomWidth: 1, borderBottomColor: "#999999", marginTop: 10}} />
+                </View>
+                
+            </View>
+                <View style={{ flexDirection: 'row', marginTop: 0 , marginBottom: 5}}>
+
+                        <View style={{ flex: 1,}}>
+                            {companyName_sensex.map((item) => {
+                                return (
+                                    <View>
+                                    <Text style={{  
+                                        marginLeft: 18,
+                                        marginTop: 10,
+                                        fontSize: 14,
+                                        fontFamily: 'GothamMedium', 
+                                        color: "black"
+                                    }}>{item}</Text>
+                                    <View style={{borderBottomWidth: 1, borderBottomColor: "#BEC1D2", marginTop: 10}} />
+                                    </View>
+                                );
+
+                            })}
+                            
+                            
+                        </View>
+                        
+
+                        <View style={{ flex: 1 }}>
+                            {ltp_sensex.map(item => {
+                                return (
+                                    <View>
+                                    <Text style={{
+                                        marginLeft: 16,
+                                        marginTop: 10, 
+                                        fontSize: 14,
+                                        fontFamily: 'GothamMedium', 
+                                        color: "black"
+                                    }}>{item}</Text>
+                                    <View style={{borderBottomWidth: 1, borderBottomColor: "#BEC1D2", marginTop: 10}} />
+                                    </View>
+                                );
+                            })}
+                        </View>
+
+                        <View>
+                            {change_sensex.map(item => {
+                                return (
+                                    <View>
+                                    <Text style={{ 
+                                        marginRight: 16,
+                                        marginTop: 10, 
+                                        fontSize: 14,
+                                        fontFamily: 'GothamMedium', 
+                                        color: item.charAt(0)=="-" ? "red" : "green"
+                                    }}>{item}</Text>
+                                    <View style={{borderBottomWidth: 1, borderBottomColor: "#BEC1D2", marginTop: 10}} />
+                                    </View>
+                                );
+                            })}
+                        </View>
+                </View>
             </View>
 
-            <View>
-                {change_sensex.map(item => {
-                    return (
-                        <Text>{item}</Text>
-                    );
-                })}
             </View>
-            <View>
-                {ltp_sensex.map(item => {
-                    return (
-                        <Text>{item}</Text>
-                    );
-                })}
+        )
+    }
+
+    function Nifty() {
+        return(
+            <View style={{flexDirection: 'row'}}>
+                <View style={{ flex: 1, justifyContent: 'center', backgroundColor: "transparent"}}>
+            <View style={{borderBottomWidth: 1, borderBottomColor: "#999999"}} />
+            <View style={{ flexDirection: 'row', marginTop: 10 , marginBottom: 5}}>
+
+                <View style={{ flex: 1}}>
+                    <Text style={{  marginLeft: 16, fontSize: 15,fontFamily: 'GothamBold', color: "black"}}>Company Name</Text>
+                    <View style={{borderBottomWidth: 1, borderBottomColor: "#999999", marginTop: 10}} />
+                </View>
+
+                <View style={{ flex: 1}}>
+                    <Text style={{marginLeft: 26, fontSize: 15,fontFamily: 'GothamBold', color: "black"}}>LTP</Text>
+                    <View style={{borderBottomWidth: 1, borderBottomColor: "#999999", marginTop: 10}} />
+                </View>
+
+                <View>
+                    <Text style={{ marginRight: 16,  fontSize: 15,fontFamily: 'GothamBold', color: "black"}}>Change</Text>
+                    <View style={{borderBottomWidth: 1, borderBottomColor: "#999999", marginTop: 10}} />
+                </View>
+                
             </View>
+                <View style={{ flexDirection: 'row', marginTop: 0 , marginBottom: 5}}>
+
+                        <View style={{ flex: 1,}}>
+                            {companyName_nifty.map((item) => {
+                                return (
+                                    <View>
+                                    <Text style={{  
+                                        marginLeft: 18,
+                                        marginTop: 10,
+                                        fontSize: 14,
+                                        fontFamily: 'GothamMedium', 
+                                        color: "black"
+                                    }}>{item}</Text>
+                                    <View style={{borderBottomWidth: 1, borderBottomColor: "#BEC1D2", marginTop: 10}} />
+                                    </View>
+                                );
+
+                            })}
+                            
+                            
+                        </View>
+                        
+
+                        <View style={{ flex: 1 }}>
+                            {ltp_nifty.map(item => {
+                                return (
+                                    <View>
+                                    <Text style={{
+                                        marginLeft: 16,
+                                        marginTop: 10, 
+                                        fontSize: 14,
+                                        fontFamily: 'GothamMedium', 
+                                        color: "black"
+                                    }}>{item}</Text>
+                                    <View style={{borderBottomWidth: 1, borderBottomColor: "#BEC1D2", marginTop: 10}} />
+                                    </View>
+                                );
+                            })}
+                        </View>
+
+                        <View>
+                            {change_nifty.map(item => {
+                                return (
+                                    <View>
+                                    <Text style={{ 
+                                        marginRight: 16,
+                                        marginTop: 10, 
+                                        fontSize: 14,
+                                        fontFamily: 'GothamMedium', 
+                                        color: item.charAt(0)=="-" ? "red" : "green"
+                                    }}>{item}</Text>
+                                    <View style={{borderBottomWidth: 1, borderBottomColor: "#BEC1D2", marginTop: 10}} />
+                                    </View>
+                                );
+                            })}
+                        </View>
+                </View>
+            </View>
+            
             </View>
         )
     }
@@ -244,7 +415,7 @@ export default function Stock() {
                                 justifyContent: 'center'
                             }}
                         >
-                            <Text style={{ marginLeft: 0, fontSize: 16, fontFamily: 'GothamMedium', lineHeight: 22, color: "black" }}>SenSex</Text>
+                            <Text style={{ marginLeft: 0, fontSize: 16, fontFamily: 'GothamMedium', lineHeight: 22, color: "black" }}>Sensex</Text>
                         </View>
                     </TouchableOpacity>
 
@@ -278,6 +449,8 @@ export default function Stock() {
             { viewMode == "rates" && Rates()}
 
             { viewMode == "sensex" && SenSex()}
+
+            { viewMode == "nifty" && Nifty()}
 
         </ScrollView>
         
