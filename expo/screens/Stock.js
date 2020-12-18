@@ -17,7 +17,9 @@ export default function Stock() {
     const [result_sensex, setResult_sensex] = useState({ value:"" , raise: "", raisepercent: ''});
     const [result_nifty, setResult_nifty] = useState({ value:"" , raise: "", raisepercent: ''});
     const [viewMode, setViewMode] = useState("rates");
-    const [companyName, setCompanyName] = useState([]);
+    const [companyName_sensex, setCompanyName_sensex] = useState([]);
+    const [change_sensex, setChange_sensex] = useState([]);
+    const [ltp_sensex, setLtp_sensex] = useState([]);
 
     const fetchStock_sensex = () => {
         fetch(`${myConstClass.HTTP_LINK}/sensex`)
@@ -37,19 +39,39 @@ export default function Stock() {
         })
     }
 
-    const fetchStock_companyNames = () => {
-        fetch(`${myConstClass.HTTP_LINK}/companyName`)
+    const fetchStock_companyNames_sensex = () => {
+        fetch(`${myConstClass.HTTP_LINK}/companyName_sensex`)
         .then(res=>res.json())
         .then(companyName=>{
             console.log("SenSex companies data received inside Stock Page")
-            setCompanyName(companyName);
+            setCompanyName_sensex(companyName);
+        })
+    }
+
+    const fetchStock_change_sensex = () => {
+        fetch(`${myConstClass.HTTP_LINK}/change_sensex`)
+        .then(res=>res.json())
+        .then(companyName=>{
+            console.log("SenSex companies data received inside Stock Page")
+            setChange_sensex(companyName);
+        })
+    }
+
+    const fetchStock_ltp_sensex = () => {
+        fetch(`${myConstClass.HTTP_LINK}/ltp_sensex`)
+        .then(res=>res.json())
+        .then(companyName=>{
+            console.log("SenSex companies data received inside Stock Page")
+            setLtp_sensex(companyName);
         })
     }
 
     useEffect(()=>{
         fetchStock_sensex(),
         fetchStock_nifty(),
-        fetchStock_companyNames(),
+        fetchStock_companyNames_sensex(),
+        fetchStock_change_sensex(),
+        fetchStock_ltp_sensex(),
         LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
     },[])
 
@@ -133,12 +155,29 @@ export default function Stock() {
 
     function SenSex() {
         return(
-            <View style={ {marginLeft: 20} }>
-                {companyName.map(item => {
+            <View style={{flexDirection: 'row'}}>
+            <View style={{marginLeft: 20,}}>
+                {companyName_sensex.map(item => {
                     return (
                         <Text>{item}</Text>
                     );
                 })}
+            </View>
+
+            <View>
+                {change_sensex.map(item => {
+                    return (
+                        <Text>{item}</Text>
+                    );
+                })}
+            </View>
+            <View>
+                {ltp_sensex.map(item => {
+                    return (
+                        <Text>{item}</Text>
+                    );
+                })}
+            </View>
             </View>
         )
     }
