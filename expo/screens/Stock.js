@@ -14,8 +14,8 @@ import { VictoryBar, VictoryChart, VictoryTheme, VictoryLine } from "victory-nat
 export default function Stock() {
     
     const navigation = useNavigation();
-    const [result_sensex, setResult_sensex] = useState({ value:"" , raise: "", raisepercent: ''});
-    const [result_nifty, setResult_nifty] = useState({ value:"" , raise: "", raisepercent: ''});
+    const [result_sensex, setResult_sensex] = useState({ value:"" , raise: ""});
+    const [result_nifty, setResult_nifty] = useState({ value:"" , raise: ""});
     const [viewMode, setViewMode] = useState("rates");
 
     const [companyName_sensex, setCompanyName_sensex] = useState([]);
@@ -123,7 +123,7 @@ export default function Stock() {
                     </View>
 
                     <View style={{paddingTop: 26,marginRight: 16, justifyContent: 'center' }}>
-                        <Text style={{fontFamily: 'GothamMedium', fontSize: 16, color: result_sensex.raise.toString().charAt(0) == "+" ? "green" : "red"}}>{result_sensex.raise.toString()} {result_sensex.raisepercent.toString()}</Text>
+                        <Text style={{fontFamily: 'GothamMedium', fontSize: 16, color: result_sensex.raise.toString().charAt(0) == "-" ? "red" : "green"}}>{result_sensex.raise.toString()}</Text>
                     </View>
                 </View> 
 
@@ -154,7 +154,7 @@ export default function Stock() {
                     </View>
 
                     <View style={{paddingTop: 26,marginRight: 16, justifyContent: 'center' }}>
-                        <Text style={{fontFamily: 'GothamMedium', fontSize: 16, color: result_nifty.raise.toString().charAt(0) == "+" ? "green" : "red"}}>{result_nifty.raise.toString()} {result_nifty.raisepercent.toString()}</Text>
+                        <Text style={{fontFamily: 'GothamMedium', fontSize: 16, color: result_nifty.raise.toString().charAt(0) == "-" ? "red" : "green"}}>{result_nifty.raise.toString()}</Text>
                     </View>
                 </View>
 
