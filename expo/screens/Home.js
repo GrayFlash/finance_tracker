@@ -77,7 +77,7 @@ export default function Home () {
         setSelectedCategory(item);
     }
 
-    /** Edit Product Start */
+    /** Edit Product Handlers Start */
 
     const editProductOpenButtonHandler = (mode, item) => {
         console.log("Edit Product Page is called.");
@@ -144,6 +144,36 @@ export default function Home () {
 
     /** Edit Product END */
 
+
+    /** Add Product Handlers Start */
+
+    const AddProductSaveButtonHandler = (item) => {
+        console.log("Add Product Button is pressed inside Add Product Page.");
+        fetch(`${myConstClass.HTTP_LINK}/addExpense`,{
+            method:"post",
+                headers:{
+                    'Content-Type':'application/json'
+                },
+                body:JSON.stringify(item)
+        })
+        .then(res=>res.json())
+        .then(data=>{
+            Alert.alert(`Details of ${item.title} has been updated`)
+        })
+        .then(() => {
+            NavbarButtonHandler("expenses");
+            setLoading(true);
+            fetchExpense();
+            setLoading(false);
+        })
+        .catch(err=>{
+            Alert.alert("Some Error on Adding product in Add Product Page.")
+            console.log(err);
+        });
+    }
+
+    /** Add Product END */
+
     return (  
         <ScrollView>
             {<NavigationBar viewMode={viewMode} NavbarButtonHandler={NavbarButtonHandler}/>}
@@ -178,7 +208,10 @@ export default function Home () {
             {
                 viewMode == "add" &&
                 <ScrollView style={{ marginTop: 10, marginHorizontal: 18 }} >
-                    <ScanBill categoriesData={categoriesData} people={people}/>
+                    <ScanBill   categoriesData={categoriesData} 
+                                people={people} 
+                                AddProductSaveButtonHandler={AddProductSaveButtonHandler} 
+                    />
                 </ScrollView>
             }
             

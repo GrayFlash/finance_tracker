@@ -2,13 +2,12 @@ import React, { useState, useEffect} from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet , Alert, Picker, ScrollView } from 'react-native';
 import * as myConstClass from '../../screens/HttpLink';
 
-export default function ManualAdd({categoriesData, people}) {
+export default function ManualAdd({ categoriesData, people, AddProductSaveButtonHandler }) {
     const [selectedValue, setSelectedValue] = useState("Food");
+    const [productName, setProductName] = useState();
+    const [amount, setAmount] = useState();
+    const [description, setDescription] = useState();
 
-    const [title, setTitle] = useState("");
-    const [category, setCategory] = useState("Food");
-    const [total, setTotal] = useState(0);
-    const [description, setDescription] = useState("");
     const updateUserData = async() =>{
         fetch(`${myConstClass.HTTP_LINK}/updatePerson`,{
             method:"post",
@@ -63,100 +62,80 @@ export default function ManualAdd({categoriesData, people}) {
         }
     }
 
-    
-    const addExpense = () => {
-        fetch(`${myConstClass.HTTP_LINK}/addExpense`,{
-            method:"post",
-                headers:{
-                    'Content-Type':'application/json'
-                },
-                body:JSON.stringify({
-                    title: total,
-                    category: category,
-                    total: parseInt(total),
-                    description: description
-                })
-        })
-        .then(res=>res.json())
-        .then(data =>{
-            updateCategoryExpense();
-            updateUserData();
-        })
-    }
     return (
         <View>
-        <Text style={{fontFamily: 'GothamLight', color:"black", textAlign: "center", paddingTop: 30}}>OR</Text>
-        <View style={styles.container} >
-            <Text style={{
-                textAlign: "center", 
-                color:"black", 
-                fontFamily:"GothamBold", 
-                fontSize: 17, 
-                paddingBottom: 10,
-            }}>Add Product</Text>
-            <View style={{borderBottomWidth: 1, borderBottomColor: "black", marginHorizontal: 60, marginBottom: 20}} />
-            <Text style={styles.Text}>Product Name</Text>
-            <TextInput 
-                style={styles.inputField}
-                //placeholder="Product Name" 
-                value={title}
-                onChangeText={text => setTitle(text)}
-            />
+            <Text style={{fontFamily: 'GothamLight', color:"black", textAlign: "center", paddingTop: 30}}>OR</Text>
+            <View style={styles.container} >
+                <Text style={{
+                    textAlign: "center", 
+                    color:"black", 
+                    fontFamily:"GothamBold", 
+                    fontSize: 17, 
+                    paddingBottom: 10,
+                }}>Add Product</Text>
 
-            <Text style={styles.Text}>Category</Text>
-            {/* <TextInput 
-                style={styles.inputField}
-            /> */}
-            <View style={{
-                backgroundColor: "white",
-                marginTop: 8,
-                marginBottom: 12,
-                borderRadius: 5,
-                borderWidth: 1,
-                borderColor: "#D1D1D1",
-            }}>
-                <Picker
-                    selectedValue={category}
-                    onValueChange={(itemValue, itemIndex) => setCategory(itemValue)}>
-                    <Picker.Item label="Hygiene" value="Hygiene" />
-                    <Picker.Item label="Food" value="Food" />
-                    <Picker.Item label="Home" value="Home" />
-                    <Picker.Item label="Others" value="Others" />
-                    <Picker.Item label="Stationery" value="Stationery" />
-                    <Picker.Item label="Clothes" value="Clothes" />
-                </Picker>
-            </View>
+                <View style={{borderBottomWidth: 1, borderBottomColor: "black", marginHorizontal: 60, marginBottom: 20}} />
+                <Text style={styles.Text}>Product Name</Text>
+                <TextInput 
+                    style={styles.inputField}
+                    placeholder="Enter name here.." 
+                    value={productName}
+                    onChangeText={text => setProductName(text)}
+                />
 
-            <Text style={styles.Text}>Amount</Text>
-            <TextInput 
-                style={styles.inputField}
-                //placeholder="Product Name" 
-                value={total.toString()}
-                onChangeText={text => setTotal(text)}
-            />
-
-            {/* <Text>Date</Text>
-            <TextInput 
-                style={styles.inputField}
-                //placeholder="Product Name" 
-            /> */}
-
-            <Text style={styles.Text}>Description</Text>
-            <TextInput 
-                style={styles.inputField}
-                // placeholder="Product Name" 
-                value={description}
-                onChangeText={text => setDescription(text)}
-            />
-            <TouchableOpacity 
-                style={{paddingTop: 10,marginTop: 10, marginBottom: 20}}
-                onPress={() => addExpense()}
-            >
-                <View style={styles.button}>
-                    <Text style={{color: "white", textAlign: "center", fontFamily: 'GothamMedium'}}>Add Product</Text>
+                <Text style={styles.Text}>Category</Text>
+                <View style={{
+                    backgroundColor: "white",
+                    marginTop: 8,
+                    marginBottom: 12,
+                    borderRadius: 5,
+                    borderWidth: 1,
+                    borderColor: "#D1D1D1",
+                }}>
+                    <Picker
+                        selectedValue={selectedValue}
+                        onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}>
+                        
+                        {categoriesData.map((item) => {
+                            return (
+                                <Picker.Item key={item._id} label={item.name} value={item.name} />
+                            );  
+                        })}
+                    </Picker>
                 </View>
-            </TouchableOpacity>
-        </View>
+
+                <Text style={styles.Text}>Amount</Text>
+                <TextInput 
+                    style={styles.inputField}
+                    placeholder="694.20" 
+                    value={amount}
+                    onChangeText={text => setAmount(text)}
+                />
+
+                <Text style={styles.Text}>Description</Text>
+                <TextInput 
+                    style={styles.inputField}
+                    value={description}
+                    onChangeText={text => setDescription(text)}
+                />
+                <TouchableOpacity 
+                    style={{paddingTop: 10,marginTop: 10, marginBottom: 20}}
+                    onPress={() => {
+                        //addExpense();
+                        const obj = {
+                            title: productName,
+                            description: description,
+                            category: selectedValue,
+                            total: Number(amount)
+                        }
+                        AddProductSaveButtonHandler(obj);
+                    }}
+                >
+                    <View style={styles.button}>
+                        <Text style={{color: "white", textAlign: "center", fontFamily: 'GothamMedium'}}>Add Product</Text>
+                    </View>
+                </TouchableOpacity>
+            </View>
         </View>
     );
 }

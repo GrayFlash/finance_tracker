@@ -13,7 +13,7 @@ import * as myConstClass from '../../screens/HttpLink';
 const cv2 ="AIzaSyDr7HF_EwCmPjZsGDeWmO02C2JOUxSKUmM";
 const cloudVision  = 'https://vision.googleapis.com/v1/images:annotate?key=' + cv2;
 
-export default function ScanBill({categoriesData, people}) {
+export default function ScanBill({ categoriesData, people, AddProductSaveButtonHandler }) {
 
     const [image, setImage] = useState(null);
     const [scannedData, setScannedData] = useState([]);
@@ -380,7 +380,10 @@ export default function ScanBill({categoriesData, people}) {
                             </Text>
                         </View>
                     </TouchableOpacity>
-                    <ManualAdd />
+                    <ManualAdd  categoriesData={categoriesData}
+                                people={people}
+                                AddProductSaveButtonHandler={AddProductSaveButtonHandler} 
+                    />
                     
                 </Animated.View>
             )}
