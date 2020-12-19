@@ -10,10 +10,10 @@ response, html) => {
     if(!error && response.statusCode == 200) {
         const $ = cheerio.load(html);
        
-            $('.cmc-table__cell--sort-by__percent-change-24-h').each((i, el) => {
+            $('.fjclfm').each((i, el) => {
             const item = $(el)
-                .find('div')
-                .text();
+                .find('.cmc-static-icon')
+                .attr('src');
 
                 crypto.push(item);
                 console.log(item);

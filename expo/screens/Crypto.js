@@ -144,228 +144,193 @@ export default function Crypto() {
 
     function All() {
         return(
-            <View style={{ flexDirection: 'row'}}>
-                <View >
-                    {all_crypto_name.map((item) => {
-                        return (
-                            <View key={all_crypto_name.indexOf(item)} >
-                                <Text style={{  
-                                    marginLeft: 18,
-                                    marginTop: 10,
-                                    fontSize: 14,
-                                    fontFamily: 'GothamMedium', 
-                                    color: "black"
-                                }}>{item}</Text>
-                                
-                                <View style={{borderBottomWidth: 1, borderBottomColor: "#BEC1D2", marginTop: 5}} />
-                            </View>
-                        );
-                    })}
-                            
-                </View>
-                <View >
-                    {all_crypto_price.map((item) => {
-                        return (
-                            <View key={all_crypto_price.indexOf(item)} >
-                                <Text style={{  
-                                    marginLeft: 18,
-                                    marginTop: 5,
-                                    fontSize: 14,
-                                    fontFamily: 'GothamMedium', 
-                                    color: "black"
-                                }}>{item}</Text>
-                                <View style={{borderBottomWidth: 1, borderBottomColor: "#BEC1D2", marginTop: 10}} />
-                            </View>
-                        );   
-                    })}
-                </View>
 
                 <View>
-                    {all_crypto_change.map((item) => {
-                        return (
-                            <View key={all_crypto_change.indexOf(item)} >
-                                <Text style={{  
-                                    paddingTop: 5,
-                                    marginLeft: 18,
-                                    marginBottom: 5,
-                                    fontSize: 14,
-                                    fontFamily: 'GothamMedium', 
-                                    color: item.charAt(0)=="-" ? "red" : "green",
-                                }}>{item}</Text>
-                                <View style={{borderBottomWidth: 1, borderBottomColor: "#BEC1D2", marginTop: 5}} />
-                            </View>
-                        );
-                        
-                    })}
+                <View style={{borderBottomWidth: 1, borderBottomColor: "#999999"}} />
+                <View style={{ flexDirection: 'row', marginTop: 10 , marginBottom: 5, backgroundColor: "transparent"}}>
+
+                    <View >
+                        <Text style={{  marginLeft: 16, fontSize: 15,fontFamily: 'GothamBold', color: "black"}}>Name</Text>
+                        <View style={{borderBottomWidth: 1, borderBottomColor: "#999999", marginTop: 10}} />
+                    </View>
+
+                    <View style={{ flex: 1}}>
+                        <View style={{ marginRight: 16,  marginTop: 17}} />
+                        <View style={{borderBottomWidth: 1, borderBottomColor: "#999999", marginTop: 10}} />
+                    </View>
+
+                    <View style={{ flex: 1}}>
+                        <Text style={{marginLeft: 26, fontSize: 15,fontFamily: 'GothamBold', color: "black"}}>Price</Text>
+                        <View style={{borderBottomWidth: 1, borderBottomColor: "#999999", marginTop: 10}} />
+                    </View>
+
+                    <View>
+                        <Text style={{ marginRight: 16,  fontSize: 15,fontFamily: 'GothamBold', color: "black"}}>24h</Text>
+                        <View style={{borderBottomWidth: 1, borderBottomColor: "#999999", marginTop: 10}} />
+                    </View>
+                    
                 </View>
+                    <View style={{ flexDirection: 'row'}}>
+                        <View>
+                            {all_crypto_name.map((item) => {
+                                return (
+                                    <View key={all_crypto_name.indexOf(item)} >
+                                        <Text style={{  
+                                            marginTop: 5,
+                                            paddingBottom: 5,
+                                            marginLeft: 16,
+                                            fontSize: 14,
+                                            fontFamily: 'GothamMedium', 
+                                            color: "black"
+                                        }}>{item}</Text>
+
+                                        <View style={{borderBottomWidth: 1, borderBottomColor: "#BEC1D2", marginTop: 5}} />
+                                        
+                                    </View>
+                                );
+                            })}
+                                    
+                        </View>
+                        <View style={{flex: 1}}>
+                            {all_crypto_price.map((item) => {
+                                return (
+                                    <View key={all_crypto_price.indexOf(item)} >
+                                        <Text style={{  
+                                            marginTop: 5,
+                                            paddingBottom: 5,
+                                            fontSize: 14,
+                                            fontFamily: 'GothamMedium', 
+                                            color: "black"
+                                        }}>{item}</Text>
+
+                                    <View style={{borderBottomWidth: 1, borderBottomColor: "#BEC1D2", marginTop: 5}} />
+                                        
+                                    </View>
+                                );   
+                            })}
+                        </View>
+
+                        {/* <View style={{flex: 1}}>
+                            {crypto_price_lose.map((item) => {
+                                return (
+                                    <View key={crypto_price_lose.indexOf(item)} >
+                                        <Text style={{  
+                                            paddingTop: 5,
+                                            marginLeft: 15,
+                                            marginTop: 5,
+                                            fontSize: 14,
+                                            fontFamily: 'GothamMedium', 
+                                            color: "black",
+                                        }}>{item}</Text>
+
+                                    <View style={{borderBottomWidth: 1, borderBottomColor: "#BEC1D2", marginTop: 5}} /> 
+                                    </View>
+                                );
+                                
+                            })}
+                        </View> */}
+                                    
                             
-            </View>
-            /////////
-            // <View style={{ flex:1}}>
-            //     {all_crypto_name.map((item) => {
-            //             return (
-            //                 <View key={all_crypto_name.indexOf(item)} >
-            //                     <Text style={{  
-            //                         marginLeft: 18,
-            //                         marginTop: 10,
-            //                         fontSize: 14,
-            //                         fontFamily: 'GothamMedium', 
-            //                         color: "black"
-            //                     }}>{item}</Text>
-            //                 </View>
-            //             );
-            //         })}
-
-            //         {all_crypto_price.map((item) => {
-            //             return (
-            //                 <View key={all_crypto_price.indexOf(item)} >
-            //                     <Text style={{  
-            //                         marginLeft: 18,
-            //                         marginTop: 10,
-            //                         fontSize: 14,
-            //                         fontFamily: 'GothamMedium', 
-            //                         color: "black"
-            //                     }}>{item}</Text>
-            //                 </View>
-            //             );
-            //         })}
-
-            //         {all_crypto_change.map((item) => {
-            //             return (
-            //                 <View key={all_crypto_change.indexOf(item)} >
-            //                     <Text style={{  
-            //                         marginLeft: 18,
-            //                         marginTop: 10,
-            //                         fontSize: 14,
-            //                         fontFamily: 'GothamMedium', 
-            //                         color: "black"
-            //                     }}>{item}</Text>
-            //                 </View>
-            //             );
-            //         })}
-            // </View>
+                        <View>
+                            {all_crypto_change.map((item) => {
+                                return (
+                                    <View>
+                                        <View key={all_crypto_change.indexOf(item)} >
+                                            <Text style={{
+                                                paddingTop: 5,
+                                                marginRight: 5,
+                                                marginTop: 5,
+                                                fontSize: 14,
+                                                fontFamily: 'GothamMedium', 
+                                                color: item.charAt(0)=="-" ? "red" : "green"
+                                            }}>{item}</Text>
+                                            
+                                        </View>
+                                        <View style={{borderBottomWidth: 1, borderBottomColor: "#BEC1D2", marginTop: 5}} />
+                                    </View>
+                                );
+                            })}
+                        </View>
+                        
+                    </View>
+                    </View>
         )
     }
 
 
     function Gainers() {
         return (
-        <View style={{ flexDirection: 'row'}}>
+            <View>
+            <View style={{borderBottomWidth: 1, borderBottomColor: "#999999"}} />
+            <View style={{ flexDirection: 'row', marginTop: 10 , marginBottom: 5, backgroundColor: "transparent"}}>
+            
                 <View >
-                    {crypto_image_gain.map((item) => {
-                        return (
-                            <View key={crypto_image_gain.indexOf(item)} >
-                                <Image style={{height: 26, width: 26, marginTop: 5}} source={{uri: item}} />
-                                
-                                <View style={{borderBottomWidth: 1, borderBottomColor: "#BEC1D2", marginTop: 5}} />
-                            </View>
-                        );
-                    })}
-                            
+                    <Text style={{  marginLeft: 16, fontSize: 15,fontFamily: 'GothamBold', color: "black"}}>Name</Text>
+                    <View style={{borderBottomWidth: 1, borderBottomColor: "#999999", marginTop: 10}} />
                 </View>
-                <View >
-                    {top_crypto_gain.map((item) => {
-                        return (
-                            <View key={top_crypto_gain.indexOf(item)} >
-                                <Text style={{  
-                                    marginLeft: 18,
-                                    marginTop: 10,
-                                    fontSize: 14,
-                                    fontFamily: 'GothamMedium', 
-                                    color: "black"
-                                }}>{item}</Text>
-                                <View style={{borderBottomWidth: 1, borderBottomColor: "#BEC1D2", marginTop: 10}} />
-                            </View>
-                        );   
-                    })}
+
+                <View style={{ flex: 1}}>
+                    <View style={{ marginRight: 16,  marginTop: 17}} />
+                    <View style={{borderBottomWidth: 1, borderBottomColor: "#999999", marginTop: 10}} />
+                </View>
+
+                <View style={{ flex: 1}}>
+                    <Text style={{marginLeft: 26, fontSize: 15,fontFamily: 'GothamBold', color: "black"}}>Price</Text>
+                    <View style={{borderBottomWidth: 1, borderBottomColor: "#999999", marginTop: 10}} />
                 </View>
 
                 <View>
-                    {crypto_price_gain.map((item) => {
-                        return (
-                            <View key={crypto_price_gain.indexOf(item)} >
-                                <Text style={{  
-                                    paddingTop: 10,
-                                    marginLeft: 18,
-                                    marginBottom: 5,
-                                    fontSize: 14,
-                                    fontFamily: 'GothamMedium', 
-                                    color: "black",
-                                }}>{item}</Text>
-                                <View style={{borderBottomWidth: 1, borderBottomColor: "#BEC1D2", marginTop: 5}} />
-                            </View>
-                        );
-                        
-                    })}
+                    <Text style={{ marginRight: 16,  fontSize: 15,fontFamily: 'GothamBold', color: "black"}}>24h</Text>
+                    <View style={{borderBottomWidth: 1, borderBottomColor: "#999999", marginTop: 10}} />
                 </View>
-                            
-                    
-                <View  style={{ flex: 1}}>
-                    {crypto_change_percent_gain.map((item) => {
-                        return (
-                            <View key={crypto_change_percent_gain.indexOf(item)} >
-                                <Text style={{
-                                    paddingTop: 5,
-                                    marginRight: 0,
-                                    marginTop: 5,
-                                    fontSize: 14,
-                                    fontFamily: 'GothamMedium', 
-                                    color: "black"
-                                }}>{item}</Text>
-                                <View style={{borderBottomWidth: 1, borderBottomColor: "#BEC1D2", marginTop: 10}} />
-                            </View>
-                        );
-                    })}
-                </View>
+                
             </View>
-        );
-    }
-
-    function Losers() {
-        return (
-            <View style={{ flexDirection: 'row'}}>
+                <View style={{ flexDirection: 'row'}}>
                     <View >
-                        {crypto_image_lose.map((item) => {
+                        {crypto_image_gain.map((item) => {
                             return (
-                                <View key={crypto_image_lose.indexOf(item)} >
-                                    <Image style={{height: 26, width: 26, marginTop: 5}} source={{uri: item}} />
-                                    
+                                <View key={crypto_image_gain.indexOf(item)} >
+                                    <Image style={{height: 26, width: 26, marginHorizontal: 5}} source={{uri: item}} />
                                     <View style={{borderBottomWidth: 1, borderBottomColor: "#BEC1D2", marginTop: 5}} />
+                                    
                                 </View>
                             );
                         })}
                                 
                     </View>
-                    <View >
-                        {top_crypto_lose.map((item) => {
+                    <View>
+                        {top_crypto_gain.map((item) => {
                             return (
-                                <View key={top_crypto_lose.indexOf(item)} >
+                                <View key={top_crypto_gain.indexOf(item)} >
                                     <Text style={{  
-                                        marginLeft: 18,
-                                        marginTop: 10,
+                                        marginTop: 5,
+                                        paddingBottom: 5,
                                         fontSize: 14,
                                         fontFamily: 'GothamMedium', 
                                         color: "black"
                                     }}>{item}</Text>
-                                    <View style={{borderBottomWidth: 1, borderBottomColor: "#BEC1D2", marginTop: 10}} />
+
+                                <View style={{borderBottomWidth: 1, borderBottomColor: "#BEC1D2", marginTop: 5}} />
+                                    
                                 </View>
                             );   
                         })}
                     </View>
     
-                    <View>
-                        {crypto_price_lose.map((item) => {
+                    <View style={{flex: 1}}>
+                        {crypto_price_gain.map((item) => {
                             return (
-                                <View key={crypto_price_lose.indexOf(item)} >
+                                <View key={crypto_price_gain.indexOf(item)} >
                                     <Text style={{  
-                                        paddingTop: 10,
-                                        marginLeft: 18,
-                                        marginBottom: 5,
+                                        paddingTop: 5,
+                                        marginLeft: 15,
+                                        marginTop: 5,
                                         fontSize: 14,
                                         fontFamily: 'GothamMedium', 
                                         color: "black",
                                     }}>{item}</Text>
-                                    <View style={{borderBottomWidth: 1, borderBottomColor: "#BEC1D2", marginTop: 5}} />
+
+                                <View style={{borderBottomWidth: 1, borderBottomColor: "#BEC1D2", marginTop: 5}} /> 
                                 </View>
                             );
                             
@@ -373,23 +338,134 @@ export default function Crypto() {
                     </View>
                                 
                         
-                    <View  style={{ flex: 1}}>
-                        {crypto_change_percent_lose.map((item) => {
+                    <View>
+                        {crypto_change_percent_gain.map((item) => {
                             return (
-                                <View key={crypto_change_percent_lose.indexOf(item)} >
-                                    <Text style={{
-                                        paddingTop: 5,
-                                        marginRight: 0,
-                                        marginTop: 5,
-                                        fontSize: 14,
-                                        fontFamily: 'GothamMedium', 
-                                        color: "black"
-                                    }}>{item}</Text>
-                                    <View style={{borderBottomWidth: 1, borderBottomColor: "#BEC1D2", marginTop: 10}} />
+                                <View>
+                                    <View key={crypto_change_percent_gain.indexOf(item)} >
+                                        <Text style={{
+                                            paddingTop: 5,
+                                            marginRight: 10,
+                                            marginTop: 5,
+                                            fontSize: 14,
+                                            fontFamily: 'GothamMedium', 
+                                            color: "green"
+                                        }}>{item}</Text>
+                                        
+                                    </View>
+                                    <View style={{borderBottomWidth: 1, borderBottomColor: "#BEC1D2", marginTop: 5}} />
                                 </View>
                             );
                         })}
                     </View>
+                    
+                </View>
+                </View>
+        );
+    }
+
+    function Losers() {
+        return (
+            <View>
+            <View style={{borderBottomWidth: 1, borderBottomColor: "#999999"}} />
+            <View style={{ flexDirection: 'row', marginTop: 10 , marginBottom: 5, backgroundColor: "transparent"}}>
+            
+                <View >
+                    <Text style={{  marginLeft: 16, fontSize: 15,fontFamily: 'GothamBold', color: "black"}}>Name</Text>
+                    <View style={{borderBottomWidth: 1, borderBottomColor: "#999999", marginTop: 10}} />
+                </View>
+
+                <View style={{ flex: 1}}>
+                    <View style={{ marginRight: 16,  marginTop: 17}} />
+                    <View style={{borderBottomWidth: 1, borderBottomColor: "#999999", marginTop: 10}} />
+                </View>
+
+                <View style={{ flex: 1}}>
+                    <Text style={{marginLeft: 26, fontSize: 15,fontFamily: 'GothamBold', color: "black"}}>Price</Text>
+                    <View style={{borderBottomWidth: 1, borderBottomColor: "#999999", marginTop: 10}} />
+                </View>
+
+                <View>
+                    <Text style={{ marginRight: 16,  fontSize: 15,fontFamily: 'GothamBold', color: "black"}}>24h</Text>
+                    <View style={{borderBottomWidth: 1, borderBottomColor: "#999999", marginTop: 10}} />
+                </View>
+                
+            </View>
+                <View style={{ flexDirection: 'row'}}>
+                    <View >
+                        {crypto_image_lose.map((item) => {
+                            return (
+                                <View key={crypto_image_lose.indexOf(item)} >
+                                    <Image style={{height: 26, width: 26, marginHorizontal: 5}} source={{uri: item}} />
+                                    <View style={{borderBottomWidth: 1, borderBottomColor: "#BEC1D2", marginTop: 5}} />
+                                    
+                                </View>
+                            );
+                        })}
+                                
+                    </View>
+                    <View>
+                        {top_crypto_lose.map((item) => {
+                            return (
+                                <View key={top_crypto_lose.indexOf(item)} >
+                                    <Text style={{  
+                                        marginTop: 5,
+                                        paddingBottom: 5,
+                                        fontSize: 14,
+                                        fontFamily: 'GothamMedium', 
+                                        color: "black"
+                                    }}>{item}</Text>
+
+                                <View style={{borderBottomWidth: 1, borderBottomColor: "#BEC1D2", marginTop: 5}} />
+                                    
+                                </View>
+                            );   
+                        })}
+                    </View>
+    
+                    <View style={{flex: 1}}>
+                        {crypto_price_lose.map((item) => {
+                            return (
+                                <View key={crypto_price_lose.indexOf(item)} >
+                                    <Text style={{  
+                                        paddingTop: 5,
+                                        marginLeft: 15,
+                                        marginTop: 5,
+                                        fontSize: 14,
+                                        fontFamily: 'GothamMedium', 
+                                        color: "black",
+                                    }}>{item}</Text>
+
+                                <View style={{borderBottomWidth: 1, borderBottomColor: "#BEC1D2", marginTop: 5}} /> 
+                                </View>
+                            );
+                            
+                        })}
+                    </View>
+                                
+                        
+                    <View>
+                        {crypto_change_percent_lose.map((item) => {
+                            return (
+                                <View>
+                                    <View key={crypto_change_percent_lose.indexOf(item)} >
+                                        <Text style={{
+                                            paddingTop: 5,
+                                            marginRight: 10,
+                                            marginTop: 5,
+                                            fontSize: 14,
+                                            fontFamily: 'GothamMedium', 
+                                            color: "red"
+                                        }}>{item}</Text>
+                                        
+                                    </View>
+                                    <View style={{borderBottomWidth: 1, borderBottomColor: "#BEC1D2", marginTop: 5}} />
+                                </View>
+                            );
+                        })}
+                    </View>
+                    
+                </View>
                 </View>
             );
         }
