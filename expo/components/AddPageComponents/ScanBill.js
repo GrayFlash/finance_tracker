@@ -43,6 +43,7 @@ export default function ScanBill({categoriesData, people}) {
             console.log(err)
         })
     }
+    const [category, setCategory] = useState("");
 
     const predict = async(data) => {
         fetch("http://9976958508d9.ngrok.io/prediction",{
@@ -57,6 +58,7 @@ export default function ScanBill({categoriesData, people}) {
         .then(res=>res.json())
         .then(data=>{
             console.log(data.category)
+            setCategory(data.category)
             return data.category
         })
         .catch(err=>{
@@ -92,7 +94,6 @@ export default function ScanBill({categoriesData, people}) {
     }
     
     const [title, setTitle] = useState("");
-    const [category, setCategory] = useState("");
     const [total, setTotal] = useState(0);
     
     const addExpense = async(te, ca, to) => {
@@ -219,10 +220,13 @@ export default function ScanBill({categoriesData, people}) {
                   setTotal(arr[i]);
                   priceArray[pos2] = parseInt(arr[i]);
                   pos2++;
-                  let cat = "Food";
-                  cat = await predict(te);
-                  console.log(te+"  "+ cat+"  "+ arr[i]);
-                  await addExpense(te, cat, arr[i]);
+                  //let cat = "Food";
+                  let cat = await predict(te)
+                  .then (cat=>{
+                    console.log(te+"  "+ category+"  "+ arr[i]);
+                  })
+                  await addExpense(te, category, arr[i]);
+                  
               }
           }
           await updateUserData(total);
