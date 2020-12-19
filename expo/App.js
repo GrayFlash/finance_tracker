@@ -45,7 +45,7 @@ function App(props) {
 			<Drawer.Navigator>
 				<Drawer.Screen name="Home" component={Home} />
 				<Drawer.Screen name="Profile" component={Profile} />
-				<Drawer.Screen name="Stock" component={Stock} />
+				<Drawer.Screen name="Market Today" component={Stock} />
 				<Drawer.Screen name="Cryptocurrency" component={Crypto} />
 			</Drawer.Navigator>
 		</View>
