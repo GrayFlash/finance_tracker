@@ -427,6 +427,8 @@ app.get('/ltp_nifty', (req, res) => {
 // CRYPTOCURRENCY
 
 let top_crypto = [];
+let top_crypto_gain = [];
+let top_crypto_lose = [];
 
 request('https://coinmarketcap.com/gainers-losers/', (error, 
 response, html) => {
@@ -445,13 +447,26 @@ response, html) => {
     
     }
 
+    for(let i=0;i<top_crypto.length/2;i++){
+        top_crypto_gain.push(top_crypto[i]);
+    }
+    for(let i=top_crypto.length/2;i<top_crypto.length;i++){
+        top_crypto_lose.push(top_crypto[i]);
+    }
+
 });
 
-app.get('/top_crypto', (req, res) => {
-    res.send(top_crypto);
+app.get('/top_crypto_gain', (req, res) => {
+    res.send(top_crypto_gain);
+})
+
+app.get('/top_crypto_lose', (req, res) => {
+    res.send(top_crypto_lose);
 })
 
 let crypto_change_percent = [];
+let crypto_change_percent_gain = [];
+let crypto_change_percent_lose = [];
 
 request('https://coinmarketcap.com/gainers-losers/', (error, 
 response, html) => {
@@ -468,14 +483,25 @@ response, html) => {
             });
     
     }
+    for(let i=0;i<crypto_change_percent.length/2;i++){
+        crypto_change_percent_gain.push(crypto_change_percent[i]);
+    }
+    for(let i=crypto_change_percent.length/2;i<crypto_change_percent.length;i++){
+        crypto_change_percent_lose.push(crypto_change_percent[i]);
+    }
 
 });
 
-app.get('/crypto_change_percent', (req, res) => {
-    res.send(crypto_change_percent);
+app.get('/crypto_change_percent_gain', (req, res) => {
+    res.send(crypto_change_percent_gain);
+})
+app.get('/crypto_change_percent_lose', (req, res) => {
+    res.send(crypto_change_percent_lose);
 })
 
 let crypto_image = [];
+let crypto_image_gain = [];
+let crypto_image_lose = [];
 
 request('https://coinmarketcap.com/gainers-losers/', (error, 
 response, html) => {
@@ -494,14 +520,27 @@ response, html) => {
     
     }
 
+    for(let i=0;i<crypto_image.length/2;i++){
+        crypto_image_gain.push(crypto_image[i]);
+    }
+    for(let i=crypto_image.length/2;i<crypto_image.length;i++){
+        crypto_image_lose.push(crypto_image[i]);
+    }
+
 });
 
-app.get('/crypto_image', (req, res) => {
-    res.send(crypto_image);
+app.get('/crypto_image_gain', (req, res) => {
+    res.send(crypto_image_gain);
+})
+
+app.get('/crypto_image_lose', (req, res) => {
+    res.send(crypto_image_lose);
 })
 
 
 let crypto_price = [];
+let crypto_price_gain = [];
+let crypto_price_lose = [];
 
 request('https://coinmarketcap.com/gainers-losers/', (error, 
 response, html) => {
@@ -523,10 +562,21 @@ response, html) => {
     
     }
 
+    for(let i=0;i<crypto_price.length/2;i++){
+        crypto_price_gain.push(crypto_price[i]);
+    }
+    for(let i=crypto_price.length/2;i<crypto_price.length;i++){
+        crypto_price_lose.push(crypto_price[i]);
+    }
+
 })
 
-app.get('/crypto_price', (req, res) => {
-    res.send(crypto_price);
+app.get('/crypto_price_gain', (req, res) => {
+    res.send(crypto_price_gain);
+})
+
+app.get('/crypto_price_lose', (req, res) => {
+    res.send(crypto_price_lose);
 })
 
 app.listen(3000,()=>{
