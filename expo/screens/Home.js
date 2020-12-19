@@ -66,7 +66,6 @@ export default function Home () {
     const NavbarButtonHandler = (mode) => {
         console.log(`NavBar ${mode} Button is pressed!!`);
         setViewMode(mode);
-        console.log(people);
     }
 
     const categoryButtonHandler = (item) => {

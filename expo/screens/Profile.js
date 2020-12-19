@@ -5,6 +5,9 @@ import * as myConstClass from './HttpLink';
 
 export default function Profile() {
 
+    const [viewMode, setViewMode] = React.useState("edit");
+
+    const [person, setPerson] = useState();
     const [data, setData] = useState([])
     const [loading, setLoading] = useState(true)
 
@@ -16,13 +19,15 @@ export default function Profile() {
     const [thisMonthStatus, setThisMonthStatus] = useState("")
     const [_id, set_id] = useState("")
 
+    let bc = 0;
+
     // UPDATE links -2
     const fetchData = () => {
         fetch(`${myConstClass.HTTP_LINK}/personDetails`)
         .then(res=>res.json())
         .then(results=>{
             
-            setData(results)
+            setData(results[0])
             setName(results[0].name)
             setIncome(results[0].income)
             setSavings(results[0].savings)
@@ -31,7 +36,6 @@ export default function Profile() {
             setThisMonthStatus(results[0].thisMonthStatus)
             set_id(results[0]._id)
             
-            console.log(results[0].name)
             setLoading(false)
         })
     }
@@ -74,12 +78,9 @@ export default function Profile() {
         )
     }
 
-    const [viewMode, setViewMode] = React.useState("expense");
-
     function renderExpense() {
-
         const property = [ "Monthly Income", "Expenses", "Target to save", "This month's status"];
-        const vals = [ `₹ ${income}`, `₹ ${totalExpenses}`, `₹ ${targetToSave}`, `Over Spent (${thisMonthStatus})`];
+        let vals = [ `₹ ${income}`, `₹ ${totalExpenses}`, `₹ ${targetToSave}`, `Over Spent (${thisMonthStatus})`];
         return (
             <View style={{ marginTop: 6 }} >
                 {property.map((p) => {
@@ -94,9 +95,6 @@ export default function Profile() {
                                 marginHorizontal: 14,
                                 borderRadius: 10,
                                 backgroundColor: "white",
-                            }}
-                            onPress={() => {
-                                console.log(p+" is pressed!");
                             }}
                         >
                             {/* Name/Category */}
@@ -247,26 +245,29 @@ export default function Profile() {
             <View style={{ flexDirection: 'row', height: 40, backgroundColor: "#F5F7F9" }}>
                 
                 <TouchableOpacity
-                        style={{ 
-                            flex: 1,
-                            margin: 5,
-                            backgroundColor: viewMode == "expense" ? "#BEC1D2" : "#F5F7F9",
-                            borderRadius: 5,
-                        }}
-                        onPress={() => setViewMode("expense")}
+                    style={{ 
+                        flex: 1,
+                        margin: 5,
+                        backgroundColor: viewMode == "expense" ? "#BEC1D2" : "#F5F7F9",
+                        borderRadius: 5,
+                    }}
+                    onPress={() => {
+                        fetchData();
+                        setViewMode("expense");
+                    }}
                 >
-                        <View
-                            style={{
-                                flex: 1,
-                                flexDirection: 'row',
-                                alignItems: 'center',
-                                justifyContent: 'center'
-                            }}
-                        >
-                            
-                            {/* <Image style={{width: 40, height:40}} source={require('../assets/icons/salary.png')} /> */}
-                            <Text style={{fontFamily: 'GothamMedium', color: viewMode == "expense" ? "white" : "black",}}>Info</Text>
-                        </View>
+                    <View
+                        style={{
+                            flex: 1,
+                            flexDirection: 'row',
+                            alignItems: 'center',
+                            justifyContent: 'center'
+                        }}
+                    >
+                        
+                        {/* <Image style={{width: 40, height:40}} source={require('../assets/icons/salary.png')} /> */}
+                        <Text style={{fontFamily: 'GothamMedium', color: viewMode == "expense" ? "white" : "black",}}>Info</Text>
+                    </View>
                 </TouchableOpacity>
 
                 {/* <LineDivider /> */}
