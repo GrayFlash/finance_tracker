@@ -75,7 +75,7 @@ export default function ScanBill({categoriesData, people}) {
                 .catch(err=>{
                     Alert.alert("Some Error")
                     console.log(err)
-        })
+                })
             }
         }
     }
@@ -252,7 +252,7 @@ export default function ScanBill({categoriesData, people}) {
           textFromImage(data.secure_url)
           //return(data.secure_url)
         })
-      }
+    }
 
     
     const pickImage = async () => {
@@ -374,27 +374,15 @@ export default function ScanBill({categoriesData, people}) {
             { image ? (
                 <RenderProducts doneButtonHandler={doneButtonHandler} scannedData={scannedData} />
             ) : (
-                <Animated.View style={{
-                    opacity: Animated.add(0.1, Animated.multiply(fall, 1.0)),
-                }}>
+                <Animated.View style={{ opacity: Animated.add(0.1, Animated.multiply(fall, 1.0)) }}>
                     
-                    <TouchableOpacity onPress={() => {sheetRef.current.snapTo(0); console.log("Bottom sheet is called")}} >
+                    <TouchableOpacity onPress={() => { console.log("Bottom sheet is called"); sheetRef.current.snapTo(0);}} >
                         <View style={styles.cameraButton}>
                             <Text style={{color: "white", textAlign: "center", fontFamily: 'GothamBold', fontSize: 16}}>
                                 Scan your Bill
                             </Text>
                         </View>
                     </TouchableOpacity>
-                    {image && 
-                        <Image source={{ uri: image.uri }} 
-                                style={{
-                                    width: 200,
-                                    height: 50,
-                                    resizeMode: 'stretch',
-                                    alignSelf: "center",
-                                    margin: 10,
-                                }} />
-                    }
                     <ManualAdd />
                     
                 </Animated.View>

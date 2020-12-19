@@ -1,6 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { View, Animated, FlatList, ScrollView, LogBox, Alert } from 'react-native';
-import AddSection from '../components/AddPage';
 import ScanBill from '../components/AddPageComponents/ScanBill';
 import Expenses from '../components/Expenses';
 import EditProduct from '../components/ExpensesPageComponents/EditProduct';
