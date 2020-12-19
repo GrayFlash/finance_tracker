@@ -79,7 +79,7 @@ export default function Profile() {
     function renderExpense() {
 
         const property = [ "Monthly Income", "Expenses", "Target to save", "This month's status"];
-        const vals = [ `${income} USD`, `${totalExpenses} USD`, `${targetToSave} USD`, `Over Spent  (${thisMonthStatus})`];
+        const vals = [ `₹ ${income}`, `₹ ${totalExpenses}`, `₹ ${targetToSave}`, `Over Spent (${thisMonthStatus})`];
         return (
             <View style={{ marginTop: 6 }} >
                 {property.map((p) => {

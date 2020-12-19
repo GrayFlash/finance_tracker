@@ -79,7 +79,7 @@ export default function PreviousExpenses({ selectedCategory, editProductHandler,
               >
                 {/* Name/Category */}
                 <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center', marginLeft: 10 }}>
-                    <Text style={{ marginLeft: 8, color: "white", fontFamily: 'GothamMedium'}}>{item.total.toFixed(2)} $</Text>
+                    <Text style={{ marginLeft: 8, color: "white", fontFamily: 'GothamMedium'}}>₹ {item.total.toFixed(2)}</Text>
                 </View>
 
                 {/* Expenses */}

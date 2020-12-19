@@ -85,7 +85,7 @@ export default function ChartPage({ catData, ppl }) {
 
                         {/* Expenses */}
                         <View style={{ justifyContent: 'center' }}>
-                            <Text style={{fontFamily: 'GothamLight', color: (selectedCategory == `${obj.name}`) ? "white" : "#194868" }}>{obj.totalExpenseInThis} Rs - {Math.round((obj.totalExpenseInThis*100)/people.totalExpenses *10)/10}%</Text>
+                            <Text style={{fontFamily: 'GothamLight', color: (selectedCategory == `${obj.name}`) ? "white" : "#194868" }}>₹ {obj.totalExpenseInThis} - {Math.round((obj.totalExpenseInThis*100)/people.totalExpenses *10)/10}%</Text>
                         </View>
                     </TouchableOpacity> 
                 );

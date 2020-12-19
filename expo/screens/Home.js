@@ -37,7 +37,7 @@ export default function Home () {
         .then(results=>{
             console.log("People data received inside Home Page.")
             setPeople(results[0]);
-            //console.log(results);
+            //console.log(people);
         })
     }
 
@@ -66,6 +66,7 @@ export default function Home () {
     const NavbarButtonHandler = (mode) => {
         console.log(`NavBar ${mode} Button is pressed!!`);
         setViewMode(mode);
+        console.log(people);
     }
 
     const categoryButtonHandler = (item) => {
@@ -92,28 +93,55 @@ export default function Home () {
             }
         }
 
-        fetch(`${myConstClass.HTTP_LINK}/updateCategory`,{
+        fetch(`${myConstClass.HTTP_LINK}/updatePerson`,{
             method:"post",
             headers:{
                 'Content-Type':'application/json'
             },
             body:JSON.stringify({
-                id:categoriesData[index]._id,
-                name: categoriesData[index].name,
-                icon: categoriesData[index].icon,
-                color: categoriesData[index].color,
-                totalExpenseInThis: categoriesData[index].totalExpenseInThis - prevTotal + item.total
+                id:people._id,
+                name: people.name,
+                income: people.income,
+                totalExpenses: people.totalExpenses - prevTotal + item.total,
+                targetToSave: people.targetToSave,
+                thisMonthStatus: people.thisMonthStatus,
+                savings: people.savings
             })
         })
         .then(res=>res.json())
         .then(data=>{
-            console.log(`total expense of ${item.category} category is updated.`);
+            console.log(`total expense of ${people.name} is updated.`);
         })
         .catch(err=>{
-            Alert.alert(`Some Error while subtracting total expense of ${item.category} category on deleting product inside Edit product page`);
+            Alert.alert(`Some Error while reducing total expense of ${people.name} inside Add product page`);
             isDone = false;
             console.log(err);
         })
+
+        if(isDone) {
+            fetch(`${myConstClass.HTTP_LINK}/updateCategory`,{
+                method:"post",
+                headers:{
+                    'Content-Type':'application/json'
+                },
+                body:JSON.stringify({
+                    id:categoriesData[index]._id,
+                    name: categoriesData[index].name,
+                    icon: categoriesData[index].icon,
+                    color: categoriesData[index].color,
+                    totalExpenseInThis: categoriesData[index].totalExpenseInThis - prevTotal + item.total
+                })
+            })
+            .then(res=>res.json())
+            .then(data=>{
+                console.log(`total expense of ${item.category} category is updated.`);
+            })
+            .catch(err=>{
+                Alert.alert(`Some Error while subtracting total expense of ${item.category} category on deleting product inside Edit product page`);
+                isDone = false;
+                console.log(err);
+            })
+        }
 
         if(isDone) {
             console.log(`Saving ${item.title} product ...`);
@@ -132,6 +160,8 @@ export default function Home () {
                 NavbarButtonHandler("expenses");
                 setLoading(true);
                 fetchExpense();
+                fetchCategory();
+                fetchData();
                 setLoading(false);
             })
             .catch(err=>{
@@ -153,28 +183,55 @@ export default function Home () {
             }
         }
 
-        fetch(`${myConstClass.HTTP_LINK}/updateCategory`,{
+        fetch(`${myConstClass.HTTP_LINK}/updatePerson`,{
             method:"post",
             headers:{
                 'Content-Type':'application/json'
             },
             body:JSON.stringify({
-                id:categoriesData[index]._id,
-                name: categoriesData[index].name,
-                icon: categoriesData[index].icon,
-                color: categoriesData[index].color,
-                totalExpenseInThis: categoriesData[index].totalExpenseInThis - item.total
+                id:people._id,
+                name: people.name,
+                income: people.income,
+                totalExpenses: people.totalExpenses - item.total,
+                targetToSave: people.targetToSave,
+                thisMonthStatus: people.thisMonthStatus,
+                savings: people.savings
             })
         })
         .then(res=>res.json())
         .then(data=>{
-            console.log(`total expense of ${item.category} category is updated.`);
+            console.log(`total expense of ${people.name} is updated.`);
         })
         .catch(err=>{
-            Alert.alert(`Some Error while subtracting total expense of ${item.category} category on deleting product inside Edit product page`);
+            Alert.alert(`Some Error while reducing total expense of ${people.name} inside Add product page`);
             isDone = false;
             console.log(err);
         })
+
+        if(isDone) {
+            fetch(`${myConstClass.HTTP_LINK}/updateCategory`,{
+                method:"post",
+                headers:{
+                    'Content-Type':'application/json'
+                },
+                body:JSON.stringify({
+                    id:categoriesData[index]._id,
+                    name: categoriesData[index].name,
+                    icon: categoriesData[index].icon,
+                    color: categoriesData[index].color,
+                    totalExpenseInThis: categoriesData[index].totalExpenseInThis - item.total
+                })
+            })
+            .then(res=>res.json())
+            .then(data=>{
+                console.log(`total expense of ${item.category} category is updated.`);
+            })
+            .catch(err=>{
+                Alert.alert(`Some Error while subtracting total expense of ${item.category} category on deleting product inside Edit product page`);
+                isDone = false;
+                console.log(err);
+            })
+        }
 
         if(isDone) {
             fetch(`${myConstClass.HTTP_LINK}/deleteExpense`,{
@@ -195,6 +252,7 @@ export default function Home () {
                 setLoading(true);
                 fetchExpense();
                 fetchCategory();
+                fetchData();
                 setLoading(false);
             })
             .catch(err=>{
@@ -227,28 +285,55 @@ export default function Home () {
             }
         }
 
-        fetch(`${myConstClass.HTTP_LINK}/updateCategory`,{
+        fetch(`${myConstClass.HTTP_LINK}/updatePerson`,{
             method:"post",
             headers:{
                 'Content-Type':'application/json'
             },
             body:JSON.stringify({
-                id:categoriesData[index]._id,
-                name: categoriesData[index].name,
-                icon: categoriesData[index].icon,
-                color: categoriesData[index].color,
-                totalExpenseInThis: categoriesData[index].totalExpenseInThis + item.total
+                id:people._id,
+                name: people.name,
+                income: people.income,
+                totalExpenses: people.totalExpenses + item.total,
+                targetToSave: people.targetToSave,
+                thisMonthStatus: people.thisMonthStatus,
+                savings: people.savings
             })
         })
         .then(res=>res.json())
         .then(data=>{
-            console.log(`total expense of ${item.category} category is updated.`);
+            console.log(`total expense of ${people.name} is updated.`);
         })
         .catch(err=>{
-            Alert.alert(`Some Error while updating total expense of ${item.category} category inside Add product page`);
+            Alert.alert(`Some Error while updating total expense of ${people.name} inside Add product page`);
             isDone = false;
             console.log(err);
         })
+        
+        if(isDone) {
+            fetch(`${myConstClass.HTTP_LINK}/updateCategory`,{
+                method:"post",
+                headers:{
+                    'Content-Type':'application/json'
+                },
+                body:JSON.stringify({
+                    id:categoriesData[index]._id,
+                    name: categoriesData[index].name,
+                    icon: categoriesData[index].icon,
+                    color: categoriesData[index].color,
+                    totalExpenseInThis: categoriesData[index].totalExpenseInThis + item.total
+                })
+            })
+            .then(res=>res.json())
+            .then(data=>{
+                console.log(`total expense of ${item.category} category is updated.`);
+            })
+            .catch(err=>{
+                Alert.alert(`Some Error while updating total expense of ${item.category} category inside Add product page`);
+                isDone = false;
+                console.log(err);
+            })
+        }
 
         if(isDone) {
             fetch(`${myConstClass.HTTP_LINK}/addExpense`,{
@@ -267,6 +352,7 @@ export default function Home () {
                 setLoading(true);
                 fetchExpense();
                 fetchCategory();
+                fetchData();
                 setLoading(false);
             })
             .catch(err=>{
