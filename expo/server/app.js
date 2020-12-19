@@ -553,19 +553,18 @@ response, html) => {
                     .slice(2,3)
                     .text();
 
-                if(i!==0){
-                    crypto_price.push(item);
-                }
+                
+                crypto_price.push(item);
                 
                 
             });
     
     }
 
-    for(let i=0;i<crypto_price.length/2;i++){
+    for(let i=1;i<crypto_price.length/2;i++){
         crypto_price_gain.push(crypto_price[i]);
     }
-    for(let i=crypto_price.length/2;i<crypto_price.length;i++){
+    for(let i=crypto_price.length/2 + 1;i<crypto_price.length;i++){
         crypto_price_lose.push(crypto_price[i]);
     }
 
@@ -578,6 +577,98 @@ app.get('/crypto_price_gain', (req, res) => {
 app.get('/crypto_price_lose', (req, res) => {
     res.send(crypto_price_lose);
 })
+
+
+// ALL CRYPTOCURRENCY
+
+let all_crypto_name = [];
+
+request('https://coinmarketcap.com/all/views/all/', (error, 
+response, html) => {
+    if(!error && response.statusCode == 200) {
+        const $ = cheerio.load(html);
+       
+            $('.fjclfm').each((i, el) => {
+                const item = $(el)
+                    .find('.cmc-link')
+                    .text();
+
+                all_crypto_name.push(item);
+            });
+    
+    }
+
+})
+
+app.get('/all_crypto_name', (req, res) => {
+    res.send(all_crypto_name);
+})
+
+let all_crypto_price_temp = [];
+let all_crypto_price = [];
+
+request('https://coinmarketcap.com/all/views/all/', (error, 
+response, html) => {
+    if(!error && response.statusCode == 200) {
+        const $ = cheerio.load(html);
+       
+            $('.cmc-table__cell--sort-by__price').each((i, el) => {
+            const item = $(el)
+                .children()
+                .find('a')
+                .text();
+
+            all_crypto_price_temp.push(item);
+                
+            });
+    
+    }
+
+    for(let i = 0; i < all_crypto_price_temp.length;i++){
+        if(all_crypto_price_temp[i].length!=0){
+            all_crypto_price.push(all_crypto_price_temp[i]);
+        }
+    }
+
+})
+
+app.get('/all_crypto_price', (req, res) => {
+    res.send(all_crypto_price);
+})
+
+
+let all_crypto_change_temp = [];
+let all_crypto_change = [];
+
+request('https://coinmarketcap.com/all/views/all/', (error, 
+response, html) => {
+    if(!error && response.statusCode == 200) {
+        const $ = cheerio.load(html);
+       
+            $('.cmc-table__cell--sort-by__percent-change-24-h').each((i, el) => {
+            const item = $(el)
+                .find('div')
+                .text();
+
+                all_crypto_change_temp.push(item);
+            
+                
+            });
+    
+    }
+
+    for(let i = 0; i < all_crypto_change_temp.length;i++){
+        if(all_crypto_change_temp[i].length!=0){
+            all_crypto_change.push(all_crypto_change_temp[i]);
+        }
+    }
+
+})
+
+app.get('/all_crypto_change', (req, res) => {
+    res.send(all_crypto_change);
+})
+
 
 app.listen(3000,()=>{
     console.log("Server Running at port 3000")

@@ -3,32 +3,32 @@ const cheerio = require('cheerio');
 const express = require('express');
 const app = express();
 
-let top_crypto = [];
+let crypto = [];
 
-request('https://coinmarketcap.com/gainers-losers/', (error, 
+request('https://coinmarketcap.com/all/views/all/', (error, 
 response, html) => {
     if(!error && response.statusCode == 200) {
         const $ = cheerio.load(html);
        
-            $('tr').each((i, el) => {
-                const item = $(el)
-                    .find('td')
-                    .slice(2,3)
-                    .text();
+            $('.cmc-table__cell--sort-by__percent-change-24-h').each((i, el) => {
+            const item = $(el)
+                .find('div')
+                .text();
 
+                crypto.push(item);
                 console.log(item);
-                top_crypto.push(item);
-                
+            
                 
             });
     
     }
 
-});
+})
 
 app.get('/', (req, res) => {
-    res.send(top_crypto);
+    res.send(crypto);
 })
+
 
 app.listen(5000);
 
