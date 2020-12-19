@@ -1,66 +1,12 @@
-import React, { useState, useEffect} from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet , Alert, Picker, ScrollView } from 'react-native';
-import * as myConstClass from '../../screens/HttpLink';
+import React, { useState } from 'react';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Picker } from 'react-native';
 
 export default function ManualAdd({ categoriesData, people, AddProductSaveButtonHandler }) {
+    
     const [selectedValue, setSelectedValue] = useState("Food");
     const [productName, setProductName] = useState();
     const [amount, setAmount] = useState();
     const [description, setDescription] = useState();
-
-    const updateUserData = async() =>{
-        fetch(`${myConstClass.HTTP_LINK}/updatePerson`,{
-            method:"post",
-                headers:{
-                    'Content-Type':'application/json'
-                },
-                body:JSON.stringify({
-                    id:people._id,
-                    name: people.name,
-                    income: people.income,
-                    savings: people.savings,
-                    targetToSave: people.targetToSave,
-                    thisMonthStatus: people.thisMonthStatus,
-                    totalExpenses: parseInt(people.totalExpenses)+parseInt(total)
-                })
-        })
-        .then(res=>res.json())
-        .then(data=>{
-            Alert.alert(`Details of ${people.name} has been updated`)
-        })
-        .catch(err=>{
-            Alert.alert("Some Error")
-            console.log(err)
-        })
-    }
-
-    const updateCategoryExpense = async() =>{
-        for(var i in categoriesData){
-            if(categoriesData[i].name === category){
-                fetch(`${myConstClass.HTTP_LINK}/updateCategory`,{
-                    method:"post",
-                        headers:{
-                            'Content-Type':'application/json'
-                        },
-                        body:JSON.stringify({
-                            id:categoriesData[i]._id,
-                            name: categoriesData[i].name,
-                            icon: categoriesData[i].icon,
-                            color: categoriesData[i].color,
-                            totalExpenseInThis: parseInt(categoriesData[i].totalExpenseInThis) + parseInt(total)
-                        })
-                })
-                .then(res=>res.json())
-                .then(data=>{
-                    Alert.alert(`Details of ${people.name} has been updated`)
-                })
-                .catch(err=>{
-                    Alert.alert("Some Error")
-                    console.log(err)
-        })
-            }
-        }
-    }
 
     return (
         <View>
@@ -121,7 +67,6 @@ export default function ManualAdd({ categoriesData, people, AddProductSaveButton
                 <TouchableOpacity 
                     style={{paddingTop: 10,marginTop: 10, marginBottom: 20}}
                     onPress={() => {
-                        //addExpense();
                         const obj = {
                             title: productName,
                             description: description,

@@ -1,12 +1,10 @@
-import { useNavigation } from '@react-navigation/native';
-import React, { useState, useEffect} from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet , Alert, Picker } from 'react-native'
-import * as myConstClass from '../../screens/HttpLink';
+import React, { useState } from 'react';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Picker } from 'react-native'
 
 export default function EditProduct({ item, categoriesData, editProductSaveButtonHandler, editProductDeleteButtonHandler, editProductCancelButtonHandler }) {
     const [selectedValue, setSelectedValue] = useState(item.category);
 
-    const [_id, set_id] = useState(item._id);
+    const _id = item._id;
     const [productName, setProductName] = useState(item.title);
     const [amount, setAmount] = useState(item.total.toString());
     const [description, setDescription] = useState(item.description);
