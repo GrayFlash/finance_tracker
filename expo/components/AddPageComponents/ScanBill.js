@@ -4,7 +4,7 @@ import Animated from 'react-native-reanimated';
 import * as ImagePicker from 'expo-image-picker';
 import Constants from 'expo-constants';
 import BottomSheet from 'reanimated-bottom-sheet';
-import ManualAdd from './timepassForm';
+import ManualAdd from './ManualAdd';
 import RenderProducts from './RenderProducts';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import * as myConstClass from '../../screens/HttpLink';
