@@ -4,7 +4,7 @@ const categoriesDataSchema = new mongoose.Schema({
     name: String,
     icon: String,
     color: String,
-    totalExpenseInThis: String
+    totalExpenseInThis: Number
 });
 
 mongoose.model("categoriesData", categoriesDataSchema);

@@ -107,6 +107,13 @@ app.post('/deleteExpense', (req, res)=>{
         console.log(err)
     })
 })
+
+app.delete('./deleteAll', (req, res) => {
+    expenses.deleteMany({})
+            .then(data => res.send(data))
+            .catch(err => console.log(err));
+})
+
 // EXPENSE control end
 
 

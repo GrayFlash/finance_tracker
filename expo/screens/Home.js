@@ -17,8 +17,6 @@ export default function Home () {
     const [categoriesData, setCategoriesData] = useState([])
     const [people, setPeople] = useState([])
     const [loading, setLoading] = useState(true);
-
-    // UPDATE links
     
     // FETCHES - expense, categories, profile
 
@@ -27,31 +25,29 @@ export default function Home () {
         .then(res=>res.json())
         .then(results=>{
             console.log("Expenses data received.")
+            //console.log(results);
             setExpenses(results)
-            setLoading(false)
         })
         return 1;
     }
 
-
     const fetchData = () => {
-        //let y = fetchExpense();
         fetch(`${myConstClass.HTTP_LINK}/personDetails`)
         .then(res=>res.json())
         .then(results=>{
             console.log("People data received inside Home Page.")
-            setPeople(results[0])
+            setPeople(results[0]);
+            //console.log(results);
         })
     }
+
     const fetchCategory = () => {
-        let x = fetchData();
         fetch(`${myConstClass.HTTP_LINK}/fetchCategoryData`)
         .then(res=>res.json())
         .then(results=>{
             console.log("categoriesData received.");
             //console.log(results)
             setCategoriesData(results)
-            //setLoading(false)
         }).catch(err=>{
             console.log("Yo Bitch, got Error while receiving categoriesData in Home.js\n"+err)
         })
@@ -86,55 +82,128 @@ export default function Home () {
         setViewMode(mode);
     }
 
-    const editProductSaveButtonHandler = (item) => {
-        console.log(`Saving ${item.title} product ...`);
-        fetch(`${myConstClass.HTTP_LINK}/updateExpense`,{
-            method:"post",
-            headers:{
-                'Content-Type':'application/json'
-            },
-            body:JSON.stringify(item)
-        })
-        .then(res=>res.json())
-        .then(data=>{
-            Alert.alert(`Details of ${item.title} has been updated`)
-        })
-        .then(() => {
-            NavbarButtonHandler("expenses");
-            setLoading(true);
-            fetchExpense();
-            setLoading(false);
-        })
-        .catch(err=>{
-            Alert.alert("Some Error on Saving product in Edit Product Page.")
-            console.log(err)
-        });
-    }
+    const editProductSaveButtonHandler = (item, prevTotal) => {
 
-    const editProductDeleteButtonHandler = (_id, productName) => {
-        fetch(`${myConstClass.HTTP_LINK}/deleteExpense`,{
+        let index = 0, isDone = true;
+        for(let i=0 ; i<categoriesData.length ; i++) {
+            if(categoriesData[i].name === item.category) {
+                index = i;
+                break;
+            }
+        }
+
+        fetch(`${myConstClass.HTTP_LINK}/updateCategory`,{
             method:"post",
             headers:{
                 'Content-Type':'application/json'
             },
             body:JSON.stringify({
-                id:_id
+                id:categoriesData[index]._id,
+                name: categoriesData[index].name,
+                icon: categoriesData[index].icon,
+                color: categoriesData[index].color,
+                totalExpenseInThis: categoriesData[index].totalExpenseInThis - prevTotal + item.total
             })
         })
         .then(res=>res.json())
         .then(data=>{
-            Alert.alert(`Details of ${productName} has been deleted`)
-        })
-        .then(() => {
-            NavbarButtonHandler("expenses");
-            setLoading(true);
-            fetchExpense();
-            setLoading(false);
+            console.log(`total expense of ${item.category} category is updated.`);
         })
         .catch(err=>{
-            Alert.alert("Some Error while Deleting a product inside Edit Product Page.")
-            console.log(err)
-        });
+            Alert.alert(`Some Error while subtracting total expense of ${item.category} category on deleting product inside Edit product page`);
+            isDone = false;
+            console.log(err);
+        })
+
+        if(isDone) {
+            console.log(`Saving ${item.title} product ...`);
+            fetch(`${myConstClass.HTTP_LINK}/updateExpense`,{
+                method:"post",
+                headers:{
+                    'Content-Type':'application/json'
+                },
+                body:JSON.stringify(item)
+            })
+            .then(res=>res.json())
+            .then(data=>{
+                Alert.alert(`Details of ${item.title} has been updated`)
+            })
+            .then(() => {
+                NavbarButtonHandler("expenses");
+                setLoading(true);
+                fetchExpense();
+                setLoading(false);
+            })
+            .catch(err=>{
+                Alert.alert("Some Error on Saving product in Edit Product Page.")
+                console.log(err)
+            });
+        } else {
+            
+        }
+    }
+
+    const editProductDeleteButtonHandler = (item) => {
+
+        let index = 0, isDone = true;
+        for(let i=0 ; i<categoriesData.length ; i++) {
+            if(categoriesData[i].name === item.category) {
+                index = i;
+                break;
+            }
+        }
+
+        fetch(`${myConstClass.HTTP_LINK}/updateCategory`,{
+            method:"post",
+            headers:{
+                'Content-Type':'application/json'
+            },
+            body:JSON.stringify({
+                id:categoriesData[index]._id,
+                name: categoriesData[index].name,
+                icon: categoriesData[index].icon,
+                color: categoriesData[index].color,
+                totalExpenseInThis: categoriesData[index].totalExpenseInThis - item.total
+            })
+        })
+        .then(res=>res.json())
+        .then(data=>{
+            console.log(`total expense of ${item.category} category is updated.`);
+        })
+        .catch(err=>{
+            Alert.alert(`Some Error while subtracting total expense of ${item.category} category on deleting product inside Edit product page`);
+            isDone = false;
+            console.log(err);
+        })
+
+        if(isDone) {
+            fetch(`${myConstClass.HTTP_LINK}/deleteExpense`,{
+                method:"post",
+                headers:{
+                    'Content-Type':'application/json'
+                },
+                body:JSON.stringify({
+                    id:item.id
+                })
+            })
+            .then(res=>res.json())
+            .then(data=>{
+                Alert.alert(`Details of ${item.title} has been deleted`)
+            })
+            .then(() => {
+                NavbarButtonHandler("expenses");
+                setLoading(true);
+                fetchExpense();
+                fetchCategory();
+                setLoading(false);
+            })
+            .catch(err=>{
+                Alert.alert("Some Error while Deleting a product inside Edit Product Page.")
+                console.log(err)
+            });
+        } else {
+            console.log("Delete action aborted.")
+        }
     }
 
     const editProductCancelButtonHandler = () => {
@@ -149,27 +218,64 @@ export default function Home () {
 
     const AddProductSaveButtonHandler = (item) => {
         console.log("Add Product Button is pressed inside Add Product Page.");
-        fetch(`${myConstClass.HTTP_LINK}/addExpense`,{
+
+        let index = 0, isDone = true;
+        for(let i=0 ; i<categoriesData.length ; i++) {
+            if(categoriesData[i].name === item.category) {
+                index = i;
+                break;
+            }
+        }
+
+        fetch(`${myConstClass.HTTP_LINK}/updateCategory`,{
             method:"post",
+            headers:{
+                'Content-Type':'application/json'
+            },
+            body:JSON.stringify({
+                id:categoriesData[index]._id,
+                name: categoriesData[index].name,
+                icon: categoriesData[index].icon,
+                color: categoriesData[index].color,
+                totalExpenseInThis: categoriesData[index].totalExpenseInThis + item.total
+            })
+        })
+        .then(res=>res.json())
+        .then(data=>{
+            console.log(`total expense of ${item.category} category is updated.`);
+        })
+        .catch(err=>{
+            Alert.alert(`Some Error while updating total expense of ${item.category} category inside Add product page`);
+            isDone = false;
+            console.log(err);
+        })
+
+        if(isDone) {
+            fetch(`${myConstClass.HTTP_LINK}/addExpense`,{
+                method:"post",
                 headers:{
                     'Content-Type':'application/json'
                 },
                 body:JSON.stringify(item)
-        })
-        .then(res=>res.json())
-        .then(data=>{
-            Alert.alert(`Details of ${item.title} has been updated`)
-        })
-        .then(() => {
-            NavbarButtonHandler("expenses");
-            setLoading(true);
-            fetchExpense();
-            setLoading(false);
-        })
-        .catch(err=>{
-            Alert.alert("Some Error on Adding product in Add Product Page.")
-            console.log(err);
-        });
+            })
+            .then(res=>res.json())
+            .then(data=>{
+                Alert.alert(`Details of ${item.title} has been updated`)
+            })
+            .then(() => {
+                NavbarButtonHandler("expenses");
+                setLoading(true);
+                fetchExpense();
+                fetchCategory();
+                setLoading(false);
+            })
+            .catch(err=>{
+                Alert.alert("Some Error while Adding product in Add Product Page.")
+                console.log(err);
+            });
+        } else {
+            console.log("Product is not added due to error.");
+        }
     }
 
     /** Add Product END */

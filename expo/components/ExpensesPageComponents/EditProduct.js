@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Picker } from 'react-native'
 
 export default function EditProduct({ item, categoriesData, editProductSaveButtonHandler, editProductDeleteButtonHandler, editProductCancelButtonHandler }) {
-    const [selectedValue, setSelectedValue] = useState(item.category);
-
+    
     const _id = item._id;
+    const prevTotal = item.total;
+
+    const [selectedValue, setSelectedValue] = useState(item.category);
     const [productName, setProductName] = useState(item.title);
     const [amount, setAmount] = useState(item.total.toString());
     const [description, setDescription] = useState(item.description);
@@ -73,7 +75,7 @@ export default function EditProduct({ item, categoriesData, editProductSaveButto
                             category: selectedValue,
                             total: Number(amount)
                         }
-                        editProductSaveButtonHandler(obj);
+                        editProductSaveButtonHandler(obj, prevTotal);
                     }}
                 >
                     <View style={{
@@ -88,7 +90,16 @@ export default function EditProduct({ item, categoriesData, editProductSaveButto
 
                 <TouchableOpacity 
                     style={{paddingTop: 10,marginTop: 10, flex: 1, marginLeft: 5}}
-                    onPress={() => editProductDeleteButtonHandler(_id, productName)}
+                    onPress={() => {
+                        const obj = {
+                            id: _id,
+                            title: productName,
+                            description: description,
+                            category: selectedValue,
+                            total: Number(amount)
+                        }
+                        editProductDeleteButtonHandler(obj);
+                    }}
                 >
                     <View style={{
                         backgroundColor: "red",
