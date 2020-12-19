@@ -41,8 +41,8 @@ def predict(data):
     f = open('./NLP/tfidf.pickle','rb')
     tfidf = pickle.load(f)
     f.close()
-    data = np.array(data)
-    data = data.reshape(-1, 1)
+    # data = np.array(data)
+    # data = data.reshape(-1, 1)
     data = tfidf.transform(data)
     Y_pred = classifier.predict(data)
     res = [dict[letter] for letter in Y_pred]

@@ -8,17 +8,9 @@ import ManualAdd from './timepassForm';
 import RenderProducts from './RenderProducts';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import * as myConstClass from '../../screens/HttpLink';
-//import key from './CloudVision';
-//import predict from '../../ML/index';
 
-// tf = require('@tensorflow/tfjs')
-// knnClassifier = require('@tensorflow-models/knn-classifier');
 
-// const model = tf.loadLayersModel('file://model');
-// const classifier = knnClassifier.create();
-
-const cv2 =""; 
-
+const cv2 ="AIzaSyDr7HF_EwCmPjZsGDeWmO02C2JOUxSKUmM";
 const cloudVision  = 'https://vision.googleapis.com/v1/images:annotate?key=' + cv2;
 
 export default function ScanBill({categoriesData, people}) {
@@ -33,7 +25,7 @@ export default function ScanBill({categoriesData, people}) {
                     'Content-Type':'application/json'
                 },
                 body:JSON.stringify({
-                    id:_id,
+                    id:id,
                     name: people.name,
                     income: people.income,
                     savings: people.savings,
@@ -47,11 +39,30 @@ export default function ScanBill({categoriesData, people}) {
             Alert.alert(`Details of ${people.name} has been updated`)
         })
         .catch(err=>{
-            Alert.alert("Some Error")
+            Alert.alert("Done")
             console.log(err)
         })
     }
 
+    const predict = async(data) => {
+        fetch("http://9976958508d9.ngrok.io/prediction",{
+            method:"post",
+                headers:{
+                    'Content-Type':'application/json'
+                },
+                body:JSON.stringify({
+                    data: data
+                })
+        })
+        .then(res=>res.json())
+        .then(data=>{
+            console.log(data.category)
+            return data.category
+        })
+        .catch(err=>{
+            console.log(err)
+        })
+    }
     const updateCategoryExpense = async(total, category) =>{
         for(i in categoriesData){
             if(categoriesData[i].name === category){
@@ -79,23 +90,6 @@ export default function ScanBill({categoriesData, people}) {
             }
         }
     }
-
-    // const predict = async (name) => {
-    //     t = [...name];
-    //     for(i=0;i<name.length;i++){
-    //         t[i]=t[i].charCodeAt();
-    //         if(t[i]>=65 && t[i]<=90)t[i]+=32;
-    //         else if(t[i]>=97 && t[i]<=122)t[i]+=0;
-    //         else t[i]=96;
-    //         t[i]-=96;
-    //     }
-    //     for(i=name.length;i<100;i++){
-    //         t[i]=0;
-    //     }
-    //     return classifier.predictClass(model.predict(tf.tensor(t,[1,100]))).then((obj) => {
-    //         return obj;
-    //     });
-    // }
     
     const [title, setTitle] = useState("");
     const [category, setCategory] = useState("");
@@ -158,7 +152,6 @@ export default function ScanBill({categoriesData, people}) {
           var texts = [];
           var y=0;
           console.log("Starting with text")
-          //console.log(res.responses[0].fullTextAnnotation.text)
           let x = await res.responses[0].fullTextAnnotation.text;
           console.log(x);
           console.log(typeof x);
@@ -172,7 +165,6 @@ export default function ScanBill({categoriesData, people}) {
           var lastNumber = 0;
           var diff = 0;
           for(var i in x.split("\n")){
-              //console.log(k[i]);
               var words = k[i].split(" ");
               if(words.length === 1 && flag===1){
                   count ++;
@@ -210,10 +202,10 @@ export default function ScanBill({categoriesData, people}) {
           var pos3 = 0;
           var total = 0;
           console.log("done");
-          console.log(arr.length);
+          //console.log(arr.length);
           var te = "";
           for(var i=0; i< arr.length; i++){
-              console.log(arr[i]);
+              //console.log(arr[i]);
               if(i%2==0){
                   setTitle(arr[i]);
                   te  = arr[i];
@@ -221,15 +213,16 @@ export default function ScanBill({categoriesData, people}) {
                   pos1++;
                   categoryArray[pos3] = "Food";
                   pos3++;
-                  //var pre = await predict(title);
-                  //console.log(pre);
                   setCategory("food");
               }else{
                   total += arr[i];
                   setTotal(arr[i]);
                   priceArray[pos2] = parseInt(arr[i]);
                   pos2++;
-                  await addExpense(te, "Food", arr[i]);
+                  let cat = "Food";
+                  cat = await predict(te);
+                  console.log(te+"  "+ cat+"  "+ arr[i]);
+                  await addExpense(te, cat, arr[i]);
               }
           }
           await updateUserData(total);
