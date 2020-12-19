@@ -1,6 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { View, Animated, FlatList, ScrollView, LogBox, Alert } from 'react-native';
 import AddSection from '../components/AddPage';
+import ScanBill from '../components/AddPageComponents/ScanBill';
 import Expenses from '../components/Expenses';
 import EditProduct from '../components/ExpensesPageComponents/EditProduct';
 import NavigationBar from '../components/NavigationBar';
@@ -177,7 +178,9 @@ export default function Home () {
             }
             {
                 viewMode == "add" &&
-                <AddSection  categoriesData={categoriesData} people={people}/>
+                <ScrollView style={{ marginTop: 10, marginHorizontal: 18 }} >
+                    <ScanBill categoriesData={categoriesData} people={people}/>
+                </ScrollView>
             }
             
         </ScrollView>
