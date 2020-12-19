@@ -424,6 +424,110 @@ app.get('/ltp_nifty', (req, res) => {
 
 // STOCK SCRAPPING ENDS
 
+// CRYPTOCURRENCY
+
+let top_crypto = [];
+
+request('https://coinmarketcap.com/gainers-losers/', (error, 
+response, html) => {
+    if(!error && response.statusCode == 200) {
+        const $ = cheerio.load(html);
+       
+            $('.lgwUsc').each((i, el) => {
+                const item = $(el)
+                    .children('.iJjGCS')
+                    .text();
+
+                top_crypto.push(item);
+                
+                
+            });
+    
+    }
+
+});
+
+app.get('/top_crypto', (req, res) => {
+    res.send(top_crypto);
+})
+
+let crypto_change_percent = [];
+
+request('https://coinmarketcap.com/gainers-losers/', (error, 
+response, html) => {
+    if(!error && response.statusCode == 200) {
+        const $ = cheerio.load(html);
+       
+            $('.jbNiav').each((i, el) => {
+                const item = $(el)
+                    .find('p')
+                    .text();
+
+                crypto_change_percent.push(item);
+                
+            });
+    
+    }
+
+});
+
+app.get('/crypto_change_percent', (req, res) => {
+    res.send(crypto_change_percent);
+})
+
+let crypto_image = [];
+
+request('https://coinmarketcap.com/gainers-losers/', (error, 
+response, html) => {
+    if(!error && response.statusCode == 200) {
+        const $ = cheerio.load(html);
+       
+            $('.gKtDwz').each((i, el) => {
+                const item = $(el)
+                    .find('.coin-logo')
+                    .attr('src');
+
+                crypto_image.push(item);
+                
+                
+            });
+    
+    }
+
+});
+
+app.get('/crypto_image', (req, res) => {
+    res.send(crypto_image);
+})
+
+
+let crypto_price = [];
+
+request('https://coinmarketcap.com/gainers-losers/', (error, 
+response, html) => {
+    if(!error && response.statusCode == 200) {
+        const $ = cheerio.load(html);
+       
+            $('tr').each((i, el) => {
+                const item = $(el)
+                    .find('td')
+                    .slice(2,3)
+                    .text();
+
+                if(i!==0){
+                    crypto_price.push(item);
+                }
+                
+                
+            });
+    
+    }
+
+})
+
+app.get('/crypto_price', (req, res) => {
+    res.send(crypto_price);
+})
 
 app.listen(3000,()=>{
     console.log("Server Running at port 3000")

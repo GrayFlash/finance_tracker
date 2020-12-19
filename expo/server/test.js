@@ -3,28 +3,31 @@ const cheerio = require('cheerio');
 const express = require('express');
 const app = express();
 
-const result_sensex = {
-	value: 0,
-	raise: 0,
-}
+let top_crypto = [];
 
-request('https://economictimes.indiatimes.com/indices/sensex_30_companies?from=mdr', (error, 
+request('https://coinmarketcap.com/gainers-losers/', (error, 
 response, html) => {
     if(!error && response.statusCode == 200) {
         const $ = cheerio.load(html);
        
-            let value = $('#headStuff').find('#ltp').text();
-            result_sensex.value = value
+            $('tr').each((i, el) => {
+                const item = $(el)
+                    .find('td')
+                    .slice(2,3)
+                    .text();
 
-            let change = $('#todaysData').text();
-            result_sensex.raise = change;
+                console.log(item);
+                top_crypto.push(item);
+                
+                
+            });
     
     }
 
 });
 
 app.get('/', (req, res) => {
-    res.send(lund);
+    res.send(top_crypto);
 })
 
 app.listen(5000);
