@@ -170,5 +170,5 @@ def ocr_enable():
     names, categories, prices = find_content_from_output(texts, words, poly_bounds)
     for i in range(0, len(names)):
         print(names[i], categories[i], prices[i])
-    # print(texts)
-    return data
+
+    return {"Items":names, "Categories":categories, "Prices":prices}
