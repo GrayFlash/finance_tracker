@@ -40,7 +40,7 @@ export default function CategoryList({ setSelectedCategory, categories, clhav, t
             <View style={styles.totalExpenseButton} >
                 <View>
                     <Text style={styles.totalExpenseText}>
-                        Total spend ${totalExpenses}
+                        Total spend  ₹ {totalExpenses}
                     </Text>
                 </View>
             </View>
