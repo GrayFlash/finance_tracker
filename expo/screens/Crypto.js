@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 import React, {useState, useEffect} from 'react';
-import { KeyboardAvoidingView, View , Text, StyleSheet, Image, TouchableOpacity, TextInput, Alert, FlatList, ScrollView, ImageBackground, LogBox } from 'react-native';
+import {View , Text, StyleSheet, Image, TouchableOpacity, ScrollView, LogBox } from 'react-native';
 import * as myConstClass from './HttpLink';
 
 export default function Crypto() {
@@ -141,6 +141,8 @@ export default function Crypto() {
         );
     }
 
+    let index_all =0;
+
 
     function All() {
         return(
@@ -174,7 +176,7 @@ export default function Crypto() {
                         <View>
                             {all_crypto_name.map((item) => {
                                 return (
-                                    <View key={all_crypto_name.indexOf(item)} >
+                                    <View key={all_crypto_name[item]} >
                                         <Text style={{  
                                             marginTop: 5,
                                             paddingBottom: 5,
@@ -194,7 +196,7 @@ export default function Crypto() {
                         <View style={{flex: 1}}>
                             {all_crypto_price.map((item) => {
                                 return (
-                                    <View key={all_crypto_price.indexOf(item)} >
+                                    <View key={all_crypto_price[item]} >
                                         <Text style={{  
                                             marginTop: 5,
                                             paddingBottom: 5,
@@ -210,32 +212,11 @@ export default function Crypto() {
                             })}
                         </View>
 
-                        {/* <View style={{flex: 1}}>
-                            {crypto_price_lose.map((item) => {
-                                return (
-                                    <View key={crypto_price_lose.indexOf(item)} >
-                                        <Text style={{  
-                                            paddingTop: 5,
-                                            marginLeft: 15,
-                                            marginTop: 5,
-                                            fontSize: 14,
-                                            fontFamily: 'GothamMedium', 
-                                            color: "black",
-                                        }}>{item}</Text>
-
-                                    <View style={{borderBottomWidth: 1, borderBottomColor: "#BEC1D2", marginTop: 5}} /> 
-                                    </View>
-                                );
-                                
-                            })}
-                        </View> */}
-                                    
-                            
                         <View>
                             {all_crypto_change.map((item) => {
                                 return (
                                     <View>
-                                        <View key={all_crypto_change.indexOf(item)} >
+                                        <View key={all_crypto_change[item]} >
                                             <Text style={{
                                                 paddingTop: 5,
                                                 marginRight: 5,
@@ -243,7 +224,7 @@ export default function Crypto() {
                                                 fontSize: 14,
                                                 fontFamily: 'GothamMedium', 
                                                 color: item.charAt(0)=="-" ? "red" : "green"
-                                            }}>{item}</Text>
+                                            }}>{item.charAt(0)=="-" ? item : "+" + item}</Text>
                                             
                                         </View>
                                         <View style={{borderBottomWidth: 1, borderBottomColor: "#BEC1D2", marginTop: 5}} />
@@ -289,7 +270,7 @@ export default function Crypto() {
                     <View >
                         {crypto_image_gain.map((item) => {
                             return (
-                                <View key={crypto_image_gain.indexOf(item)} >
+                                <View key={crypto_image_gain[item]} >
                                     <Image style={{height: 26, width: 26, marginHorizontal: 5}} source={{uri: item}} />
                                     <View style={{borderBottomWidth: 1, borderBottomColor: "#BEC1D2", marginTop: 5}} />
                                     
@@ -301,7 +282,7 @@ export default function Crypto() {
                     <View>
                         {top_crypto_gain.map((item) => {
                             return (
-                                <View key={top_crypto_gain.indexOf(item)} >
+                                <View key={top_crypto_gain[item]} >
                                     <Text style={{  
                                         marginTop: 5,
                                         paddingBottom: 5,
@@ -320,10 +301,10 @@ export default function Crypto() {
                     <View style={{flex: 1}}>
                         {crypto_price_gain.map((item) => {
                             return (
-                                <View key={crypto_price_gain.indexOf(item)} >
+                                <View key={crypto_price_gain[item]} >
                                     <Text style={{  
                                         paddingTop: 5,
-                                        marginLeft: 15,
+                                        marginLeft: 20,
                                         marginTop: 5,
                                         fontSize: 14,
                                         fontFamily: 'GothamMedium', 
@@ -342,7 +323,7 @@ export default function Crypto() {
                         {crypto_change_percent_gain.map((item) => {
                             return (
                                 <View>
-                                    <View key={crypto_change_percent_gain.indexOf(item)} >
+                                    <View key={crypto_change_percent_gain[item]} >
                                         <Text style={{
                                             paddingTop: 5,
                                             marginRight: 10,
@@ -350,7 +331,7 @@ export default function Crypto() {
                                             fontSize: 14,
                                             fontFamily: 'GothamMedium', 
                                             color: "green"
-                                        }}>{item}</Text>
+                                        }}>{"+"+item}</Text>
                                         
                                     </View>
                                     <View style={{borderBottomWidth: 1, borderBottomColor: "#BEC1D2", marginTop: 5}} />
@@ -395,7 +376,7 @@ export default function Crypto() {
                     <View >
                         {crypto_image_lose.map((item) => {
                             return (
-                                <View key={crypto_image_lose.indexOf(item)} >
+                                <View key={item} >
                                     <Image style={{height: 26, width: 26, marginHorizontal: 5}} source={{uri: item}} />
                                     <View style={{borderBottomWidth: 1, borderBottomColor: "#BEC1D2", marginTop: 5}} />
                                     
@@ -407,7 +388,7 @@ export default function Crypto() {
                     <View>
                         {top_crypto_lose.map((item) => {
                             return (
-                                <View key={top_crypto_lose.indexOf(item)} >
+                                <View key={top_crypto_lose[item]} >
                                     <Text style={{  
                                         marginTop: 5,
                                         paddingBottom: 5,
@@ -426,7 +407,7 @@ export default function Crypto() {
                     <View style={{flex: 1}}>
                         {crypto_price_lose.map((item) => {
                             return (
-                                <View key={crypto_price_lose.indexOf(item)} >
+                                <View key={crypto_price_lose[item]} >
                                     <Text style={{  
                                         paddingTop: 5,
                                         marginLeft: 15,
@@ -448,7 +429,7 @@ export default function Crypto() {
                         {crypto_change_percent_lose.map((item) => {
                             return (
                                 <View>
-                                    <View key={crypto_change_percent_lose.indexOf(item)} >
+                                    <View key={crypto_change_percent_lose[item]} >
                                         <Text style={{
                                             paddingTop: 5,
                                             marginRight: 10,
@@ -456,7 +437,7 @@ export default function Crypto() {
                                             fontSize: 14,
                                             fontFamily: 'GothamMedium', 
                                             color: "red"
-                                        }}>{item}</Text>
+                                        }}>{"-"+item}</Text>
                                         
                                     </View>
                                     <View style={{borderBottomWidth: 1, borderBottomColor: "#BEC1D2", marginTop: 5}} />

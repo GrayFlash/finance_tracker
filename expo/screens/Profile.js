@@ -5,7 +5,7 @@ import * as myConstClass from './HttpLink';
 
 export default function Profile() {
 
-    const [viewMode, setViewMode] = React.useState("edit");
+    const [viewMode, setViewMode] = React.useState("expense");
 
     const [person, setPerson] = useState();
     const [data, setData] = useState([])

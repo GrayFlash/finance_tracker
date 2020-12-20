@@ -123,7 +123,7 @@ export default function Stock() {
                     </View>
 
                     <View style={{paddingTop: 26,marginRight: 16, justifyContent: 'center' }}>
-                        <Text style={{fontFamily: 'GothamMedium', fontSize: 16, color: result_sensex.raise.toString().charAt(0) == "-" ? "red" : "green"}}>{result_sensex.raise.toString()}</Text>
+                        <Text style={{fontFamily: 'GothamMedium', fontSize: 16, color: result_sensex.raise.toString().charAt(0) == "-" ? "red" : "green"}}>{ result_sensex.raise.toString().charAt(0)=="-" ? result_sensex.raise.toString() : "+" + result_sensex.raise.toString() }</Text>
                     </View>
                 </View> 
 
@@ -151,7 +151,7 @@ export default function Stock() {
                     </View>
 
                     <View style={{paddingTop: 26,marginRight: 16, justifyContent: 'center' }}>
-                        <Text style={{fontFamily: 'GothamMedium', fontSize: 16, color: result_nifty.raise.toString().charAt(0) == "-" ? "red" : "green"}}>{result_nifty.raise.toString()}</Text>
+                        <Text style={{fontFamily: 'GothamMedium', fontSize: 16, color: result_nifty.raise.toString().charAt(0) == "-" ? "red" : "green"}}>{ result_nifty.raise.toString().charAt(0)=="-" ? result_nifty.raise.toString() : "+" + result_nifty.raise.toString()}</Text>
                     </View>
                 </View>
 
@@ -201,7 +201,7 @@ export default function Stock() {
                         <View style={{ flex: 1,}}>
                             {companyName_sensex.map((item) => {
                                 return (
-                                    <View>
+                                <View key={companyName_sensex[item]} >
                                     <Text style={{  
                                         marginLeft: 18,
                                         marginTop: 10,
@@ -222,7 +222,7 @@ export default function Stock() {
                         <View style={{ flex: 1 }}>
                             {ltp_sensex.map(item => {
                                 return (
-                                    <View>
+                                <View key={ltp_sensex[item]} >
                                     <Text style={{
                                         marginLeft: 16,
                                         marginTop: 10, 
@@ -239,14 +239,14 @@ export default function Stock() {
                         <View>
                             {change_sensex.map(item => {
                                 return (
-                                    <View>
+                                <View key={change_sensex[item]} >
                                     <Text style={{ 
-                                        marginRight: 16,
+                                        marginRight: 18,
                                         marginTop: 10, 
                                         fontSize: 14,
                                         fontFamily: 'GothamMedium', 
                                         color: item.charAt(0)=="-" ? "red" : "green"
-                                    }}>{item}</Text>
+                                    }}>{item.charAt(0)=="-" ? item : "+" + item}</Text>
                                     <View style={{borderBottomWidth: 1, borderBottomColor: "#BEC1D2", marginTop: 10}} />
                                     </View>
                                 );
@@ -287,7 +287,7 @@ export default function Stock() {
                         <View style={{ flex: 1,}}>
                             {companyName_nifty.map((item) => {
                                 return (
-                                    <View>
+                                    <View key={companyName_nifty[item]} >
                                     <Text style={{  
                                         marginLeft: 18,
                                         marginTop: 10,
@@ -308,7 +308,7 @@ export default function Stock() {
                         <View style={{ flex: 1 }}>
                             {ltp_nifty.map(item => {
                                 return (
-                                    <View>
+                                    <View key={ltp_nifty[item]}>
                                     <Text style={{
                                         marginLeft: 16,
                                         marginTop: 10, 
@@ -325,14 +325,14 @@ export default function Stock() {
                         <View>
                             {change_nifty.map(item => {
                                 return (
-                                    <View>
+                                    <View key={change_nifty[item]}>
                                     <Text style={{ 
-                                        marginRight: 16,
+                                        marginRight: 18,
                                         marginTop: 10, 
                                         fontSize: 14,
                                         fontFamily: 'GothamMedium', 
                                         color: item.charAt(0)=="-" ? "red" : "green"
-                                    }}>{item}</Text>
+                                    }}>{item.charAt(0)=="-" ? item : "+" + item}</Text>
                                     <View style={{borderBottomWidth: 1, borderBottomColor: "#BEC1D2", marginTop: 10}} />
                                     </View>
                                 );
