@@ -1,10 +1,64 @@
-import { StyleSheet, Text, View,} from 'react-native';
-import React,{useState, useEffect} from "react";
-import { Dimensions, TouchableOpacity, FlatList, Image } from 'react-native';
+import React from "react";
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { Table, Row } from 'react-native-table-component';
 
 export default function RenderProducts({ doneButtonHandler, scannedData }) {
-
-    const [productList, setProductList] = useState([]);
+/*
+    let scannedData = {
+        Categories: [
+            "Hygiene",
+            "Hygiene",
+            "Food",
+            "Home",
+            "Hygiene",
+            "Food",
+            "Food",
+            "Food",
+            "Home",
+            "Clothes",
+            "Food",
+            "Food",
+            "Hygiene",
+            "Hygiene",
+        ],
+        Items: [
+            " GOWARDHAN GO CHEE",
+            " ALIUL VANILA IC CR",
+            " APPY JUICE 400 ML",
+            " BT RAWRICE",
+            " ORANGE CITRUS",
+            " GOODLIFE PURE COW",
+            " SUGAR",
+            " ВАЛBINO ROASTED V",
+            " CUCUMBER HYBRID",
+            " DOUBLE HORSE IDIY",
+            " GINGER",
+            " GREEN CHILLY",
+            " KGTIDE JR 1",
+            " РЕPSODENТ KDS FRT",
+        ],
+        Prices: [
+            54.04,
+            19.58,
+            17.44,
+            41.14,
+            95,
+            21.75,
+            38.76,
+            36.37,
+            18,
+            10.74,
+            45,
+            45,
+            85.73,
+            47.1,
+        ]
+    }   
+*/
+    let productList = [], n = scannedData.Categories.length;
+    for(let i=0 ; i<n ; i++) {
+        productList = [ ...productList, { title: scannedData.Items[i], category: scannedData.Categories[i], total: scannedData.Prices[i] }]
+    }
 
     return (
         <View>
@@ -19,76 +73,20 @@ export default function RenderProducts({ doneButtonHandler, scannedData }) {
                 <Text style={{ color: "#194868" }}>Your scanned product's list</Text>
             </View>
 
-            {/* RENDER PRODUCTS HERE */}
-            
-            <View
-                style={{
-                    flexDirection: 'row',
-                    height: 40,
-                    marginTop: 4,
-                    paddingHorizontal: 12,
-                    borderRadius: 10,
-                    backgroundColor: "white",
-                }}
-        
-            >
-
-                {() => {
-                    return (
-                        <>
-                            <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-                                <Text style={{ marginLeft: 8, color: "#194868"}}>1.</Text>
-                                <Text style={{ marginLeft: 20, color: "#194868"}}>Expenses</Text>
-                            </View>
-
-                            <View style={{justifyContent: 'center', marginRight: 40}}>
-                                <Text style={{color: "#194868"}}>Category</Text>
-                            </View>
-
-                            <View style={{ justifyContent: 'center', marginRight: 30 }}>
-                                <Text style={{ color: "#194868" }}>1200</Text>
-                            </View>
-                            <TouchableOpacity style={{ 
-                                justifyContent: 'center', 
-                                backgroundColor: "#444444", 
-                                borderRadius: 8,
-                                paddingHorizontal: 4,
-                                marginVertical: 4
-                            }}>
-                                <Image style={{width:30, height:30, tintColor: "white"}} source={require('../../assets/icons/edit0.png')} />
-                            </TouchableOpacity>
-                        </>
-                    );
-                }}
-                {/** 
-                <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-                    <Text style={{ marginLeft: 8, color: "#194868"}}>1.</Text>
-                    <Text style={{ marginLeft: 20, color: "#194868"}}>Expenses</Text>
-                </View>
-
-                <View style={{justifyContent: 'center', marginRight: 40}}>
-                    <Text style={{color: "#194868"}}>Category</Text>
-                </View>
-
-                <View style={{ justifyContent: 'center', marginRight: 30 }}>
-                    <Text style={{ color: "#194868" }}>1200</Text>
-                </View>
-                <TouchableOpacity style={{ 
-                    justifyContent: 'center', 
-                    backgroundColor: "#444444", 
-                    borderRadius: 8,
-                    paddingHorizontal: 4,
-                    marginVertical: 4
-                }}>
-                    <Image style={{width:30, height:30, tintColor: "white"}} source={require('../../assets/icons/edit0.png')} />
-                </TouchableOpacity>*/}
+            <View style={styles.table} >
+                <Table borderStyle={{borderWidth: 2, borderColor: '#c8e1ff'}}>
+                    <Row data={[ "Product Name", "Category", "Amount" ]} style={styles.head} textStyle={styles.text}/>
+                    {productList.map((item) => {
+                        return (
+                            <Row data={[item.title, item.category, item.total]} textStyle={styles.text} key={productList.indexOf(item)} />
+                        );  
+                    })}
+                </Table>
             </View>
-
-            {/* BUTTON THAT UPLOADS INFO OR DOES SOMETHING AFTER USER CONFIRMS THE SCANNED PRODUCTS */}
-
+            
             <TouchableOpacity 
-                style={{paddingTop: 10,marginTop: 10}}
-                onPress={() => doneButtonHandler() }
+                style={{ paddingTop: 10, marginTop: 10, marginBottom: 10 }}
+                onPress={() => doneButtonHandler(productList) }
             >
                 <View style={{
                     backgroundColor: "#444444",
@@ -97,7 +95,7 @@ export default function RenderProducts({ doneButtonHandler, scannedData }) {
                 }}>
                     <Text style={{color: "white", textAlign: "center"}}>Done</Text>
                 </View>
-            </TouchableOpacity>  
+            </TouchableOpacity> 
         </View>
     );
 }
@@ -108,7 +106,18 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         backgroundColor: "#f5fcff",
-      },
+    },
+    table: { 
+        flex: 1, 
+        padding: 16, 
+        paddingTop: 30, 
+        backgroundColor: '#fff' 
+    },
+    head: { 
+        height: 40, 
+        backgroundColor: '#f1f8ff'
+    },
+    text: { margin: 6 },
 })
 
     

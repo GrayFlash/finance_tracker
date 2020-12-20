@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { View, Animated, FlatList, ScrollView, LogBox, Alert } from 'react-native';
+import { View, Animated, ScrollView, LogBox, Alert } from 'react-native';
 import ScanBill from '../components/AddPageComponents/ScanBill';
 import Expenses from '../components/Expenses';
 import EditProduct from '../components/ExpensesPageComponents/EditProduct';
@@ -365,6 +365,11 @@ export default function Home () {
 
     /** Add Product END */
 
+    const ScanBillDoneButtonHandler = (productList) => {
+        console.log("Done Button is Pressed!!");
+        console.log(productList);
+    }
+
     return (  
         <ScrollView>
             {<NavigationBar viewMode={viewMode} NavbarButtonHandler={NavbarButtonHandler}/>}
@@ -401,7 +406,8 @@ export default function Home () {
                 <ScrollView style={{ marginTop: 10, marginHorizontal: 18 }} >
                     <ScanBill   categoriesData={categoriesData} 
                                 people={people} 
-                                AddProductSaveButtonHandler={AddProductSaveButtonHandler} 
+                                AddProductSaveButtonHandler={AddProductSaveButtonHandler}
+                                ScanBillDoneButtonHandler={ScanBillDoneButtonHandler} 
                     />
                 </ScrollView>
             }

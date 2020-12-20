@@ -68,7 +68,10 @@ export default function ChartPage({ catData, ppl }) {
                             borderRadius: 8,
                             backgroundColor: (selectedCategory == `${obj.name}`) ? "#BEC1D2" : "white",
                         }}
-                        onPress={() => setSelectedCategory(`${obj.name}`)}
+                        onPress={() => {
+                            console.log(`${obj.name} is selected for Pie Chart`);
+                            setSelectedCategory(`${obj.name}`);
+                        }}
                     >
                         {/* Name/Category */}
                         <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>

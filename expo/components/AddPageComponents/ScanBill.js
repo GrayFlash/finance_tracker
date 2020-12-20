@@ -1,109 +1,45 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, Image, Alert, ScrollView, LogBox } from 'react-native';
+import { StyleSheet, Text, View, Alert, ScrollView, LogBox } from 'react-native';
 import Animated from 'react-native-reanimated';
 import * as ImagePicker from 'expo-image-picker';
-import Constants from 'expo-constants';
 import BottomSheet from 'reanimated-bottom-sheet';
 import ManualAdd from './ManualAdd';
 import RenderProducts from './RenderProducts';
 import {TouchableOpacity} from 'react-native-gesture-handler';
-import * as myConstClass from '../../screens/HttpLink';
 
-export default function ScanBill({ categoriesData, people, AddProductSaveButtonHandler }) {
+export default function ScanBill({ categoriesData, people, AddProductSaveButtonHandler, ScanBillDoneButtonHandler }) {
 
     const [image, setImage] = useState(null);
-    const [scannedData, setScannedData] = useState(false);
-/*
-    const updateUserData = async(total) =>{
-        fetch(`${myConstClass.HTTP_LINK}/updatePerson`,{
-            method:"post",
-                headers:{
-                    'Content-Type':'application/json'
-                },
-                body:JSON.stringify({
-                    id:id,
-                    name: people.name,
-                    income: people.income,
-                    savings: people.savings,
-                    targetToSave: people.targetToSave,
-                    thisMonthStatus: people.thisMonthStatus,
-                    totalExpenses: people.totalExpenses+total
-                })
-        })
-        .then(res=>res.json())
-        .then(data=>{
-            Alert.alert(`Details of ${people.name} has been updated`)
-        })
-        .catch(err=>{
-            Alert.alert("Done")
-            console.log(err)
-        })
-    }
+    const [scannedData, setScannedData] = useState(false); 
 
-    const updateCategoryExpense = async(total, category) =>{
-        for(i in categoriesData){
-            if(categoriesData[i].name === category){
-                fetch(`${myConstClass.HTTP_LINK}/updateCategory`,{
-                    method:"post",
-                        headers:{
-                            'Content-Type':'application/json'
-                        },
-                        body:JSON.stringify({
-                            id:categoriesData[i]._id,
-                            name: categoriesData[i].name,
-                            icon: categoriesData[i].icon,
-                            color: categoriesData[i].color,
-                            totalExpenseInThis: categoriesData[i].totalExpenseInThis + total
-                        })
-                })
-                .then(res=>res.json())
-                .then(data=>{
-                    Alert.alert(`Details of ${people.name} has been updated`)
-                })
-                .catch(err=>{
-                    Alert.alert("Some Error")
-                    console.log(err)
-                })
-            }
-        }
+    const doneButtonHandler = (productList) => {
+        ScanBillDoneButtonHandler(productList);
+        setImage(null);
+        setScannedData(null);
     }
-    
-    const addExpense = async(te, ca, to) => {
-        fetch(`${myConstClass.HTTP_LINK}/addExpense`,{
-            method:"post",
-                headers:{
-                    'Content-Type':'application/json'
-                },
-                body:JSON.stringify({
-                    title: te,
-                    category: ca,
-                    total: to
-                })
-        })
-    }
-*/    
 
         /** Main ML code */
 
     const ocr_with_py = async (src) => {
+        console.log("Inside ocr_with_py");
         fetch("http://f70baecf4f42.ngrok.io/image_ocr",{
             method:"post",
-                headers:{
-                    'Content-Type':'application/json'
-                },
-                body:JSON.stringify({
-                    src: src
-                })
+            headers:{
+                'Content-Type':'application/json'
+            },
+            body:JSON.stringify({
+                src: src
+            })
         })
         .then(res=>res.json())
         .then(data=>{
+            console.log("This is inside ocr_with_py method :");
             console.log(data)
             setScannedData(data);
         })
         .catch(err=>{
             console.log(err);
             Alert.alert("Some Error while processing the image.")
-            setWantToLoadRenderList(false);
         })
     }
 
@@ -125,11 +61,6 @@ export default function ScanBill({ categoriesData, people, AddProductSaveButtonH
 
         /** Main ML code END */
 
-    const doneButtonHandler = (props) => {
-        setImage(null);
-        setScannedData(null);
-        console.log("Done Button is Pressed!!");
-    }
 
         /** ScanBill Buttons */
 
@@ -147,7 +78,6 @@ export default function ScanBill({ categoriesData, people, AddProductSaveButtonH
     }, []);
 
     const pickImage = async () => {
-
         console.log("Chooose from Gallery is Pressed!!");
 
         const { status } = await ImagePicker.requestCameraRollPermissionsAsync();
@@ -236,7 +166,7 @@ export default function ScanBill({ categoriesData, people, AddProductSaveButtonH
                 <Text style={styles.panelButtonTitle}>Cancel</Text>
             </TouchableOpacity>
         </View>
-      );
+    );
     
     const renderHeader = () => (
         <View style={styles.header}>
