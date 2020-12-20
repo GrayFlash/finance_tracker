@@ -4,7 +4,7 @@ import requests
 from PIL import Image, ImageEnhance
 # from google.cloud import vision
 import io
-
+import cv2 as cv
 from flask import Flask, request, jsonify
 from NLP.k import predict
 app = Flask(__name__)
@@ -30,7 +30,10 @@ def ocr_enable():
     response = requests.get(url)
     img = Image.open(io.BytesIO(response.content))
     enhancer = ImageEnhance.Contrast(img)
-    
     img2 = enhancer.enhance(2)
+    # img2 = np.array(img2)
     img2.save("Bill.jpg")
+    img2 = cv.imread("Bill.jpg", 0)
+    th = cv.adaptiveThreshold(img2,255,cv.ADAPTIVE_THRESH_GAUSSIAN_C, cv.THRESH_BINARY,11,2)
+    cv.imwrite("Bill.jpg", th)
     return data
