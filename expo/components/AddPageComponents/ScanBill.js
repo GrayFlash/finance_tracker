@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, Image, Alert, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, Image, Alert, ScrollView, LogBox } from 'react-native';
 import Animated from 'react-native-reanimated';
 import * as ImagePicker from 'expo-image-picker';
 import Constants from 'expo-constants';
@@ -12,8 +12,8 @@ import * as myConstClass from '../../screens/HttpLink';
 export default function ScanBill({ categoriesData, people, AddProductSaveButtonHandler }) {
 
     const [image, setImage] = useState(null);
-    const [scannedData, setScannedData] = useState([]);
-
+    const [scannedData, setScannedData] = useState(false);
+/*
     const updateUserData = async(total) =>{
         fetch(`${myConstClass.HTTP_LINK}/updatePerson`,{
             method:"post",
@@ -39,7 +39,6 @@ export default function ScanBill({ categoriesData, people, AddProductSaveButtonH
             console.log(err)
         })
     }
-    const [category, setCategory] = useState("");
 
     const updateCategoryExpense = async(total, category) =>{
         for(i in categoriesData){
@@ -69,9 +68,6 @@ export default function ScanBill({ categoriesData, people, AddProductSaveButtonH
         }
     }
     
-    const [title, setTitle] = useState("");
-    const [total, setTotal] = useState(0);
-    
     const addExpense = async(te, ca, to) => {
         fetch(`${myConstClass.HTTP_LINK}/addExpense`,{
             method:"post",
@@ -85,16 +81,9 @@ export default function ScanBill({ categoriesData, people, AddProductSaveButtonH
                 })
         })
     }
-    useEffect(() => {
-        (async () => {
-        if (Platform.OS !== 'web') {
-            const { status } = await ImagePicker.requestCameraRollPermissionsAsync();
-            if (status !== 'granted') {
-            Alert.alert('Sorry, we need camera roll permissions to make this work!');
-            }
-        }
-        })();
-    }, []);
+*/    
+
+        /** Main ML code */
 
     const ocr_with_py = async (src) => {
         fetch("http://2355cda0473c.ngrok.io/image_ocr",{
@@ -109,12 +98,15 @@ export default function ScanBill({ categoriesData, people, AddProductSaveButtonH
         .then(res=>res.json())
         .then(data=>{
             console.log(data)
-            return data
+            setScannedData(data);
         })
         .catch(err=>{
-            console.log(err)
+            console.log(err);
+            Alert.alert("Some Error while processing the image.")
+            setWantToLoadRenderList(false);
         })
     }
+
     const handleUpload = async(image) =>{
         const data = new FormData()
         data.append('file', image)
@@ -131,7 +123,29 @@ export default function ScanBill({ categoriesData, people, AddProductSaveButtonH
         })
     }
 
-    
+        /** Main ML code END */
+
+    const doneButtonHandler = (props) => {
+        setImage(null);
+        setScannedData(null);
+        console.log("Done Button is Pressed!!");
+    }
+
+        /** ScanBill Buttons */
+
+    useEffect(() => {
+        (async () => {
+        if (Platform.OS !== 'web') {
+            const { status } = await ImagePicker.requestCameraRollPermissionsAsync();
+            if (status !== 'granted') {
+            Alert.alert('Sorry, we need camera roll permissions to make this work!');
+            }
+        }
+        })();
+
+        LogBox.ignoreLogs(['Functions are not valid as a React child']);
+    }, []);
+
     const pickImage = async () => {
 
         console.log("Chooose from Gallery is Pressed!!");
@@ -197,11 +211,10 @@ export default function ScanBill({ categoriesData, people, AddProductSaveButtonH
         sheetRef.current.snapTo(1);
     }
 
-    const doneButtonHandler = (props) => {
-        console.log("Done Button is Pressed!!");
-        setImage(null);
-    }
+        /** ScanBill Buttons END */
     
+        /** BottomSheet Methods  */
+
     const renderInner = () => (
         <View style={styles.panel}>
             <View style={{alignItems: 'center'}}>
@@ -236,6 +249,8 @@ export default function ScanBill({ categoriesData, people, AddProductSaveButtonH
     const sheetRef = React.useRef(null);
     let fall = new Animated.Value(1);
  
+        /** BottomSheet END  */
+
     return (
         <ScrollView style={{flex: 1}} >
             <BottomSheet
@@ -248,7 +263,7 @@ export default function ScanBill({ categoriesData, people, AddProductSaveButtonH
                 enabledGestureInteraction={true}
             />
 
-            { image ? (
+            { scannedData ? (
                 <RenderProducts doneButtonHandler={doneButtonHandler} scannedData={scannedData} />
             ) : (
                 <Animated.View style={{ opacity: Animated.add(0.1, Animated.multiply(fall, 1.0)) }}>

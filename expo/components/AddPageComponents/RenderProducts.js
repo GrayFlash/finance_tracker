@@ -3,6 +3,9 @@ import React,{useState, useEffect} from "react";
 import { Dimensions, TouchableOpacity, FlatList, Image } from 'react-native';
 
 export default function RenderProducts({ doneButtonHandler, scannedData }) {
+
+    const [productList, setProductList] = useState([]);
+
     return (
         <View>
             <View style={{
