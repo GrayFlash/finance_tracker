@@ -4,3 +4,5 @@ uri.js
 ./screens/HttpLink.js
 env
 model
+.vscode
+__pycache__

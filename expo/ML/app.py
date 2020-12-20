@@ -54,6 +54,12 @@ def detect_text(path):
                 response.error.message))
     return texts, words, poly_bounds
 
+def find_content_from_output(texts, words, poly_bounds):
+    st = ""
+    n = 0
+
+    return st, n
+
 @app.route("/image_ocr", methods=["POST"])
 def ocr_enable():
     data = []
@@ -68,9 +74,14 @@ def ocr_enable():
     # img2 = np.array(img2)
     img2.save("Bill.jpg")
     img2 = cv.imread("Bill.jpg", 0)
-    th = cv.adaptiveThreshold(img2,255,cv.ADAPTIVE_THRESH_GAUSSIAN_C, cv.THRESH_BINARY,11,2)
+    img2 = cv.GaussianBlur(img2, (5,5), 0)
+    # th = cv.threshold(img2, 5, 255, cv.THRESH_OTSU | cv.THRESH_BINARY)[1]
+    th = cv.adaptiveThreshold(img2,255,cv.ADAPTIVE_THRESH_GAUSSIAN_C, cv.THRESH_BINARY,15,5)
     cv.imwrite("Bill.jpg", th)
 
     texts, words, poly_bounds = detect_text("Bill.jpg")
+
+    st, n = find_content_from_output(texts, words, poly_bounds)
+
     print(texts)
     return data
