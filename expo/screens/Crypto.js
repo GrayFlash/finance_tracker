@@ -141,8 +141,6 @@ export default function Crypto() {
         );
     }
 
-    let index_all =0;
-
 
     function All() {
         return(
@@ -151,22 +149,17 @@ export default function Crypto() {
                 <View style={{borderBottomWidth: 1, borderBottomColor: "#999999"}} />
                 <View style={{ flexDirection: 'row', marginTop: 10 , marginBottom: 5, backgroundColor: "transparent"}}>
 
-                    <View >
+                    <View style={{ flex: 1}}>
                         <Text style={{  marginLeft: 16, fontSize: 15,fontFamily: 'GothamBold', color: "black"}}>Name</Text>
                         <View style={{borderBottomWidth: 1, borderBottomColor: "#999999", marginTop: 10}} />
                     </View>
 
                     <View style={{ flex: 1}}>
-                        <View style={{ marginRight: 16,  marginTop: 17}} />
+                        <Text style={{fontSize: 15, marginLeft: 20,fontFamily: 'GothamBold', color: "black"}}>Price</Text>
                         <View style={{borderBottomWidth: 1, borderBottomColor: "#999999", marginTop: 10}} />
                     </View>
 
-                    <View style={{ flex: 1}}>
-                        <Text style={{marginLeft: 26, fontSize: 15,fontFamily: 'GothamBold', color: "black"}}>Price</Text>
-                        <View style={{borderBottomWidth: 1, borderBottomColor: "#999999", marginTop: 10}} />
-                    </View>
-
-                    <View>
+                    <View >
                         <Text style={{ marginRight: 16,  fontSize: 15,fontFamily: 'GothamBold', color: "black"}}>24h</Text>
                         <View style={{borderBottomWidth: 1, borderBottomColor: "#999999", marginTop: 10}} />
                     </View>
@@ -184,7 +177,7 @@ export default function Crypto() {
                                             fontSize: 14,
                                             fontFamily: 'GothamMedium', 
                                             color: "black"
-                                        }}>{item}</Text>
+                                        }}>{((all_crypto_name.indexOf(item)+1).toString() +".") + (item.length < 25 ? item : item.substring(0,15)+"..")}</Text>
 
                                         <View style={{borderBottomWidth: 1, borderBottomColor: "#BEC1D2", marginTop: 5}} />
                                         
@@ -193,7 +186,7 @@ export default function Crypto() {
                             })}
                                     
                         </View>
-                        <View style={{flex: 1}}>
+                        <View  style={{flex: 1}}>
                             {all_crypto_price.map((item) => {
                                 return (
                                     <View key={all_crypto_price[item]} >
@@ -256,7 +249,7 @@ export default function Crypto() {
                 </View>
 
                 <View style={{ flex: 1}}>
-                    <Text style={{marginLeft: 26, fontSize: 15,fontFamily: 'GothamBold', color: "black"}}>Price</Text>
+                    <Text style={{marginLeft: 0, fontSize: 15,fontFamily: 'GothamBold', color: "black"}}>Price</Text>
                     <View style={{borderBottomWidth: 1, borderBottomColor: "#999999", marginTop: 10}} />
                 </View>
 
@@ -289,7 +282,7 @@ export default function Crypto() {
                                         fontSize: 14,
                                         fontFamily: 'GothamMedium', 
                                         color: "black"
-                                    }}>{item}</Text>
+                                    }}>{item.length < 15 ? item : item.substring(0,15)+".."}</Text>
 
                                 <View style={{borderBottomWidth: 1, borderBottomColor: "#BEC1D2", marginTop: 5}} />
                                     
@@ -304,7 +297,7 @@ export default function Crypto() {
                                 <View key={crypto_price_gain[item]} >
                                     <Text style={{  
                                         paddingTop: 5,
-                                        marginLeft: 20,
+                                        marginLeft: 30,
                                         marginTop: 5,
                                         fontSize: 14,
                                         fontFamily: 'GothamMedium', 
@@ -362,7 +355,7 @@ export default function Crypto() {
                 </View>
 
                 <View style={{ flex: 1}}>
-                    <Text style={{marginLeft: 26, fontSize: 15,fontFamily: 'GothamBold', color: "black"}}>Price</Text>
+                    <Text style={{marginLeft: 0, fontSize: 15,fontFamily: 'GothamBold', color: "black"}}>Price</Text>
                     <View style={{borderBottomWidth: 1, borderBottomColor: "#999999", marginTop: 10}} />
                 </View>
 
@@ -395,7 +388,7 @@ export default function Crypto() {
                                         fontSize: 14,
                                         fontFamily: 'GothamMedium', 
                                         color: "black"
-                                    }}>{item}</Text>
+                                    }}>{item.length < 15 ? item : item.substring(0,15)+".."}</Text>
 
                                 <View style={{borderBottomWidth: 1, borderBottomColor: "#BEC1D2", marginTop: 5}} />
                                     
@@ -410,7 +403,7 @@ export default function Crypto() {
                                 <View key={crypto_price_lose[item]} >
                                     <Text style={{  
                                         paddingTop: 5,
-                                        marginLeft: 15,
+                                        marginLeft: 30,
                                         marginTop: 5,
                                         fontSize: 14,
                                         fontFamily: 'GothamMedium', 

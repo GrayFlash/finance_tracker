@@ -208,7 +208,7 @@ export default function Stock() {
                                         fontSize: 14,
                                         fontFamily: 'GothamMedium', 
                                         color: "black"
-                                    }}>{item}</Text>
+                                    }}>{((companyName_sensex.indexOf(item)+1).toString() +".") + item}</Text>
                                     <View style={{borderBottomWidth: 1, borderBottomColor: "#BEC1D2", marginTop: 10}} />
                                     </View>
                                 );
@@ -294,7 +294,7 @@ export default function Stock() {
                                         fontSize: 14,
                                         fontFamily: 'GothamMedium', 
                                         color: "black"
-                                    }}>{item}</Text>
+                                    }}>{((companyName_nifty.indexOf(item)+1).toString() +".") + item}</Text>
                                     <View style={{borderBottomWidth: 1, borderBottomColor: "#BEC1D2", marginTop: 10}} />
                                     </View>
                                 );
