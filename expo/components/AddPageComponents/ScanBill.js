@@ -232,9 +232,27 @@ export default function ScanBill({ categoriesData, people, AddProductSaveButtonH
           await updateUserData(total);
           await updateCategoryExpense(total);
       }
-
     
-    const handleUpload = (image) =>{
+    const ocr_with_py = async (src) => {
+        fetch("http://b6e489d143e7.ngrok.io/image_ocr",{
+            method:"post",
+                headers:{
+                    'Content-Type':'application/json'
+                },
+                body:JSON.stringify({
+                    src: src
+                })
+        })
+        .then(res=>res.json())
+        .then(data=>{
+            console.log(data)
+            return data
+        })
+        .catch(err=>{
+            console.log(err)
+        })
+    }
+    const handleUpload = async(image) =>{
         const data = new FormData()
         data.append('file', image)
         data.append('upload_preset', 'OCR_InOut')
@@ -246,7 +264,8 @@ export default function ScanBill({ categoriesData, people, AddProductSaveButtonH
         }).then(res=>res.json())
         .then(data=>{
           console.log(data.secure_url)
-          textFromImage(data.secure_url)
+          ocr_with_py(data.secure_url)
+          //textFromImage(data.secure_url)
           //return(data.secure_url)
         })
     }
