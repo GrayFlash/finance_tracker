@@ -9,10 +9,6 @@ import RenderProducts from './RenderProducts';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import * as myConstClass from '../../screens/HttpLink';
 
-
-// const cv2 ="AIzaSyDr7HF_EwCmPjZsGDeWmO02C2JOUxSKUmM";
-// const cloudVision  = 'https://vision.googleapis.com/v1/images:annotate?key=' + cv2;
-
 export default function ScanBill({ categoriesData, people, AddProductSaveButtonHandler }) {
 
     const [image, setImage] = useState(null);
@@ -45,26 +41,6 @@ export default function ScanBill({ categoriesData, people, AddProductSaveButtonH
     }
     const [category, setCategory] = useState("");
 
-    // const predict = async(data) => {
-    //     fetch("http://9976958508d9.ngrok.io/prediction",{
-    //         method:"post",
-    //             headers:{
-    //                 'Content-Type':'application/json'
-    //             },
-    //             body:JSON.stringify({
-    //                 data: data
-    //             })
-    //     })
-    //     .then(res=>res.json())
-    //     .then(data=>{
-    //         console.log(data.category)
-    //         setCategory(data.category)
-    //         return data.category
-    //     })
-    //     .catch(err=>{
-    //         console.log(err)
-    //     })
-    // }
     const updateCategoryExpense = async(total, category) =>{
         for(i in categoriesData){
             if(categoriesData[i].name === category){
@@ -120,119 +96,6 @@ export default function ScanBill({ categoriesData, people, AddProductSaveButtonH
         })();
     }, []);
 
-    // const textFromImage = async(src) => {
-    //     let body = JSON.stringify({
-    //       requests: [
-    //         {
-    //           features: [
-    //           { type: "TEXT_DETECTION" },
-    //             { type: "DOCUMENT_TEXT_DETECTION"}
-                
-    //           ],
-    //           image: {
-    //             source: {
-    //               imageUri: src
-    //             }
-    //           }
-    //         }
-    //       ]
-    //     });
-    //     let response = await fetch(
-    //       cloudVision,
-    //       {
-    //         headers: {
-    //           Accept: "application/json",
-    //           "Content-Type": "application/json"
-    //         },
-    //         method: "POST",
-    //         body: body
-    //       }
-    //     );
-    //     let res = await response.json();
-    //     console.log(res)
-    //       var texts = [];
-    //       var y=0;
-    //       console.log("Starting with text")
-    //       let x = await res.responses[0].fullTextAnnotation.text;
-    //       console.log(x);
-    //       console.log(typeof x);
-    //       var k = x.split("\n");
-    //       let arr = [];
-    //       var flag = 1;
-    //       var count = 0;
-    //       var lastStr = 0;
-    //       var lastString = "";
-    //       var lastNum = 0;
-    //       var lastNumber = 0;
-    //       var diff = 0;
-    //       for(var i in x.split("\n")){
-    //           var words = k[i].split(" ");
-    //           if(words.length === 1 && flag===1){
-    //               count ++;
-    //           }else{
-    //               flag = 0;
-    //               for(var y in words){
-    //                   //console.log(y);
-    //                   if(lastStr === 0 && isNaN(words[y])){
-    //                       lastStr = 1;
-    //                       lastNum = 0;
-    //                       lastString = words[y];
-    //                       diff = 0;
-    //                   }else if(lastNum === 0 && !isNaN(words[y])){
-    //                       lastNum = 1;
-    //                       lastNumber = parseFloat(words[y]);
-    //                   }else if(lastStr === 1 && isNaN(words[y]) && lastNum===0){
-    //                     lastString = lastString+" "+words[y];
-    //                   }else if(lastStr === 1 && isNaN(words[y]) && lastNum===1){
-    //                     arr.push(lastString, lastNumber);
-    //                     lastStr = 0;
-    //                     lastNum = 0;
-    //                   }
-    //                   diff++;
-    //               }
-    //           }
-    //           //console.log('\n');
-    //       }
-
-    //       setScannedData(arr);
-    //       var productName = [];
-    //       var priceArray = [];
-    //       var categoryArray = [];
-    //       var pos1 = 0;
-    //       var pos2 = 0;
-    //       var pos3 = 0;
-    //       var total = 0;
-    //       console.log("done");
-    //       //console.log(arr.length);
-    //       var te = "";
-    //       for(var i=0; i< arr.length; i++){
-    //           //console.log(arr[i]);
-    //           if(i%2==0){
-    //               setTitle(arr[i]);
-    //               te  = arr[i];
-    //               productName[pos1] = te;
-    //               pos1++;
-    //               categoryArray[pos3] = "Food";
-    //               pos3++;
-    //               setCategory("food");
-    //           }else{
-    //               total += arr[i];
-    //               setTotal(arr[i]);
-    //               priceArray[pos2] = parseInt(arr[i]);
-    //               pos2++;
-    //               //let cat = "Food";
-    //               let cat = await predict(te)
-    //               .then (cat=>{
-    //                 console.log(te+"  "+ category+"  "+ arr[i]);
-    //               })
-    //               await addExpense(te, category, arr[i]);
-                  
-    //           }
-    //       }
-    //       await updateUserData(total);
-    //       await updateCategoryExpense(total);
-    //   }
-    
     const ocr_with_py = async (src) => {
         fetch("http://b6e489d143e7.ngrok.io/image_ocr",{
             method:"post",
