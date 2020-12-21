@@ -116,8 +116,8 @@ This pie chart also shows the percentage amount you spent on a particular catego
 <br/>
 
 <h2>Team Members</h2>
-<a href="https://github.com/GrayFlash">Gaurav Kumar</a>
-<a href="https://github.com/neelbavarva">Neel Bavarva</a>
-<a href="https://github.com/neel-thakker">Neel Thakker</a>
-<a href="https://github.com/Mustafa2856">Mustafa</a>
+<a href="https://github.com/GrayFlash">Gaurav Kumar</a><br>
+<a href="https://github.com/neelbavarva">Neel Bavarva</a><br>
+<a href="https://github.com/neel-thakker">Neel Thakker</a><br>
+<a href="https://github.com/Mustafa2856">Mustafa</a><br>
 
