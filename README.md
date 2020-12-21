@@ -114,3 +114,10 @@ This pie chart also shows the percentage amount you spent on a particular catego
 <img height="800px" src="https://github.com/GrayFlash/finance_tracker/blob/main/expo/assets/readme_images/crypto_gain.jpg">
 </div>
 <br/>
+
+<h2>Team Members</h2>
+<a href="https://github.com/GrayFlash">Gaurav Kumar</a>
+<a href="https://github.com/neelbavarva">Neel Bavarva</a>
+<a href="https://github.com/neel-thakker">Neel Thakker</a>
+<a href="https://github.com/Mustafa2856">Mustafa</a>
+
