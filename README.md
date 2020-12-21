@@ -10,7 +10,7 @@ Repository for InOut7.0 -->
 **Finance Tracker** is a mobile application which helps you to keep track of your daily expences.
 
 <hr>
-Hmmmm.... Don't wanna read the whole readme? Just keep scrolling, we have added screenshots of each and every component, you will get a direct idea from it. Also you can find a <a href="https://www.youtube.com/watch?v=AZGcmvrTX9M">YouTube Video</a> that we have made explaining the whole app.
+Hmmmm.... Don't wanna read the whole readme? Just keep scrolling, we have added screenshots of each and every component, you will get a direct idea from it. Also you can find a <a href="https://www.youtube.com/watch?v=cqDO2ruW7Fo&feature=youtu.be">YouTube Video</a> that we have made explaining the whole app.
 
 ## How it works?
 
