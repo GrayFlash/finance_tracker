@@ -9,11 +9,18 @@ Repository for InOut7.0 -->
 
 **Finance Tracker** is a mobile application which helps you to keep track of your daily expences.
 
+<hr>
+Hmmmm.... Don't wanna read the whole readme? Just keep scrolling, we have added screenshots of each and every component, you will get a direct idea from it. Also you can find a <a href="https://www.youtube.com/watch?v=AZGcmvrTX9M">YouTube Video</a> that we have made explaining the whole app.
+
 ## How it works?
 
-Here it is:
+<p>As you can see it contains 4 main pages. Curious to know about it? Let's give you a quick tour to each of them.</p>
 
-<h2>It contains 3 components in home page</h2>
+<div align="center">
+<img height="800px" src="https://github.com/GrayFlash/finance_tracker/blob/main/expo/assets/readme_images/drawer.jpg">
+</div>
+
+<h2>Home Page</h2>
 
 <h4>1. Expenses</h4> 
 <p>This shows all the categories of your products and renders your previous expenses. It also shows the total amout you spent this month. As you clicks on a particular category it will render all the previous expenses on that particular category on the PREVIOUS EXPENSES section as show in the image. </p>
@@ -26,7 +33,7 @@ Here it is:
 </div>
 
 <h4>2. Pie Chart</h4> 
-<p>Hmmm.. this one seems to be pretty simple. Yup! this component shows a detailed pie chart of your expense according to your category. As you clicks on any of the category mentioned bellow that particular part of that category in the pie chart will glow up.
+<p>Hmmm.. this one seems to be pretty simple. Yup! this component shows a detailed pie chart of your expense according to your category. As you clicks on any of the category mentioned bellow that particular part of the category in the pie chart will glow up.
 This pie chart also shows the percentage amount you spent on a particular category so that you can keep track of on which category you are spending more. </p>
 
 <div align="center">
@@ -34,7 +41,7 @@ This pie chart also shows the percentage amount you spent on a particular catego
 </div>
 
 <h4>3. Add Page</h4> 
-<p>Here we go... The main functionality of this app. You can scan your here which then scan and predicts all your data like product name, price, category and upload it to database and then renders that products which you can edit easily just like you edited a particular product in Expenses component.</p>
+<p>Here we go... The main functionality of this app. You can scan your bill here.</p>
 
 <h6>What if I want to add only 1 or 2 product and don't have any bill?</h6>
 <p>As you can see we added a separate form just bellow the "Scan your Bill" button where you can add your product manually.</p>
@@ -45,48 +52,65 @@ This pie chart also shows the percentage amount you spent on a particular catego
 </div>
 <br>
 
-<p>This is what it looks like when you click "Scan your Bill" button. You can either scan your bill using your camera or even import the image of your bill from your gallery.</p>
+<p>This is what it looks like when you click "Scan your Bill" button. You can either scan your bill using your camera or can even import the image of your bill from gallery.</p>
 <br>
 
 <div align="center">
 <img height="800px" src="https://github.com/GrayFlash/finance_tracker/blob/main/expo/assets/readme_images/scan.jpg">
 </div>
+<br>
+
+<p>After scanning your bill it will render all your scanned products so that you can confirm all your products for once and can upload them by clicking on "Done" button. Can also cancel by clicking on any of the other components in header.</p>
+
+<div align="center">
+<img height="800px" src="https://github.com/GrayFlash/finance_tracker/blob/main/expo/assets/readme_images/render_products.jpg">
+</div>
+<br>
 
 
 <h2>Profile page</h2>
-<h6>So for all this you need to add your information about you monthly salary, name, monthly target to save, etc.</h6>
-<p>Now in this component you can see your information like expenses, your salary, your target to save and can also edit these values.</p>
+
+<p>Now in this component you can see your information like expenses, your salary, your target to save and can also check weather you have overspent this month.</p>
 
 <div align="center">
-<img height="800px" src="https://github.com/GrayFlash/finance_tracker/blob/main/expo/assets/readme_images/profile.jpg">
+<img height="800px" src="https://github.com/GrayFlash/finance_tracker/blob/main/expo/assets/readme_images/profile_info.jpg">
+</div>
+<br>
+
+<p>Now if you wanna edit any of your those infos. you can directly edit them through Edit Component.</p>
+
+<div align="center">
+<img height="800px" src="https://github.com/GrayFlash/finance_tracker/blob/main/expo/assets/readme_images/profile_edit.jpg">
 </div>
 
-## How to Use
+<h2>Market Today</h2>
 
-Download <a href="https://expo.io/tools">Expo Cli</a> app from PlayStore/AppStore.
+<p>In here we have used API so that you can get updated value of todays market. Hmm.. it seems like market is down today(The day of taking screenshots 😅).</p>
 
-We have published this project on <a href="https://expo.io/@neelbavarva/projects/expanse-tracker">Expo Client</a> where you can directly use this app.
+<div align="center">
+<img height="800px" src="https://github.com/GrayFlash/finance_tracker/blob/main/expo/assets/readme_images/stock.jpg">
+</div>
+<br>
 
-<h5>OR</h5>
+<p>Here you can check that which company's value has increased any can keep track of that. This one is for Sensex(BSE). As you can see we have also added another section on Nifty 50.</p>
 
-Clone this repo in your local machine.
+<div align="center">
+<img height="800px" src="https://github.com/GrayFlash/finance_tracker/blob/main/expo/assets/readme_images/stock_sensex.jpg">
+</div>
+<br>
 
-#### Usage
+<h2>Cryptocurrencies</h2>
 
-Open this project in termina then,
+<p>🤔 Why everything is down today???.... Probably not the best day to invest on anything 😅 anyway.. In this component you can see the top 200 cryptocurrencies along with their gain/lose value.</p>
 
-```bash
-$ cd/expo
-```
-Now run the app by using
+<div align="center">
+<img height="800px" src="https://github.com/GrayFlash/finance_tracker/blob/main/expo/assets/readme_images/crypto_all.jpg">
+</div>
+<br/>
 
-```bash
-$ npm start
-```
-OR
+<p>Now here's a section for top gainers in cryptocurrencies. Same goes for Top losers.</p>
 
-```bash
-$ expo start
-```
-
-Now open your Expo app that you downloaded from playstore and scan the QR code that will appear on your terminal after you run the app.
+<div align="center">
+<img height="800px" src="https://github.com/GrayFlash/finance_tracker/blob/main/expo/assets/readme_images/crypto_gain.jpg">
+</div>
+<br/>
