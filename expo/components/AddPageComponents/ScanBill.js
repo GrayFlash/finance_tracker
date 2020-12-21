@@ -22,7 +22,7 @@ export default function ScanBill({ categoriesData, people, AddProductSaveButtonH
 
     const ocr_with_py = async (src) => {
         console.log("Inside ocr_with_py");
-        fetch("http://98f7a1f6464b.ngrok.io/image_ocr",{
+        fetch("http://e86e93c71af5.ngrok.io//image_ocr",{
             method:"post",
             headers:{
                 'Content-Type':'application/json'

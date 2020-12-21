@@ -381,79 +381,90 @@ export default function Home () {
                 }
             }
 
-            fetch(`${myConstClass.HTTP_LINK}/updatePerson`,{
-                method:"post",
-                headers:{
-                    'Content-Type':'application/json'
-                },
-                body:JSON.stringify({
-                    id:people._id,
-                    name: people.name,
-                    income: people.income,
-                    totalExpenses: people.totalExpenses + productList[i].total,
-                    targetToSave: people.targetToSave,
-                    thisMonthStatus: people.thisMonthStatus,
-                    savings: people.savings
-                })
-            })
-            .then(res=>res.json())
-            .then(data=>{
-                console.log(`total expense of ${people.name} is updated.`);
-            })
-            .catch(err=>{
-                Alert.alert(`Some Error while updating total expense of ${people.name} inside Add product page`);
-                isDone = false;
-                console.log(err);
-            })
-        
-            if(isDone) {
-                fetch(`${myConstClass.HTTP_LINK}/updateCategory`,{
+            setTimeout(function() {
+                fetch(`${myConstClass.HTTP_LINK}/updatePerson`,{
                     method:"post",
                     headers:{
                         'Content-Type':'application/json'
                     },
                     body:JSON.stringify({
-                        id:categoriesData[index]._id,
-                        name: categoriesData[index].name,
-                        icon: categoriesData[index].icon,
-                        color: categoriesData[index].color,
-                        totalExpenseInThis: categoriesData[index].totalExpenseInThis + productList[i].total
+                        id:people._id,
+                        name: people.name,
+                        income: people.income,
+                        totalExpenses: people.totalExpenses + productList[i].total,
+                        targetToSave: people.targetToSave,
+                        thisMonthStatus: people.thisMonthStatus,
+                        savings: people.savings
                     })
                 })
                 .then(res=>res.json())
                 .then(data=>{
-                    console.log(`total expense of ${productList[i].category} category is updated for ${productList[i].title}.`);
+                    console.log(`total expense of ${people.name} is updated.`);
                 })
                 .catch(err=>{
-                    Alert.alert(`Some Error while updating total expense of ${item.category} category inside Add product page`);
+                    Alert.alert(`Some Error while updating total expense of ${people.name} inside Add product page`);
                     isDone = false;
                     console.log(err);
-                })
-            }
+                })                
+            }, 500)
 
-            if(isDone) {
-                fetch(`${myConstClass.HTTP_LINK}/addExpense`,{
-                    method:"post",
-                    headers:{
-                        'Content-Type':'application/json'
-                    },
-                    body:JSON.stringify(item)
-                })
-                .then(res=>res.json())
-                .then(data=>{
-                    console.log(`\n #${i+1} ${item.title} is Added inside ${item.category} Category.`)
-                    if(i==(n-1)) {
-                        Alert.alert(`Details of All products has been updated`)
-                    }
-                })
-                .catch(err=>{
-                    Alert.alert("Some Error while Adding product in Add Product Page.")
-                    console.log(err);
-                });
-            } else {
-                console.log(`\n${item.title} product is not added due to error.`);
+            setTimeout(function() {
+                if(isDone) {
+                    fetch(`${myConstClass.HTTP_LINK}/updateCategory`,{
+                        method:"post",
+                        headers:{
+                            'Content-Type':'application/json'
+                        },
+                        body:JSON.stringify({
+                            id:categoriesData[index]._id,
+                            name: categoriesData[index].name,
+                            icon: categoriesData[index].icon,
+                            color: categoriesData[index].color,
+                            totalExpenseInThis: categoriesData[index].totalExpenseInThis + productList[i].total
+                        })
+                    })
+                    .then(res=>res.json())
+                    .then(data=>{
+                        console.log(`total expense of ${productList[i].category} category is updated for ${productList[i].title}.`);
+                    })
+                    .catch(err=>{
+                        Alert.alert(`Some Error while updating total expense of ${item.category} category inside Add product page`);
+                        isDone = false;
+                        console.log(err);
+                    })
+                }
+            }, 500)
+
+            setTimeout(function() {
+                if(isDone) {
+                    fetch(`${myConstClass.HTTP_LINK}/addExpense`,{
+                        method:"post",
+                        headers:{
+                            'Content-Type':'application/json'
+                        },
+                        body:JSON.stringify(item)
+                    })
+                    .then(res=>res.json())
+                    .then(data=>{
+                        console.log(`\n #${i+1} ${item.title} is Added inside ${item.category} Category.`)
+                        if(i==(n-1)) {
+                            Alert.alert(`Details of All products has been updated`)
+                        }
+                    })
+                    .catch(err=>{
+                        Alert.alert("Some Error while Adding product in Add Product Page.")
+                        console.log(err);
+                    });
+                } else {
+                    console.log(`\n${item.title} product is not added due to error.`);
+                    isDone = false;
+                }
+            }, 500);
+
+            if(!isDone) {
                 break;
             }
+
         }   // end-main-for
 
         NavbarButtonHandler("expenses");

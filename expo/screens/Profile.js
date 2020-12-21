@@ -16,10 +16,8 @@ export default function Profile() {
     const [savings, setSavings] = useState(0)
     const [targetToSave, setTargetToSave] = useState(0)
     const [totalExpenses, setTotalExpenses] = useState(0)
-    const [thisMonthStatus, setThisMonthStatus] = useState("")
-    const [_id, set_id] = useState("")
-
-    let bc = 0;
+    const [thisMonthStatus, setThisMonthStatus] = useState(income - totalExpenses - targetToSave)
+    const [_id, set_id] = useState("");
 
     // UPDATE links -2
     const fetchData = () => {
@@ -33,7 +31,7 @@ export default function Profile() {
             setSavings(results[0].savings)
             setTargetToSave(results[0].targetToSave)
             setTotalExpenses(results[0].totalExpenses)
-            setThisMonthStatus(results[0].thisMonthStatus)
+            setThisMonthStatus(income - totalExpenses - targetToSave);
             set_id(results[0]._id)
             
             setLoading(false)
@@ -52,7 +50,7 @@ export default function Profile() {
                     income: income,
                     savings: savings,
                     targetToSave: targetToSave,
-                    thisMonthStatus: thisMonthStatus,
+                    thisMonthStatus: income - totalExpenses - targetToSave,
                     totalExpenses: totalExpenses
                 })
         })
@@ -66,6 +64,7 @@ export default function Profile() {
             console.log(err)
         })
     }
+
     useEffect(()=>{
         fetchData()
     },[])
@@ -80,7 +79,7 @@ export default function Profile() {
 
     function renderExpense() {
         const property = [ "Monthly Income", "Expenses", "Target to save", "This month's status"];
-        let vals = [ `₹ ${income}`, `₹ ${totalExpenses}`, `₹ ${targetToSave}`, `Over Spent (${thisMonthStatus})`];
+        let vals = [ `₹ ${income}`, `₹ ${totalExpenses}`, `₹ ${targetToSave}`, `Over Spent (${income - totalExpenses - targetToSave})`];
         return (
             <View style={{ marginTop: 6 }} >
                 {property.map((p) => {
@@ -104,7 +103,7 @@ export default function Profile() {
 
                             {/* Expenses */}
                             <View style={{ justifyContent: 'center' }}>                             
-                                <Text style={ (p==="This month's status") ? ((thisMonthStatus>=0)?{ color: "#00CC00", fontFamily: 'GothamLight'}:{ color: "red", fontFamily: 'GothamLight'}): { color: "#194868", fontFamily: 'GothamLight' }}>{vals[property.indexOf(p)]}</Text>                               
+                                <Text style={ (p==="This month's status") ? ((income - totalExpenses - targetToSave>=0)?{ color: "#00CC00", fontFamily: 'GothamLight'}:{ color: "red", fontFamily: 'GothamLight'}): { color: "#194868", fontFamily: 'GothamLight' }}>{vals[property.indexOf(p)]}</Text>                               
                             </View>
                         </View>
                     );
@@ -309,7 +308,6 @@ export default function Profile() {
                     </View>
                 }
                 </KeyboardAvoidingView>
-                
         </ScrollView>
         
     );
