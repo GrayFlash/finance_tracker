@@ -207,7 +207,7 @@ export default function Home () {
             isDone = false;
             console.log(err);
         })
-/*
+
         if(isDone) {
             fetch(`${myConstClass.HTTP_LINK}/updateCategory`,{
                 method:"post",
@@ -232,7 +232,7 @@ export default function Home () {
                 console.log(err);
             })
         }
-*/
+
         if(isDone) {
             fetch(`${myConstClass.HTTP_LINK}/deleteExpense`,{
                 method:"post",
