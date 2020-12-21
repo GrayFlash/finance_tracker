@@ -3,61 +3,11 @@ import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { Table, Row } from 'react-native-table-component';
 
 export default function RenderProducts({ doneButtonHandler, scannedData }) {
-/*
-    let scannedData = {
-        Categories: [
-            "Hygiene",
-            "Hygiene",
-            "Food",
-            "Home",
-            "Hygiene",
-            "Food",
-            "Food",
-            "Food",
-            "Home",
-            "Clothes",
-            "Food",
-            "Food",
-            "Hygiene",
-            "Hygiene",
-        ],
-        Items: [
-            " GOWARDHAN GO CHEE",
-            " ALIUL VANILA IC CR",
-            " APPY JUICE 400 ML",
-            " BT RAWRICE",
-            " ORANGE CITRUS",
-            " GOODLIFE PURE COW",
-            " SUGAR",
-            " ВАЛBINO ROASTED V",
-            " CUCUMBER HYBRID",
-            " DOUBLE HORSE IDIY",
-            " GINGER",
-            " GREEN CHILLY",
-            " KGTIDE JR 1",
-            " РЕPSODENТ KDS FRT",
-        ],
-        Prices: [
-            54.04,
-            19.58,
-            17.44,
-            41.14,
-            95,
-            21.75,
-            38.76,
-            36.37,
-            18,
-            10.74,
-            45,
-            45,
-            85.73,
-            47.1,
-        ]
-    }   
-*/
-    let productList = [], n = scannedData.Categories.length;
+
+    let productList = [], n = scannedData.Categories.length, totalExpenseForUser = 0, categories= [];
     for(let i=0 ; i<n ; i++) {
-        productList = [ ...productList, { title: scannedData.Items[i], category: scannedData.Categories[i], total: scannedData.Prices[i] }]
+        productList = [ ...productList, { title: scannedData.Items[i], category: scannedData.Categories[i], total: scannedData.Prices[i] }];
+        totalExpenseForUser += scannedData.Prices[i];
     }
 
     return (
@@ -87,7 +37,7 @@ export default function RenderProducts({ doneButtonHandler, scannedData }) {
             
             <TouchableOpacity 
                 style={{ paddingTop: 10, marginTop: 10, marginBottom: 10 }}
-                onPress={() => doneButtonHandler(productList) }
+                onPress={() => doneButtonHandler(productList, totalExpenseForUser) }
             >
                 <View style={{
                     backgroundColor: "#444444",

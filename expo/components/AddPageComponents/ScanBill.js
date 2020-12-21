@@ -12,8 +12,8 @@ export default function ScanBill({ categoriesData, people, AddProductSaveButtonH
     const [image, setImage] = useState(null);
     const [scannedData, setScannedData] = useState(false); 
 
-    const doneButtonHandler = (productList) => {
-        ScanBillDoneButtonHandler(productList);
+    const doneButtonHandler = (productList, totalExpenseForUser) => {
+        ScanBillDoneButtonHandler(productList, totalExpenseForUser);
         setImage(null);
         setScannedData(null);
     }
@@ -22,7 +22,7 @@ export default function ScanBill({ categoriesData, people, AddProductSaveButtonH
 
     const ocr_with_py = async (src) => {
         console.log("Inside ocr_with_py");
-        fetch("http://e86e93c71af5.ngrok.io//image_ocr",{
+        fetch("http://7ff3819005db.ngrok.io/image_ocr",{
             method:"post",
             headers:{
                 'Content-Type':'application/json'

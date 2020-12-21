@@ -66,6 +66,7 @@ export default function Home () {
     const NavbarButtonHandler = (mode) => {
         console.log(`NavBar ${mode} Button is pressed!!`);
         setViewMode(mode);
+        //console.log(categoriesData);
     }
 
     const categoryButtonHandler = (item) => {
@@ -206,7 +207,7 @@ export default function Home () {
             isDone = false;
             console.log(err);
         })
-
+/*
         if(isDone) {
             fetch(`${myConstClass.HTTP_LINK}/updateCategory`,{
                 method:"post",
@@ -231,7 +232,7 @@ export default function Home () {
                 console.log(err);
             })
         }
-
+*/
         if(isDone) {
             fetch(`${myConstClass.HTTP_LINK}/deleteExpense`,{
                 method:"post",
@@ -365,75 +366,89 @@ export default function Home () {
 
     /** Add Product END */
 
-    const ScanBillDoneButtonHandler = (productList) => {
+    const ScanBillDoneButtonHandler = (productList, totalExpenseForUser) => {
         console.log("Done Button is Pressed!!");
         console.log(productList);
 
-        let n = productList.length;
-        for(let i=0 ; i<n ; i++) {
-            const item = productList[i];
+        let n = productList.length, isDone = true;
+        const totalExpenseForCategory = {
+            Food: 0,
+            Clothes: 0,
+            Home: 0,
+            Stationery: 0,
+            Hygiene: 0,
+            Others: 0
+        }
 
-            let index = 0, isDone = true;
-            for(let j=0 ; j<categoriesData.length ; j++) {
-                if(categoriesData[j].name === productList[i].category) {
-                    index = j;
-                    break;
-                }
+        for(let k=0 ; k<n ; k++) {
+            totalExpenseForCategory[productList[k].category] += productList[k].total;
+        }
+
+        console.log("This is totalExpenseForCategory list : ");
+        console.log(totalExpenseForCategory);
+
+        fetch(`${myConstClass.HTTP_LINK}/updatePerson`,{
+            method:"post",
+            headers:{
+                'Content-Type':'application/json'
+            },
+            body:JSON.stringify({
+                id:people._id,
+                name: people.name,
+                income: people.income,
+                totalExpenses: people.totalExpenses + totalExpenseForUser,
+                targetToSave: people.targetToSave,
+                thisMonthStatus: people.thisMonthStatus,
+                savings: people.savings
+            })
+        })
+        .then(res=>res.json())
+        .then(data=>{
+            console.log(`total expense of ${people.name} is updated.`);
+        })
+        .catch(err=>{
+            Alert.alert(`Some Error while updating total expense of ${people.name} inside Add product page`);
+            console.log(err);
+            isDone = false;
+        })
+
+        for(let k=0 ; k<categoriesData.length ; k++) {
+            if(totalExpenseForCategory[categoriesData[k].name] === 0) {
+                continue;
             }
-
             setTimeout(function() {
-                fetch(`${myConstClass.HTTP_LINK}/updatePerson`,{
+                fetch(`${myConstClass.HTTP_LINK}/updateCategory`,{
                     method:"post",
                     headers:{
                         'Content-Type':'application/json'
                     },
                     body:JSON.stringify({
-                        id:people._id,
-                        name: people.name,
-                        income: people.income,
-                        totalExpenses: people.totalExpenses + productList[i].total,
-                        targetToSave: people.targetToSave,
-                        thisMonthStatus: people.thisMonthStatus,
-                        savings: people.savings
+                        id:categoriesData[k]._id,
+                        name: categoriesData[k].name,
+                        icon: categoriesData[k].icon,
+                        color: categoriesData[k].color,
+                        totalExpenseInThis: categoriesData[k].totalExpenseInThis + totalExpenseForCategory[categoriesData[k].name]
                     })
                 })
                 .then(res=>res.json())
                 .then(data=>{
-                    console.log(`total expense of ${people.name} is updated.`);
+                    console.log(`total expense of ${categoriesData[k].name} category is updated.`);
                 })
                 .catch(err=>{
-                    Alert.alert(`Some Error while updating total expense of ${people.name} inside Add product page`);
+                    Alert.alert(`Some Error while updating total expense of ${categoriesData[k].name} category inside Add product page`);
                     isDone = false;
                     console.log(err);
-                })                
-            }, 500)
+                })
+            }, 500);
 
-            setTimeout(function() {
-                if(isDone) {
-                    fetch(`${myConstClass.HTTP_LINK}/updateCategory`,{
-                        method:"post",
-                        headers:{
-                            'Content-Type':'application/json'
-                        },
-                        body:JSON.stringify({
-                            id:categoriesData[index]._id,
-                            name: categoriesData[index].name,
-                            icon: categoriesData[index].icon,
-                            color: categoriesData[index].color,
-                            totalExpenseInThis: categoriesData[index].totalExpenseInThis + productList[i].total
-                        })
-                    })
-                    .then(res=>res.json())
-                    .then(data=>{
-                        console.log(`total expense of ${productList[i].category} category is updated for ${productList[i].title}.`);
-                    })
-                    .catch(err=>{
-                        Alert.alert(`Some Error while updating total expense of ${item.category} category inside Add product page`);
-                        isDone = false;
-                        console.log(err);
-                    })
-                }
-            }, 500)
+            if(!isDone) {
+                break;
+            }
+        }
+
+        
+        for(let i=0 ; i<n ; i++) {
+            const item = productList[i];
 
             setTimeout(function() {
                 if(isDone) {
@@ -448,7 +463,15 @@ export default function Home () {
                     .then(data=>{
                         console.log(`\n #${i+1} ${item.title} is Added inside ${item.category} Category.`)
                         if(i==(n-1)) {
-                            Alert.alert(`Details of All products has been updated`)
+                            Alert.alert(`Details of All products has been updated`);
+                            setTimeout(() => {
+                                NavbarButtonHandler("expenses");
+                                setLoading(true);
+                                fetchExpense();
+                                fetchCategory();
+                                fetchData();
+                                setLoading(false);
+                            }, 1000);
                         }
                     })
                     .catch(err=>{
@@ -459,20 +482,13 @@ export default function Home () {
                     console.log(`\n${item.title} product is not added due to error.`);
                     isDone = false;
                 }
-            }, 500);
+            }, 1000);
 
             if(!isDone) {
                 break;
             }
 
         }   // end-main-for
-
-        NavbarButtonHandler("expenses");
-        setLoading(true);
-        fetchExpense();
-        fetchCategory();
-        fetchData();
-        setLoading(false);
     }
 
     return (  
