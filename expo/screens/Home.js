@@ -368,6 +368,100 @@ export default function Home () {
     const ScanBillDoneButtonHandler = (productList) => {
         console.log("Done Button is Pressed!!");
         console.log(productList);
+
+        let n = productList.length;
+        for(let i=0 ; i<n ; i++) {
+            const item = productList[i];
+
+            let index = 0, isDone = true;
+            for(let j=0 ; j<categoriesData.length ; j++) {
+                if(categoriesData[j].name === productList[i].category) {
+                    index = j;
+                    break;
+                }
+            }
+
+            fetch(`${myConstClass.HTTP_LINK}/updatePerson`,{
+                method:"post",
+                headers:{
+                    'Content-Type':'application/json'
+                },
+                body:JSON.stringify({
+                    id:people._id,
+                    name: people.name,
+                    income: people.income,
+                    totalExpenses: people.totalExpenses + productList[i].total,
+                    targetToSave: people.targetToSave,
+                    thisMonthStatus: people.thisMonthStatus,
+                    savings: people.savings
+                })
+            })
+            .then(res=>res.json())
+            .then(data=>{
+                console.log(`total expense of ${people.name} is updated.`);
+            })
+            .catch(err=>{
+                Alert.alert(`Some Error while updating total expense of ${people.name} inside Add product page`);
+                isDone = false;
+                console.log(err);
+            })
+        
+            if(isDone) {
+                fetch(`${myConstClass.HTTP_LINK}/updateCategory`,{
+                    method:"post",
+                    headers:{
+                        'Content-Type':'application/json'
+                    },
+                    body:JSON.stringify({
+                        id:categoriesData[index]._id,
+                        name: categoriesData[index].name,
+                        icon: categoriesData[index].icon,
+                        color: categoriesData[index].color,
+                        totalExpenseInThis: categoriesData[index].totalExpenseInThis + productList[i].total
+                    })
+                })
+                .then(res=>res.json())
+                .then(data=>{
+                    console.log(`total expense of ${productList[i].category} category is updated for ${productList[i].title}.`);
+                })
+                .catch(err=>{
+                    Alert.alert(`Some Error while updating total expense of ${item.category} category inside Add product page`);
+                    isDone = false;
+                    console.log(err);
+                })
+            }
+
+            if(isDone) {
+                fetch(`${myConstClass.HTTP_LINK}/addExpense`,{
+                    method:"post",
+                    headers:{
+                        'Content-Type':'application/json'
+                    },
+                    body:JSON.stringify(item)
+                })
+                .then(res=>res.json())
+                .then(data=>{
+                    console.log(`\n #${i+1} ${item.title} is Added inside ${item.category} Category.`)
+                    if(i==(n-1)) {
+                        Alert.alert(`Details of All products has been updated`)
+                    }
+                })
+                .catch(err=>{
+                    Alert.alert("Some Error while Adding product in Add Product Page.")
+                    console.log(err);
+                });
+            } else {
+                console.log(`\n${item.title} product is not added due to error.`);
+                break;
+            }
+        }   // end-main-for
+
+        NavbarButtonHandler("expenses");
+        setLoading(true);
+        fetchExpense();
+        fetchCategory();
+        fetchData();
+        setLoading(false);
     }
 
     return (  

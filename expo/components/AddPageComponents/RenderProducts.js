@@ -74,11 +74,12 @@ export default function RenderProducts({ doneButtonHandler, scannedData }) {
             </View>
 
             <View style={styles.table} >
+                <Text style={{ marginBottom: 5 }} >Total items: {productList.length}</Text>
                 <Table borderStyle={{borderWidth: 2, borderColor: '#c8e1ff'}}>
                     <Row data={[ "Product Name", "Category", "Amount" ]} style={styles.head} textStyle={styles.text}/>
                     {productList.map((item) => {
                         return (
-                            <Row data={[item.title, item.category, item.total]} textStyle={styles.text} key={productList.indexOf(item)} />
+                            <Row data={[ item.title, item.category, item.total]} textStyle={styles.text} key={productList.indexOf(item)} />
                         );  
                     })}
                 </Table>
@@ -110,7 +111,6 @@ const styles = StyleSheet.create({
     table: { 
         flex: 1, 
         padding: 16, 
-        paddingTop: 30, 
         backgroundColor: '#fff' 
     },
     head: { 
