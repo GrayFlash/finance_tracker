@@ -1,12 +1,46 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Picker } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Picker, Alert } from 'react-native';
 
 export default function ManualAdd({ categoriesData, people, AddProductSaveButtonHandler }) {
     
     const [selectedValue, setSelectedValue] = useState("Food");
-    const [productName, setProductName] = useState();
-    const [amount, setAmount] = useState();
+    const [productName, setProductName] = useState("");
+    const [amount, setAmount] = useState(null);
     const [description, setDescription] = useState();
+
+    let [check_name, setCheck_name] = useState(true);
+    let [check_amount, setCheck_amount] = useState(true);
+
+    function pick() {
+        if(productName.length==0 || amount==null || isNaN(amount) || !isNaN(productName)){
+            if(!isNaN(productName || productName.length==0)){
+                setCheck_name(false);
+            }
+            if(isNaN(amount) || amount==null){
+                setCheck_amount(false);
+            }
+            if(isNaN(productName)){
+                setCheck_name(true);
+            }
+            if(productName.length!==0){
+                setCheck_name(true);
+            }
+            if(!isNaN(amount) && amount!==null){
+                setCheck_amount(true);
+            }
+            Alert.alert('Please fill proper input.');
+
+        } else {
+            const obj = {
+                title: productName,
+                description: description,
+                category: selectedValue,
+                total: Number(amount)
+            }
+            
+           AddProductSaveButtonHandler(obj);
+        }
+    };
 
     return (
         <View>
@@ -23,7 +57,17 @@ export default function ManualAdd({ categoriesData, people, AddProductSaveButton
                 <View style={{borderBottomWidth: 1, borderBottomColor: "black", marginHorizontal: 60, marginBottom: 20}} />
                 <Text style={styles.Text}>Product Name</Text>
                 <TextInput 
-                    style={styles.inputField}
+                    style={{
+                    backgroundColor: "white",
+                    borderWidth: 1,
+                    borderColor: check_name ? "#D1D1D1" : "red",
+                    borderRadius: 5,
+                    padding: 10,
+                    marginTop: 8,
+                    marginBottom: 12,
+                    fontFamily: 'GothamLight', 
+                    fontSize: 14,
+                }}
                     placeholder="Enter name here.." 
                     value={productName}
                     onChangeText={text => setProductName(text)}
@@ -52,7 +96,17 @@ export default function ManualAdd({ categoriesData, people, AddProductSaveButton
 
                 <Text style={styles.Text}>Amount</Text>
                 <TextInput 
-                    style={styles.inputField}
+                    style={{
+                        backgroundColor: "white",
+                        borderWidth: 1,
+                        borderColor: check_amount ? "#D1D1D1" : "red",
+                        borderRadius: 5,
+                        padding: 10,
+                        marginTop: 8,
+                        marginBottom: 12,
+                        fontFamily: 'GothamLight', 
+                        fontSize: 14
+                    }}
                     placeholder="694.20" 
                     value={amount}
                     onChangeText={text => setAmount(text)}
@@ -67,13 +121,9 @@ export default function ManualAdd({ categoriesData, people, AddProductSaveButton
                 <TouchableOpacity 
                     style={{paddingTop: 10,marginTop: 10, marginBottom: 20}}
                     onPress={() => {
-                        const obj = {
-                            title: productName,
-                            description: description,
-                            category: selectedValue,
-                            total: Number(amount)
-                        }
-                        AddProductSaveButtonHandler(obj);
+
+                        pick()
+                        
                     }}
                 >
                     <View style={styles.button}>

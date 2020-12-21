@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Picker } from 'react-native'
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Picker, Alert } from 'react-native'
 
 export default function EditProduct({ item, categoriesData, editProductSaveButtonHandler, editProductDeleteButtonHandler, editProductCancelButtonHandler }) {
     
@@ -10,6 +10,40 @@ export default function EditProduct({ item, categoriesData, editProductSaveButto
     const [productName, setProductName] = useState(item.title);
     const [amount, setAmount] = useState(item.total.toString());
     const [description, setDescription] = useState(item.description);
+
+    let [check_name, setCheck_name] = useState(true);
+    let [check_amount, setCheck_amount] = useState(true);
+
+    function pick() {
+        if(productName.length==0 || amount==null || isNaN(amount) || !isNaN(productName) || amount.length==0){
+            if(!isNaN(productName || productName.length==0)){
+                setCheck_name(false);
+            }
+            if(isNaN(amount) || amount==null || amount.length==0){
+                setCheck_amount(false);
+            }
+            if(isNaN(productName)){
+                setCheck_name(true);
+            }
+            if(productName.length!==0){
+                setCheck_name(true);
+            }
+            if(!isNaN(amount) && amount!==null){
+                setCheck_amount(true);
+            }
+            Alert.alert('Please fill proper input.');
+
+        } else {
+            const obj = {
+                id: _id,
+                title: productName,
+                description: description,
+                category: selectedValue,
+                total: Number(amount)
+            }
+            editProductSaveButtonHandler(obj, prevTotal);
+        }
+    };
 
     return (
         <View style={styles.container}>
@@ -24,7 +58,15 @@ export default function EditProduct({ item, categoriesData, editProductSaveButto
             
             <Text style={styles.Text}>Product Name</Text>
             <TextInput 
-                style={styles.inputField}
+                style={{
+                    backgroundColor: "white",
+                    fontFamily: 'GothamLight',
+                    fontSize: 13,
+                    borderWidth: 1,
+                    borderColor: check_name ? "#D1D1D1" : "red",
+                    borderRadius: 5,
+                    padding: 10,
+                }}
                 value={productName}
                 onChangeText={(text) => setProductName(text)}
             />
@@ -52,7 +94,15 @@ export default function EditProduct({ item, categoriesData, editProductSaveButto
 
             <Text style={styles.Text}>Amount</Text>
             <TextInput 
-                style={styles.inputField}
+                style={{
+                    backgroundColor: "white",
+                    fontFamily: 'GothamLight',
+                    fontSize: 13,
+                    borderWidth: 1,
+                    borderColor: check_amount ? "#D1D1D1" : "red",
+                    borderRadius: 5,
+                    padding: 10,
+                }}
                 value={amount}
                 onChangeText={text => setAmount(text)}
             />
@@ -68,14 +118,7 @@ export default function EditProduct({ item, categoriesData, editProductSaveButto
                 <TouchableOpacity 
                     style={{paddingTop: 10,marginTop: 10, flex: 1, marginRight: 5}}
                     onPress={() => {
-                        const obj = {
-                            id: _id,
-                            title: productName,
-                            description: description,
-                            category: selectedValue,
-                            total: Number(amount)
-                        }
-                        editProductSaveButtonHandler(obj, prevTotal);
+                        pick()
                     }}
                 >
                     <View style={{
