@@ -23,7 +23,7 @@
     "expo-status-bar": "~1.0.2",
     "expo-victory-native": "^0.15.4",
     "express": "^4.17.1",
-    "lodash": "^4.17.20",
+    "lodash": "^4.17.21",
     "nginx": "0.0.0",
     "nodemon": "^2.0.6",
     "puppeteer": "^5.5.0",
