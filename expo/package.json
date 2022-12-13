@@ -22,7 +22,7 @@
     "expo-image-picker": "^9.1.1",
     "expo-status-bar": "~1.0.2",
     "expo-victory-native": "^0.15.4",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "lodash": "^4.17.20",
     "nginx": "0.0.0",
     "nodemon": "^2.0.6",
